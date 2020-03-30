@@ -2,9 +2,9 @@ package modules;
 
 public class Eskimo extends Player
 {
-    public Eskimo(int Id)
+    public Eskimo(int Id, Tile position)
     {
-        super();
+        super(position);
     }
 
     @Override

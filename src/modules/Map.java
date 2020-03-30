@@ -6,7 +6,6 @@ public class Map
 {
     private GameController gameController;
     private ArrayList<Tile> tiles;
-
     public Map()
     {
 

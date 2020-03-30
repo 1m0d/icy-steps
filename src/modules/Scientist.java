@@ -3,9 +3,9 @@ package modules;
 public class Scientist extends Player
 {
 
-    public Scientist(int Id)
+    public Scientist(int Id, Tile position)
     {
-        super();
+        super(position);
     }
 
     @Override
