@@ -12,9 +12,9 @@ public abstract class Player
         return Id;
     }
 
-    public Player()
+    public Player(Tile position)
     {
-
+        this.position = position;
     }
 
     public Player getPlayer()
