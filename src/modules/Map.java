@@ -6,9 +6,9 @@ public class Map
 {
     private GameController gameController;
     private ArrayList<Tile> tiles;
-    public Map()
+    public Map(GameController gc)
     {
-
+        gameController = gc;
     }
 
     public void generateStorm()

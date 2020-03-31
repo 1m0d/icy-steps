@@ -3,6 +3,7 @@ package main;
 import modules.*;
 import java.util.Scanner;
 
+
 public class Main {
     public static void main(String[] args) throws Exception {
 
@@ -14,18 +15,16 @@ public class Main {
                 "Player uses rope", "Player uses shovel",
                 "Game Controller generates storm"};
 
-        Map m = new Map();
+        GameController gc = new GameController();
+        Map m = new Map(gc);
         RegularTile rt1 = new RegularTile(m, 0);
         RegularTile rt2 = new RegularTile(m, 1);
         HoleTile ht = new HoleTile(m, 2);
         Eskimo e = new Eskimo(0, rt1);
         Scientist s = new Scientist(1, ht);
+        gc.addPlayer(e);
+        gc.setMap(m);
 
-        DivingSuit ds = new DivingSuit();
-        Food f = new Food();
-        WinningItem wi = new WinningItem();
-        Rope r = new Rope();
-        Shovel sh = new Shovel();
 
         for (int i = 0; i < TestCaseStrings.length; i++)
         {
@@ -66,6 +65,7 @@ public class Main {
                 }
                 case 4:
                 {
+                    gc.addPlayer(s);
                     System.out.println(input + "\t" + TestCaseStrings[input]);
                     e.pass();
                     break;
@@ -85,37 +85,53 @@ public class Main {
                 case 7:
                 {
                     System.out.println(input + "\t" + TestCaseStrings[input]);
-                    //e.useItem();
+                    DivingSuit d = new DivingSuit();
+                    rt1.setItem(d);
+                    e.pickUpItem();
+                    e.useItem(d);
                     break;
                 }
                 case 8:
                 {
                     System.out.println(input + "\t" + TestCaseStrings[input]);
-                   // e.useItem();
+                    Food f = new Food();
+                    rt1.setItem(f);
+                    e.pickUpItem();
+                    e.useItem(f);
                     break;
                 }
                 case 9:
                 {
                     System.out.println(input + "\t" + TestCaseStrings[input]);
-                    //e.useItem();
+                    WinningItem w = new WinningItem();
+                    rt1.setItem(w);
+                    e.pickUpItem();
+                    e.useItem(w);
+
                     break;
                 }
                 case 10:
                 {
                     System.out.println(input + "\t" + TestCaseStrings[input]);
-                    //e.useItem();
+                    Rope r = new Rope();
+                    rt1.setItem(r);
+                    e.pickUpItem();
+                    e.useItem(r);
                     break;
                 }
                 case 11:
                 {
                     System.out.println(input + "\t" + TestCaseStrings[input]);
-                    //e.useItem();
+                    Shovel sh = new Shovel();
+                    rt1.setItem(sh);
+                    e.pickUpItem();
+                    e.useItem(sh);
                     break;
                 }
                 case 12:
                 {
                     System.out.println(input + "\t" + TestCaseStrings[input]);
-                   //e.useItem();
+                    e.pass();
                     break;
                 }
 

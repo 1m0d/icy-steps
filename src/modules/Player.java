@@ -1,10 +1,14 @@
 package modules;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class Player
 {
     protected int Id;
-    protected int energy;
+    protected int energy = 4;
     protected int lives;
+    protected List<Item> itemList;
     protected boolean hasDivingSuit;
     protected Tile position;
 
@@ -28,6 +32,7 @@ public abstract class Player
     private void addItemToInventory(Item i)
     {
         System.out.println( this.toString() + " addItemToInventory was called with param: " + i.toString());
+       // itemList.Add(i);
     }
 
     public void work()
@@ -49,6 +54,7 @@ public abstract class Player
     public void pass()
     {
         System.out.println( this.toString() + " pass was called");
+        position.map.getGameController().turn();
     }
 
     public void pickUpItem()
@@ -60,6 +66,7 @@ public abstract class Player
 
     public void useItem(Item i)
     {
+        i.useItem(position);
         System.out.println( this.toString() + " useItem was called with param: " + i.toString());
     }
 
@@ -99,5 +106,8 @@ public abstract class Player
         System.out.println( this.toString() + " setDivingSuit was called");
     }
 
-
+    public int getEnergy()
+    {
+        return energy;
+    }
 }
