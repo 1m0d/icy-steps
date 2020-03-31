@@ -6,6 +6,6 @@ public class WinningItem extends Item
     public void useItem(Tile t)
     {
         System.out.println( this.toString() + " useItem was called with param: " + t.toString());
-        tile.map.getGameController().checkWinningConditions();
+        t.map.getGameController().checkWinningConditions();
     }
 }
