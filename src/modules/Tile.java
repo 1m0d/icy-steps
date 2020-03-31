@@ -1,5 +1,7 @@
 package modules;
 
+import java.util.ArrayList;
+
 public abstract class Tile
 {
     protected Map map;
@@ -8,7 +10,7 @@ public abstract class Tile
     protected int snowLayerCount;
     protected boolean scientistChecked;
     protected Item item;
-    protected Player[] players;
+    protected ArrayList<Player> players;
 
     public Tile(Map map, int Id){
         this.map = map;
@@ -28,13 +30,19 @@ public abstract class Tile
 
 
 
-    public Player[] getPlayers()
+    public ArrayList<Player> getPlayers()
     {
         return players;
     }
     public void onPlayerStep(Player p)
     {
         System.out.println( this.toString() + "onPlayerStep was called with param:" + p);
+        players.add(p);
+    }
+
+    public void onPlayerLeave(Player p){
+        System.out.println( this.toString() + "onPlayerLeave was called");
+        players.add(p);
     }
 
     public void onShovel()
@@ -50,6 +58,9 @@ public abstract class Tile
     public void onStorm()
     {
         System.out.println( this.toString() + "onStorm was called");
+        for (Player p : getPlayers()){
+            p.onStorm();
+        }
     }
 
     public Tile getNeighbour(int i)
@@ -70,9 +81,10 @@ public abstract class Tile
         System.out.println( this.toString() + "onScientistAbility was called");
     }
 
-    public void flip()
+    private void flip()
     {
         System.out.println( this.toString() + "flip was called");
+        map.getGameController().lose();
     }
 
 }

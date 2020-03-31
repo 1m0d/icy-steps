@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Map
 {
     private GameController gameController;
-    private ArrayList<Tile> tiles;
+    private ArrayList<Tile> tiles = new ArrayList<Tile>();
     public Map(GameController gc)
     {
         gameController = gc;
@@ -29,11 +29,11 @@ public class Map
     private Tile[] chooseStormTiles ()
     {
         System.out.println( this.toString() + " chooseStormTiles was called");
-        Tile[] tiles = {};
-        for (int i = 0; i<tiles.length; i++) {
-            tiles[i].onStorm();
+        Tile[] tiles1 = {};
+        for (Tile t : tiles) {
+            t.onStorm();
         }
-        return  tiles;
+        return  tiles1;
     }
 
     public Tile getTile(int Id)

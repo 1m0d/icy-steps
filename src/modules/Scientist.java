@@ -27,21 +27,9 @@ public class Scientist extends Player
     }
 
     @Override
-    public void pass()
-    {
-        System.out.println( this.toString() + "pass was called");
-    }
-
-    @Override
     public void pickUpItem()
     {
         System.out.println( this.toString() + "pickUpItem was called");
-    }
-
-    @Override
-    public void useItem(Item i)
-    {
-        System.out.println( this.toString() + "useItem was called with param: " + i);
     }
 
     @Override
@@ -49,12 +37,6 @@ public class Scientist extends Player
     {
         System.out.println( this.toString() + " useAbility was called with param: " + t.toString());
         t.onScientistAbility();
-    }
-
-    @Override
-    public void onStorm()
-    {
-        System.out.println( this.toString() + "onStorm was called");
     }
 
     @Override

@@ -26,6 +26,7 @@ public class GameController
     public void addPlayer(Player newPlayer)
     {
         System.out.println( this.toString() + " addPlayer was called with param: " + newPlayer);
+        players.add(newPlayer);
     }
 
     private void startGame()
@@ -36,20 +37,16 @@ public class GameController
 
     public void turn()
     {
-        return;/*
         System.out.println( this.toString() + " turn was called");
         boolean b = true;
         for (Player p : players){
-
-            System.out.println(p.getEnergy());
             if (p.getEnergy() != 0){
                 b = false;
-                System.out.println("most");
             }
         }
         if (!b) return;
 
-        map.generateStorm();*/
+        map.generateStorm();
     }
 
     public void win()
