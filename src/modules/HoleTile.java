@@ -53,10 +53,4 @@ public class HoleTile extends Tile
     {
         System.out.println( this.toString() + "onScientistAbility was called");
     }
-
-    @Override
-    public void flip()
-    {
-        System.out.println( this.toString() + "flip was called");
-    }
 }

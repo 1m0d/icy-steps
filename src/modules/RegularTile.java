@@ -11,6 +11,7 @@ public class RegularTile extends Tile
     public void onPlayerStep(Player p)
     {
         System.out.println( this.toString() + " onPlayerStep was called with param: " + p);
+
     }
 
     @Override
@@ -49,12 +50,5 @@ public class RegularTile extends Tile
     public void onScientistAbility()
     {
         System.out.println( this.toString() + " onScientistAbility was called");
-    }
-
-    @Override
-    public void flip()
-    {
-        System.out.println( this.toString() + "flip was called");
-        map.getGameController().lose();
     }
 }

@@ -49,6 +49,9 @@ public abstract class Player
     {
         System.out.println( this.toString() + " step was called with param: " + t.toString());
         t.onPlayerStep(this);
+        if (position != null) {
+            position.onPlayerLeave(this);
+        }
     }
 
     public void pass()
@@ -109,5 +112,10 @@ public abstract class Player
     public int getEnergy()
     {
         return energy;
+    }
+
+    public void setEnergy(int i)
+    {
+        energy = i;
     }
 }

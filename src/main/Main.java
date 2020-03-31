@@ -22,6 +22,8 @@ public class Main {
         HoleTile ht = new HoleTile(m, 2);
         Eskimo e = new Eskimo(0, rt1);
         Scientist s = new Scientist(1, ht);
+        m.addTile(0, rt1);
+        m.addTile(1, rt2);
         gc.addPlayer(e);
         gc.setMap(m);
 
@@ -65,8 +67,8 @@ public class Main {
                 }
                 case 4:
                 {
-                    gc.addPlayer(s);
                     System.out.println(input + "\t" + TestCaseStrings[input]);
+                    e.setEnergy(4);
                     e.pass();
                     break;
                 }
@@ -131,6 +133,8 @@ public class Main {
                 case 12:
                 {
                     System.out.println(input + "\t" + TestCaseStrings[input]);
+                    e.step(rt1);
+                    e.setEnergy(0);
                     e.pass();
                     break;
                 }
