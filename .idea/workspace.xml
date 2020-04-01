@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2cd088c5-6606-473b-b12b-dc84c8b5a93d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/Logger.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/icy-steps/main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/icy-steps/main/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/icy-steps/modules/DivingSuit.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/icy-steps/modules/DivingSuit.class" afterDir="false" />
@@ -20,14 +20,20 @@
       <change beforePath="$PROJECT_DIR$/out/production/icy-steps/modules/Tile.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/icy-steps/modules/Tile.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/icy-steps/modules/WinningItem.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/icy-steps/modules/WinningItem.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/DivingSuit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/DivingSuit.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modules/Eskimo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Eskimo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/Food.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Food.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modules/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/GameController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modules/HoleTile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/HoleTile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Item.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modules/Map.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Map.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modules/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modules/RegularTile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/RegularTile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/Rope.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Rope.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modules/Scientist.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Scientist.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/Shovel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Shovel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modules/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Tile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/WinningItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/WinningItem.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,10 +112,22 @@
       <workItem from="1585685717181" duration="382000" />
       <workItem from="1585686122988" duration="5163000" />
     </task>
+    <task id="LOCAL-00001" summary="tesztesetek update">
+      <created>1585697149149</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1585697149149</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="tesztesetek update" />
+    <option name="LAST_COMMIT_MESSAGE" value="tesztesetek update" />
   </component>
   <component name="WindowStateProjectService">
     <state x="451" y="93" key="#Project_Structure" timestamp="1585694286587">
@@ -129,29 +147,29 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="867" y="265" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1585694697731" />
-    <state width="938" height="307" key="GridCell.Tab.0.bottom" timestamp="1585697103894">
+    <state width="938" height="307" key="GridCell.Tab.0.bottom" timestamp="1585700629153">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1493" height="158" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1585691305013" />
-    <state width="938" height="307" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1585697103894" />
+    <state width="938" height="307" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1585700629153" />
     <state width="1876" height="284" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.182.1920.1080@0.0.1920.1040" timestamp="1585588662186" />
-    <state width="938" height="307" key="GridCell.Tab.0.center" timestamp="1585697103894">
+    <state width="938" height="307" key="GridCell.Tab.0.center" timestamp="1585700629153">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1493" height="158" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1585691305013" />
-    <state width="938" height="307" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1585697103894" />
+    <state width="938" height="307" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1585700629153" />
     <state width="1876" height="284" key="GridCell.Tab.0.center/0.0.1920.1040/1920.182.1920.1080@0.0.1920.1040" timestamp="1585588662186" />
-    <state width="938" height="307" key="GridCell.Tab.0.left" timestamp="1585697103894">
+    <state width="938" height="307" key="GridCell.Tab.0.left" timestamp="1585700629153">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1493" height="158" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1585691305013" />
-    <state width="938" height="307" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1585697103894" />
+    <state width="938" height="307" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1585700629153" />
     <state width="1876" height="284" key="GridCell.Tab.0.left/0.0.1920.1040/1920.182.1920.1080@0.0.1920.1040" timestamp="1585588662186" />
-    <state width="938" height="307" key="GridCell.Tab.0.right" timestamp="1585697103894">
+    <state width="938" height="307" key="GridCell.Tab.0.right" timestamp="1585700629153">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1493" height="158" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1585691305013" />
-    <state width="938" height="307" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1585697103894" />
+    <state width="938" height="307" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1585700629153" />
     <state width="1876" height="284" key="GridCell.Tab.0.right/0.0.1920.1040/1920.182.1920.1080@0.0.1920.1040" timestamp="1585588662186" />
     <state x="588" y="153" key="SettingsEditor" timestamp="1585694702891">
       <screen x="0" y="0" width="1920" height="1040" />

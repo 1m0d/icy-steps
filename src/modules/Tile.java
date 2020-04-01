@@ -10,7 +10,7 @@ public abstract class Tile
     protected int snowLayerCount;
     protected boolean scientistChecked;
     protected Item item;
-    protected ArrayList<Player> players;
+    protected ArrayList<Player> players = new ArrayList<Player>();
 
     public Tile(Map map, int Id){
         this.map = map;
@@ -36,55 +36,64 @@ public abstract class Tile
     }
     public void onPlayerStep(Player p)
     {
-        System.out.println( this.toString() + "onPlayerStep was called with param:" + p);
+        Logger.LogFunctionCall(this.toString() + "onPlayerStep was called with param:" + p);
         players.add(p);
+        Logger.LogFunctionReturn("return");
     }
 
     public void onPlayerLeave(Player p){
-        System.out.println( this.toString() + "onPlayerLeave was called");
+        Logger.LogFunctionCall(this.toString() + "onPlayerLeave was called" + p);
         players.add(p);
+        Logger.LogFunctionReturn("return");
     }
 
     public void onShovel()
     {
-        System.out.println( this.toString() + "onShovel was called");
+        Logger.LogFunctionCall(this.toString() + "onShovel was called");
+        Logger.LogFunctionReturn("return");
     }
 
     public void onRope()
     {
-        System.out.println( this.toString() + "onRope was called");
+        Logger.LogFunctionCall(this.toString() + "onRope was called");
+        Logger.LogFunctionReturn("return");
     }
 
     public void onStorm()
     {
-        System.out.println( this.toString() + "onStorm was called");
-        for (Player p : getPlayers()){
+        Logger.LogFunctionCall(this.toString() + "onStorm was called");
+        for (Player p : players){
             p.onStorm();
         }
+        Logger.LogFunctionReturn("return");
     }
 
     public Tile getNeighbour(int i)
     {
-        System.out.println( this.toString() + "getNeighbour was called with param: " + i);
+        Logger.LogFunctionCall(this.toString() + "getNeighbour was called with param: " + i);
         //TODO
         RegularTile rt = new RegularTile(map, 0);
+        Logger.LogFunctionReturn("return: " + rt.toString());
         return rt;
     }
 
     public void onEskimoAbility()
     {
-        System.out.println( this.toString() + "onEskimoAbility was called");
+        Logger.LogFunctionCall(this.toString() +  "onEskimoAbility was called");
+        Logger.LogFunctionReturn("return");
     }
 
     public void onScientistAbility()
     {
-        System.out.println( this.toString() + "onScientistAbility was called");
+        Logger.LogFunctionCall(this.toString() +  "onScientistAbility was called");
+        Logger.LogFunctionReturn("return");
     }
 
     private void flip()
     {
-        System.out.println( this.toString() + "flip was called");
+        Logger.LogFunctionCall(this.toString() +  "flip was called");
         map.getGameController().lose();
+        Logger.LogFunctionReturn("return");
     }
 
 }

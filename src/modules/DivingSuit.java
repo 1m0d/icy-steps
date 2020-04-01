@@ -10,7 +10,8 @@ public class DivingSuit extends Item
     @Override
     public void useItem(Tile t)
     {
-        System.out.println( this.toString() + " useItem was called with param: " + t.toString());
+        Logger.LogFunctionCall(this.toString() + " useItem was called with param: " + t.toString());
         player.setDivingSuit();
+        Logger.LogFunctionReturn("return");
     }
 }

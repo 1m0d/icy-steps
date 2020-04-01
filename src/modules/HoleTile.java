@@ -12,45 +12,45 @@ public class HoleTile extends Tile
 
     public void onPlayerStep(Player p)
     {
-        System.out.println( this.toString() + "onPlayerStep was called with param: " + p.toString());
+        Logger.LogFunctionCall(this.toString() + " onPlayerStep was called with param: " + p.toString());
         p.onHole();
+        Logger.LogFunctionReturn("return");
     }
 
     @Override
     public void onShovel()
     {
-        System.out.println( this.toString() + "onShovel was called");
+        Logger.LogFunctionCall(this.toString() + "onShovel was called");
+        Logger.LogFunctionReturn("return");
     }
 
     @Override
     public void onRope()
     {
-        System.out.println( this.toString() + "onRope was called");
-    }
-
-    @Override
-    public void onStorm()
-    {
-        System.out.println( this.toString() + "onStorm was called");
+        Logger.LogFunctionCall(this.toString() + "onRope was called");
+        Logger.LogFunctionReturn("return");
     }
 
     @Override
     public Tile getNeighbour(int i)
     {
-        System.out.println( this.toString() + "getNeighbour was called with param: " + i);
+        Logger.LogFunctionCall(this.toString() + "getNeighbour was called with param: " + i);
         RegularTile rt = new RegularTile(map, 0);
+        Logger.LogFunctionReturn("return with " + rt.toString());
         return rt;
     }
 
     @Override
     public void onEskimoAbility()
     {
-        System.out.println( this.toString() + "onEskimoAbility was called");
+        Logger.LogFunctionCall(this.toString() + "onEskimoAbility was called");
+        Logger.LogFunctionReturn("return");
     }
 
     @Override
     public void onScientistAbility()
     {
-        System.out.println( this.toString() + "onScientistAbility was called");
+        Logger.LogFunctionCall(this.toString() + "onScientistAbility was called");
+        Logger.LogFunctionReturn("return");
     }
 }

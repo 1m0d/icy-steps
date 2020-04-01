@@ -7,9 +7,14 @@ public class GameController
     Map map;
     private ArrayList<Player> players = new ArrayList<Player>();
     public Player getPlayer(int Id){
-        for (Player player : players)
-            if (player.getId() == Id)
+        Logger.LogFunctionCall(this.toString() + " clearSnow was called");
+        for (Player player : players){
+            if (player.getId() == Id) {
+                Logger.LogFunctionReturn("return with " + player.toString());
                 return player;
+            }
+        }
+        Logger.LogFunctionReturn("return with NULL");
         return null;
     }
 
@@ -20,47 +25,58 @@ public class GameController
 
     public void setMap(Map m)
     {
+        Logger.LogFunctionCall(this.toString() + " setMap was called with param: " + m.toString());
         map = m;
+        Logger.LogFunctionReturn("return");
     }
 
     public void addPlayer(Player newPlayer)
     {
-        System.out.println( this.toString() + " addPlayer was called with param: " + newPlayer);
+        Logger.LogFunctionCall(this.toString() + " addPlayer was called with param: " + newPlayer.toString());
         players.add(newPlayer);
+        Logger.LogFunctionReturn("return");
     }
 
     private void startGame()
     {
-        System.out.println( this.toString() + " startGame was called");
+        Logger.LogFunctionCall(this.toString() + " startGame was called");
         turn();
+        Logger.LogFunctionReturn("return");
     }
 
     public void turn()
     {
-        System.out.println( this.toString() + " turn was called");
+        Logger.LogFunctionCall(this.toString() + " turn was called");
         boolean b = true;
         for (Player p : players){
             if (p.getEnergy() != 0){
                 b = false;
             }
         }
-        if (!b) return;
+        if (!b) {
+            Logger.LogFunctionReturn("return");
+            return;
+        }
 
         map.generateStorm();
+        Logger.LogFunctionReturn("return");
     }
 
     public void win()
     {
-        System.out.println( this.toString() + " win was called");
+        Logger.LogFunctionCall(this.toString() + " win was called");
+        Logger.LogFunctionReturn("return");
     }
 
     public void lose()
     {
-        System.out.println( this.toString() + " lose was called");
+        Logger.LogFunctionCall(this.toString() + " lose was called");
+        Logger.LogFunctionReturn("return");
     }
 
     public void checkWinningConditions()
     {
-        System.out.println( this.toString() + " checkWinningConditions was called");
+        Logger.LogFunctionCall(this.toString() + " checkWinningConditions was called");
+        Logger.LogFunctionReturn("return");
     }
 }
