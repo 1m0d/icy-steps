@@ -7,11 +7,15 @@ public class DivingSuit extends Item
         super();
     }
 
+    /**
+     * Uses the item.
+     *
+     * @param t Target tile.
+     */
     @Override
     public void useItem(Tile t)
     {
         Logger.LogFunctionCall(this.toString() + " useItem was called with param: " + t.toString());
-        player.setDivingSuit();
         Logger.LogFunctionReturn("return");
     }
 }

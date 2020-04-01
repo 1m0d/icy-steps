@@ -23,13 +23,6 @@ public class Scientist extends Player
     }
 
     @Override
-    public void step(Tile t)
-    {
-        Logger.LogFunctionCall(this.toString() + "step was called with param: " + t.toString());
-        Logger.LogFunctionReturn("return");
-    }
-
-    @Override
     public void pickUpItem()
     {
         Logger.LogFunctionCall(this.toString() + "pickUpItem was called");
@@ -62,13 +55,6 @@ public class Scientist extends Player
     public void getPulledTo(Tile t)
     {
         Logger.LogFunctionCall(this.toString() + "getPulledTo was called with param: " + t.toString());
-        Logger.LogFunctionReturn("return");
-    }
-
-    @Override
-    public void clearSnow()
-    {
-        Logger.LogFunctionCall(this.toString() + "clearSnow was called");
         Logger.LogFunctionReturn("return");
     }
 }
