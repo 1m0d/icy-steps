@@ -2,16 +2,16 @@ package modules;
 
 import java.util.ArrayList;
 
-public class Map
+public class Map        //map class holds the tiles 
 {
-    private GameController gameController;
-    private ArrayList<Tile> tiles = new ArrayList<Tile>();
-    public Map(GameController gc)
+    private GameController gameController; 
+    private ArrayList<Tile> tiles = new ArrayList<Tile>();      //array of the tiles
+    public Map(GameController gc)           //constructor
     {
         gameController = gc;
     }
 
-    public void generateStorm()
+    public void generateStorm()             //generates storm on random tiles
     {
         Logger.LogFunctionCall(this.toString() + "generateStorm was called");
         chooseStormTiles();
@@ -31,9 +31,9 @@ public class Map
     private Tile[] chooseStormTiles ()
     {
         Logger.LogFunctionCall(this.toString() + "chooseStormTiles was called");
-        Tile[] tiles1 = {};
+        Tile[] tiles1 = {};             //array of tiles in which storm is activated
         for (Tile t : tiles) {
-            t.onStorm();
+            t.onStorm();                //for each tile onstorm is called
         }
         Logger.LogFunctionReturn("return with list of tiles.");
         return  tiles1;

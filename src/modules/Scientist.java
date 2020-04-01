@@ -1,9 +1,9 @@
 package modules;
 
-public class Scientist extends Player
+public class Scientist extends Player       //scientist inherits the player class
 {
 
-    public Scientist(int Id, Tile position)
+    public Scientist(int Id, Tile position)     //constructor
     {
         super(position);
     }
@@ -16,7 +16,7 @@ public class Scientist extends Player
     }
 
     @Override
-    public void turn()
+    public void turn()              
     {
         Logger.LogFunctionCall(this.toString() + "turn was called");
         Logger.LogFunctionReturn("return");
@@ -38,7 +38,7 @@ public class Scientist extends Player
     }
 
     @Override
-    public void onFood()
+    public void onFood()                    //the player eats a food, gets a life
     {
         Logger.LogFunctionCall(this.toString() + "onFood was called");
         Logger.LogFunctionReturn("return");

@@ -31,7 +31,7 @@ public class Main {
             System.out.println(i + ":\t" + TestCaseStrings[i]);
         }
         System.out.println("Choose a testcase!");
-        Scanner in = new Scanner(System.in);
+        Scanner in = new Scanner(System.in);        //user input
 
         int input = -1;
 
@@ -52,22 +52,24 @@ public class Main {
             System.out.println("Integer read: " + input);
 
             Logger.DisablePrint();
-            GameController gc = new GameController();
-            Map m = new Map(gc);
-            RegularTile rt1 = new RegularTile(m, 0);
+            GameController gc = new GameController();   //adding a gamecontroller
+            Map m = new Map(gc);                        //initializing map
+            RegularTile rt1 = new RegularTile(m, 0);    //tiles for testing
             RegularTile rt2 = new RegularTile(m, 1);
             HoleTile ht = new HoleTile(m, 2);
-            Eskimo e = new Eskimo(0, rt1);
-            Scientist s = new Scientist(1, ht);
-            m.addTile(0, rt1);
+            Eskimo e = new Eskimo(0, rt1);              //new eskimo player
+            Scientist s = new Scientist(1, ht);         //new scientist player
+            m.addTile(0, rt1);                          //putting the tiles to the map
             m.addTile(1, rt2);
-            gc.addPlayer(e);
-            gc.setMap(m);
+            m.addTile(2, ht);
+            gc.addPlayer(e);                            //adding eskimo to gamecontroller
+            gc.addPlayer(s);                            //adding scientist to gamecontroller
+            gc.setMap(m);                               //setting up the map
             Logger.EnablePrint();
 
             switch(input)
             {
-                case 0:
+                case 0:     //player steps onto regular tile
                 {
                     System.out.println(input + "\t" + TestCaseStrings[input]);
                     Logger.DisablePrint();
@@ -76,7 +78,7 @@ public class Main {
                     e.step(rt2);
                     break;
                 }
-                case 1:
+                case 1:     //player steps onto hole tile
                 {
                     System.out.println(input + "\t" + TestCaseStrings[input]);
                     Logger.DisablePrint();
@@ -85,94 +87,93 @@ public class Main {
                     e.step(ht);
                     break;
                 }
-                case 2:
+                case 2:     //player uses eskimo ability
                 {
                     System.out.println(input + "\t" + TestCaseStrings[input]);
-                    e.useAbility(rt1);
+                    e.useAbility(rt1);                              //he useAbility method is called on an eskimo player
                     break;
                 }
-                case 3:
+                case 3:     //player uses scientist ability
                 {
                     System.out.println(input + "\t" + TestCaseStrings[input]);
-                    s.useAbility(rt1);
+                    s.useAbility(rt1);                              //the useAbility method is called on a scientist player
                     break;
                 }
-                case 4:
+                case 4:     //player passes
                 {
                     System.out.println(input + "\t" + TestCaseStrings[input]);
-                    e.pass();
+                    e.pass();                                  //player passes
                     break;
                 }
-                case 5:
+                case 5:     //player picks up item
                 {
                     System.out.println(input + "\t" + TestCaseStrings[input]);
-                    e.pickUpItem();
+                    e.pickUpItem();                             // e player picks up the item 
                     break;
                 }
-                case 6:
+                case 6:     //player clears snow
                 {
                     System.out.println(input + "\t" + TestCaseStrings[input]);
-                    e.clearSnow();
+                    e.clearSnow();                              //player uses the clearsnow method
                     break;
                 }
-                case 7:
+                case 7:     //player uses diving suit
                 {
                     System.out.println(input + "\t" + TestCaseStrings[input]);
-                    DivingSuit d = new DivingSuit();
-                    rt1.setItem(d);
-                    e.pickUpItem();
-                    e.useItem(d);
+                    DivingSuit d = new DivingSuit();            //adding a diving suit
+                    rt1.setItem(d);                             //putting it into the tile
+                    e.pickUpItem();                             //player picks it up
+                    e.useItem(d);                               //player uses the diving suit
                     break;
                 }
-                case 8:
+                case 8:     //player uses food
                 {
                     System.out.println(input + "\t" + TestCaseStrings[input]);
-                    Food f = new Food();
-                    rt1.setItem(f);
-                    e.pickUpItem();
-                    e.useItem(f);
+                    Food f = new Food();                        //adding a food item
+                    rt1.setItem(f);                             //putting it into the tile
+                    e.pickUpItem();                             //player picks it up
+                    e.useItem(f);                               //player uses the food
                     break;
                 }
-                case 9:
+                case 9:     //player uses winning item
                 {
                     System.out.println(input + "\t" + TestCaseStrings[input]);
-                    WinningItem w = new WinningItem();
-                    rt1.setItem(w);
-                    e.pickUpItem();
-                    e.useItem(w);
+                    WinningItem w = new WinningItem();          //adding a winning item
+                    rt1.setItem(w);                             //putting it into the tile
+                    e.pickUpItem();                             //player picks it up
+                    e.useItem(w);                               //player uses the item
 
                     break;
                 }
-                case 10:
+                case 10:        //player uses rope
                 {
                     System.out.println(input + "\t" + TestCaseStrings[input]);
-                    Rope r = new Rope();
-                    rt1.setItem(r);
-                    e.pickUpItem();
-                    e.useItem(r);
+                    Rope r = new Rope();            //adding a rope item 
+                    rt1.setItem(r);                 //putting it to the tile
+                    e.pickUpItem();                 //player picks up the rope
+                    e.useItem(r);                   //player uses the rope
                     break;
                 }
-                case 11:
+                case 11:        //player uses shovel
                 {
                     System.out.println(input + "\t" + TestCaseStrings[input]);
-                    Shovel sh = new Shovel();
-                    rt1.setItem(sh);
-                    e.pickUpItem();
-                    e.useItem(sh);
-                    break;
-                }
-                case 12:
-                {
+                    Shovel sh = new Shovel();       //adding a shovel item
+                    rt1.setItem(sh);                //putting it to the tile
+                    e.pickUpItem();                 //player picks up the shovel
+                    e.useItem(sh);                  //player uses the shovel
+                    break;  
+                }   
+                case 12:        //game controller generates storm
+                {       
                     System.out.println(input + "\t" + TestCaseStrings[input]);
                     Logger.DisablePrint();
                     e.step(rt2);
-                    Logger.EnablePrint();
-                    e.setEnergy(0);
-                    e.pass();
-                    e.setEnergy(4);
+                    gc.turn();      //new turn of the game
+                    e.pass();       //players passes
+                    s.pass();       //after every player plays its turn generatestorm is called in gamecontroller
                     break;
                 }
-                default:{
+                default:{       //if wrong input is given
                     System.out.println("Wrong input!");
                     break;
                 }

@@ -31,10 +31,10 @@ public class RegularTile extends Tile
     }
 
     @Override
-    public void onEskimoAbility()
+    public void onEskimoAbility()        //when eskimo uses ability this method is called on tile
     {
         Logger.LogFunctionCall(this.toString() + "onEskimoAbility was called");
-        iglooBuilt = true;
+        iglooBuilt = true;              //sets the igloo boolean true on tile   
         Logger.LogFunctionReturn("return");
     }
 }
