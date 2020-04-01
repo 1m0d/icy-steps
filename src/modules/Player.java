@@ -23,90 +23,105 @@ public abstract class Player
 
     public Player getPlayer()
     {
-        System.out.println( this.toString() + " getPlayer was called");
+        Logger.LogFunctionCall(this.toString() + " getPlayer was called");
         onFood();
+        Logger.LogFunctionReturn("return");
         return this;
     }
 
 
     private void addItemToInventory(Item i)
     {
-        System.out.println( this.toString() + " addItemToInventory was called with param: " + i.toString());
+        Logger.LogFunctionCall(this.toString() + " addItemToInventory was called with param: " + i.toString());
+        Logger.LogFunctionReturn("return");
        // itemList.Add(i);
     }
 
     public void work()
     {
-        System.out.println( this.toString() + " work was called");
+        Logger.LogFunctionCall(this.toString() + " work was called");
+        Logger.LogFunctionReturn("return");
     }
 
     public void turn()
     {
-        System.out.println( this.toString() + " turn was called");
+        Logger.LogFunctionCall(this.toString() + " turn was called");
+        Logger.LogFunctionReturn("return");
     }
 
     public void step(Tile t)
     {
-        System.out.println( this.toString() + " step was called with param: " + t.toString());
+        Logger.LogFunctionCall(this.toString() + " step was called with param: " + t.toString());
         t.onPlayerStep(this);
         if (position != null) {
             position.onPlayerLeave(this);
         }
+        Logger.LogFunctionReturn("return");
     }
 
     public void pass()
     {
-        System.out.println( this.toString() + " pass was called");
+        Logger.LogFunctionCall(this.toString() + " pass was called");
         position.map.getGameController().turn();
+        Logger.LogFunctionReturn("return");
     }
 
     public void pickUpItem()
     {
-        System.out.println( this.toString() + " pickUpItem was called");
+        Logger.LogFunctionCall(this.toString() + " pickUpItem was called");
         addItemToInventory(position.item);
+        Logger.LogFunctionReturn("return");
 
     }
 
     public void useItem(Item i)
     {
+        Logger.LogFunctionCall(this.toString() + " useItem was called with param: " + i.toString());
         i.useItem(position);
-        System.out.println( this.toString() + " useItem was called with param: " + i.toString());
+        Logger.LogFunctionReturn("return");
     }
 
     public void useAbility(Tile t)
     {
-        System.out.println( this.toString() + " useAbility was called with param: " + t.toString());
+        Logger.LogFunctionCall(this.toString() + " useAbility was called with param: " + t.toString());
+        Logger.LogFunctionReturn("return");
     }
 
     public void onStorm()
     {
-        System.out.println( this.toString() + " onStorm was called");
+        Logger.LogFunctionCall(this.toString() + " onStorm was called");
+        Logger.LogFunctionReturn("return");
     }
 
     public void onFood()
     {
-        System.out.println( this.toString() + " onFood was called");
+        Logger.LogFunctionCall(this.toString() + " onFood was called");
+        Logger.LogFunctionReturn("return");
     }
 
     public void onHole()
     {
-        System.out.println( this.toString() + " onHole was called");
+        Logger.LogFunctionCall(this.toString() + " onHole was called");
+        Logger.LogFunctionReturn("return");
     }
 
     public void getPulledTo(Tile t)
     {
-        System.out.println( this.toString() + " getPulledTo was called with param: " + t.toString());
+        Logger.LogFunctionCall(this.toString() + " getPulledTo was called with param: " + t.toString());
         t.onPlayerStep(this);
+        Logger.LogFunctionReturn("return");
     }
 
     public void clearSnow()
     {
-        System.out.println( this.toString() + " clearSnow was called");
+        Logger.LogFunctionCall(this.toString() + " clearSnow was called");
+        Logger.LogFunctionReturn("return");
     }
 
     public void setDivingSuit()
     {
-        System.out.println( this.toString() + " setDivingSuit was called");
+        Logger.LogFunctionCall(this.toString() + " setDivingSuit was called");
+        Logger.LogFunctionReturn("return");
     }
 
     public int getEnergy()

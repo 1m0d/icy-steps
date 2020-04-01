@@ -36,6 +36,9 @@ public class Main {
         Scanner in = new Scanner(System.in);
 
         int input;
+
+        Logger.EnablePrint();
+
         while (true) {
             input = in.nextInt();
             System.out.println("Integer read: " + input);
@@ -68,7 +71,6 @@ public class Main {
                 case 4:
                 {
                     System.out.println(input + "\t" + TestCaseStrings[input]);
-                    e.setEnergy(4);
                     e.pass();
                     break;
                 }
@@ -136,6 +138,7 @@ public class Main {
                     e.step(rt1);
                     e.setEnergy(0);
                     e.pass();
+                    e.setEnergy(4);
                     break;
                 }
 

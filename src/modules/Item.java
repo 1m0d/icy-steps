@@ -12,14 +12,15 @@ public abstract class Item
     }
 
     public Item getItem()
-
     {
-        System.out.println( this.toString() + "getItem was called");
+        Logger.LogFunctionCall(this.toString() + " getItem was called");
+        Logger.LogFunctionReturn("return with " + this.toString());
         return this;
     }
     public void useItem(Tile t)
     {
-        System.out.println( this.toString() + "useItem was called with param: " + t.toString());
+        Logger.LogFunctionCall(this.toString() + "useItem was called with param: " + t.toString());
         player.setDivingSuit();
+        Logger.LogFunctionReturn("return with " + this.toString());
     }
 }

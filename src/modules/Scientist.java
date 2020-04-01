@@ -11,55 +11,64 @@ public class Scientist extends Player
     @Override
     public void work()
     {
-        System.out.println( this.toString() + "work was called");
+        Logger.LogFunctionCall(this.toString() + "work was called");
+        Logger.LogFunctionReturn("return");
     }
 
     @Override
     public void turn()
     {
-        System.out.println( this.toString() + "turn was called");
+        Logger.LogFunctionCall(this.toString() + "turn was called");
+        Logger.LogFunctionReturn("return");
     }
 
     @Override
     public void step(Tile t)
     {
-        System.out.println( this.toString() + "step was called with param: " + t.toString());
+        Logger.LogFunctionCall(this.toString() + "step was called with param: " + t.toString());
+        Logger.LogFunctionReturn("return");
     }
 
     @Override
     public void pickUpItem()
     {
-        System.out.println( this.toString() + "pickUpItem was called");
+        Logger.LogFunctionCall(this.toString() + "pickUpItem was called");
+        Logger.LogFunctionReturn("return");
     }
 
     @Override
     public void useAbility(Tile t)
     {
-        System.out.println( this.toString() + " useAbility was called with param: " + t.toString());
+        Logger.LogFunctionCall(this.toString() + " useAbility was called with param: " + t.toString());
         t.onScientistAbility();
+        Logger.LogFunctionReturn("return");
     }
 
     @Override
     public void onFood()
     {
-        System.out.println( this.toString() + "onFood was called");
+        Logger.LogFunctionCall(this.toString() + "onFood was called");
+        Logger.LogFunctionReturn("return");
     }
 
     @Override
     public void onHole()
     {
-        System.out.println( this.toString() + "onHole was called");
+        Logger.LogFunctionCall(this.toString() + "onHole was called");
+        Logger.LogFunctionReturn("return");
     }
 
     @Override
     public void getPulledTo(Tile t)
     {
-        System.out.println( this.toString() + "getPulledTo was called with param: " + t.toString());
+        Logger.LogFunctionCall(this.toString() + "getPulledTo was called with param: " + t.toString());
+        Logger.LogFunctionReturn("return");
     }
 
     @Override
     public void clearSnow()
     {
-        System.out.println( this.toString() + "clearSnow was called");
+        Logger.LogFunctionCall(this.toString() + "clearSnow was called");
+        Logger.LogFunctionReturn("return");
     }
 }
