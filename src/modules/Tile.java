@@ -9,6 +9,7 @@ public abstract class Tile
     protected int playerCapacity;
     protected int snowLayerCount;
     protected boolean scientistChecked;
+    protected boolean iglooBuilt = false;
     protected Item item;
     protected ArrayList<Player> players = new ArrayList<Player>();
 
@@ -34,16 +35,18 @@ public abstract class Tile
     {
         return players;
     }
-    public void onPlayerStep(Player p)
-    {
-        Logger.LogFunctionCall(this.toString() + "onPlayerStep was called with param:" + p);
+    public void onPlayerStep(Player p) {
+        Logger.LogFunctionCall(this.toString() + " onPlayerStep was called with param:" + p);
         players.add(p);
+      /*  if (players.size() > playerCapacity){
+            flip();
+        }*/
         Logger.LogFunctionReturn("return");
     }
 
     public void onPlayerLeave(Player p){
-        Logger.LogFunctionCall(this.toString() + "onPlayerLeave was called" + p);
-        players.add(p);
+        Logger.LogFunctionCall(this.toString() + " onPlayerLeave was called" + p);
+        players.remove(p);
         Logger.LogFunctionReturn("return");
     }
 
@@ -83,10 +86,11 @@ public abstract class Tile
         Logger.LogFunctionReturn("return");
     }
 
-    public void onScientistAbility()
+    public int onScientistAbility()
     {
         Logger.LogFunctionCall(this.toString() +  "onScientistAbility was called");
-        Logger.LogFunctionReturn("return");
+        Logger.LogFunctionReturn("return with " + playerCapacity);
+        return playerCapacity;
     }
 
     private void flip()
@@ -95,5 +99,4 @@ public abstract class Tile
         map.getGameController().lose();
         Logger.LogFunctionReturn("return");
     }
-
 }

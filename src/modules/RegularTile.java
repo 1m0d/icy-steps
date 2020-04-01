@@ -34,13 +34,7 @@ public class RegularTile extends Tile
     public void onEskimoAbility()
     {
         Logger.LogFunctionCall(this.toString() + "onEskimoAbility was called");
-        Logger.LogFunctionReturn("return");
-    }
-
-    @Override
-    public void onScientistAbility()
-    {
-        Logger.LogFunctionCall(this.toString() + "onScientistAbility was called");
+        iglooBuilt = true;
         Logger.LogFunctionReturn("return");
     }
 }

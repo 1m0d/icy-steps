@@ -5,6 +5,16 @@ import java.util.Scanner;
 
 
 public class Main {
+
+    static boolean tryParseInt(String value) {
+        try {
+            Integer.parseInt(value);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
     public static void main(String[] args) throws Exception {
 
         String[] TestCaseStrings = {"Player steps onto regular tile","Player steps onto hole tile",
@@ -15,18 +25,6 @@ public class Main {
                 "Player uses rope", "Player uses shovel",
                 "Game Controller generates storm"};
 
-        GameController gc = new GameController();
-        Map m = new Map(gc);
-        RegularTile rt1 = new RegularTile(m, 0);
-        RegularTile rt2 = new RegularTile(m, 1);
-        HoleTile ht = new HoleTile(m, 2);
-        Eskimo e = new Eskimo(0, rt1);
-        Scientist s = new Scientist(1, ht);
-        m.addTile(0, rt1);
-        m.addTile(1, rt2);
-        gc.addPlayer(e);
-        gc.setMap(m);
-
 
         for (int i = 0; i < TestCaseStrings.length; i++)
         {
@@ -35,24 +33,55 @@ public class Main {
         System.out.println("Choose a testcase!");
         Scanner in = new Scanner(System.in);
 
-        int input;
+        int input = -1;
 
         Logger.EnablePrint();
 
         while (true) {
-            input = in.nextInt();
+            try {
+                String str = in.next();
+                if (tryParseInt(str)) {
+                    input = Integer.parseInt(str);
+                }
+                else {
+                    input = -1;
+                }
+            } catch (Exception ex){
+                input = -1;
+            }
             System.out.println("Integer read: " + input);
+
+            Logger.DisablePrint();
+            GameController gc = new GameController();
+            Map m = new Map(gc);
+            RegularTile rt1 = new RegularTile(m, 0);
+            RegularTile rt2 = new RegularTile(m, 1);
+            HoleTile ht = new HoleTile(m, 2);
+            Eskimo e = new Eskimo(0, rt1);
+            Scientist s = new Scientist(1, ht);
+            m.addTile(0, rt1);
+            m.addTile(1, rt2);
+            gc.addPlayer(e);
+            gc.setMap(m);
+            Logger.EnablePrint();
+
             switch(input)
             {
                 case 0:
                 {
                     System.out.println(input + "\t" + TestCaseStrings[input]);
+                    Logger.DisablePrint();
+                    e.step(rt1);
+                    Logger.EnablePrint();
                     e.step(rt2);
                     break;
                 }
                 case 1:
                 {
                     System.out.println(input + "\t" + TestCaseStrings[input]);
+                    Logger.DisablePrint();
+                    e.step(rt1);
+                    Logger.EnablePrint();
                     e.step(ht);
                     break;
                 }
@@ -135,10 +164,16 @@ public class Main {
                 case 12:
                 {
                     System.out.println(input + "\t" + TestCaseStrings[input]);
-                    e.step(rt1);
+                    Logger.DisablePrint();
+                    e.step(rt2);
+                    Logger.EnablePrint();
                     e.setEnergy(0);
                     e.pass();
                     e.setEnergy(4);
+                    break;
+                }
+                default:{
+                    System.out.println("Wrong input!");
                     break;
                 }
 

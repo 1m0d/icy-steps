@@ -39,18 +39,4 @@ public class HoleTile extends Tile
         Logger.LogFunctionReturn("return with " + rt.toString());
         return rt;
     }
-
-    @Override
-    public void onEskimoAbility()
-    {
-        Logger.LogFunctionCall(this.toString() + "onEskimoAbility was called");
-        Logger.LogFunctionReturn("return");
-    }
-
-    @Override
-    public void onScientistAbility()
-    {
-        Logger.LogFunctionCall(this.toString() + "onScientistAbility was called");
-        Logger.LogFunctionReturn("return");
-    }
 }

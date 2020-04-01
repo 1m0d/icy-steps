@@ -121,6 +121,7 @@ public abstract class Player
     public void setDivingSuit()
     {
         Logger.LogFunctionCall(this.toString() + " setDivingSuit was called");
+        hasDivingSuit = true;
         Logger.LogFunctionReturn("return");
     }
 
