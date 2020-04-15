@@ -1,0 +1,4 @@
+load-map map
+start-game
+set-player-turn 1
+use-item shovel

@@ -1,0 +1,4 @@
+load-map map
+start-game
+set-player-turn 2
+step left
