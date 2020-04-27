@@ -22,13 +22,15 @@ public class Map {
     }
 
     public void addItem(Item i, int id) {
-        i.player = GameController.getInstance().getPlayer(id);
-        if (i.player == null) {
-            i.tile = getTile(id);
-            ((RegularTile)getTile(id)).setItem(i);
+        Player player = GameController.getInstance().getPlayer(id);
+        if (player == null) {
+            Tile tile = getTile(id);
+            i.tile = tile;
+            ((RegularTile)tile).setItem(i);
         }
         else {
-            i.tile = null;
+            player.addItemToInventory(i);
+            i.setPlayer(player);
         }
     }
 

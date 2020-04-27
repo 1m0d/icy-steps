@@ -9,6 +9,7 @@ public abstract class Item {
     public  Item(Tile tile){ this.tile = tile; }
 
     public Player getPlayer() { return player; }
+    public void setPlayer(Player player) { this.player = player; }
     public Tile getTile() { return tile; }
 
     public abstract void useItem(Tile t);

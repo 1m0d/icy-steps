@@ -71,31 +71,32 @@ public class GameController {
         }
     }
 
-    private void parseItem(String s) {
-        String delims = "[,]";
-        String[] tokens = s.split(delims);
-        if (tokens[1] == "camp") {
-            map.addItem(new Camp(), Integer.parseInt(tokens[0]));
+    private void parseItems(String[] items) {
+        for (String item : items ) {
+            String[] tokens = item.split(",");
+            switch(tokens[1]) {
+                case "camp":
+                    map.addItem(new Camp(), Integer.parseInt(tokens[0]));
+                    break;
+                case "divingSuit":
+                    map.addItem(new DivingSuit(), Integer.parseInt(tokens[0]));
+                    break;
+                case "food":
+                    map.addItem(new Food(), Integer.parseInt(tokens[0]));
+                    break;
+                case "rope":
+                    map.addItem(new Rope(), Integer.parseInt(tokens[0]));
+                    break;
+                case "shovel":
+                    map.addItem(new Shovel(), Integer.parseInt(tokens[0]));
+                    break;
+                case "winningItem":
+                    map.addItem(new WinningItem(), Integer.parseInt(tokens[0]));
+                    break;
+                default:
+                    System.out.println(tokens[1] + "type could not been found");
+            }
         }
-        else if (tokens[1] == "divingsuit") {
-            map.addItem(new DivingSuit(), Integer.parseInt(tokens[0]));
-        }
-        else if(tokens[1]  == "food") {
-            map.addItem(new Food(), Integer.parseInt(tokens[0]));
-        }
-        else if (tokens[1] == "rope") {
-            map.addItem(new Rope(), Integer.parseInt(tokens[0]));
-        }
-        else if (tokens[1] == "shovel") {
-            map.addItem(new Shovel(), Integer.parseInt(tokens[0]));
-        }
-        else if (tokens[1] == "winningitem") {
-            map.addItem(new WinningItem(), Integer.parseInt(tokens[0]));
-        }
-        else {
-            System.out.println(tokens[1] + "type could not been found");
-        }
-
     }
 
     private void parseTiles(String[] tiles) {
