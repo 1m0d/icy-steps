@@ -7,8 +7,7 @@ public class Camp extends Item {
     }
     public Camp() {}
 
-    public void useItem(Item i)
-    {
+    public void useItem(Item i) {
 
     }
 }

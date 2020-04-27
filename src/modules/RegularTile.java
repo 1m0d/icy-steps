@@ -1,7 +1,6 @@
 package modules;
 
-public class RegularTile extends Tile
-{
+public class RegularTile extends Tile {
     protected boolean igloobuilt;
     protected boolean campbuilt;
 
@@ -17,8 +16,7 @@ public class RegularTile extends Tile
     }
 
     @Override
-    public void onPlayerStep(Player p)
-    {
+    public void onPlayerStep(Player p) {
         System.out.println( this.toString() + " onPlayerStep was called with param: " + p);
     }
 
@@ -40,8 +38,7 @@ public class RegularTile extends Tile
     }
 
     @Override
-    public void flip()
-    {
+    public void flip() {
         System.out.println( this.toString() + "flip was called");
         GameController.getInstance().lose();
     }

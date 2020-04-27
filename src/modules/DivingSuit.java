@@ -9,8 +9,7 @@ public class DivingSuit extends Item
     public DivingSuit() {}
 
     @Override
-    public void useItem(Tile t)
-    {
+    public void useItem(Tile t) {
         System.out.println( this.toString() + " useItem was called with param: " + t.toString());
     }
 

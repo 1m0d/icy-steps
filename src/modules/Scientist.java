@@ -1,8 +1,6 @@
 package modules;
 
-public class Scientist extends Player
-{
-
+public class Scientist extends Player {
     public Scientist(int Id)
     {
         super();
@@ -19,8 +17,7 @@ public class Scientist extends Player
     }
 
     @Override
-    public void useAbility(Tile t)
-    {
+    public void useAbility(Tile t) {
         System.out.println( this.toString() + " useAbility was called with param: " + t.toString());
         t.onScientistAbility();
     }

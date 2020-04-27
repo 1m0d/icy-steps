@@ -9,8 +9,7 @@ public class GameController {
     Map map;
     private ArrayList<Player> players;
     private static GameController gameController;
-    public static GameController getInstance()
-    {
+    public static GameController getInstance() {
         if (gameController == null)
             gameController = new GameController();
         return gameController;
@@ -23,24 +22,18 @@ public class GameController {
             while(myReader.hasNextLine())
             {
                 String line = myReader.nextLine();
-                if (line == "Tiles:\n")
-                {
-                    while (line != "Players:\n")
-                    {
+                if (line == "Tiles:\n") {
+                    while (line != "Players:\n") {
                         parseTile(myReader.nextLine());
                     }
                 }
-                else if (line == "Players:\n")
-                {
-                    while (line != "Players:\n")
-                    {
+                else if (line == "Players:\n") {
+                    while (line != "Players:\n") {
                         parsePlayer(myReader.nextLine());
                     }
                 }
-                else if (line == "Items:\n")
-                {
-                    while (myReader.hasNextLine())
-                    {
+                else if (line == "Items:\n") {
+                    while (myReader.hasNextLine()) {
                         parseItem(myReader.nextLine());
                     }
                 }

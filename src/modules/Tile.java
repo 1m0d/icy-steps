@@ -2,8 +2,7 @@ package modules;
 
 import java.util.ArrayList;
 
-public abstract class Tile
-{
+public abstract class Tile {
     private ArrayList<Tile> neighbourTiles;
 
     private int uniqueID;
@@ -14,8 +13,7 @@ public abstract class Tile
     private Item item;
     private Player[] players;
 
-    public Tile(int playerCapacity, int snowLayerCount, int uniqueID)
-    {
+    public Tile(int playerCapacity, int snowLayerCount, int uniqueID) {
         this.playerCapacity = playerCapacity;
         this.snowLayerCount = snowLayerCount;
         this.uniqueID = uniqueID;
@@ -50,8 +48,7 @@ public abstract class Tile
     }
 
 
-    public Tile getNeighbour(int i)
-    {
+    public Tile getNeighbour(int i) {
         System.out.println( this.toString() + "getNeighbour was called with param: " + i);
         if (i >= 0 && i < neighbourTiles.size()) {
             Tile ret = neighbourTiles.get(i);

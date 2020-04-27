@@ -1,7 +1,6 @@
 package modules;
 
-public class Eskimo extends Player
-{
+public class Eskimo extends Player {
     public Eskimo(int Id)
     {
         super();
@@ -18,8 +17,7 @@ public class Eskimo extends Player
     }
 
     @Override
-    public void useAbility(Tile t)
-    {
+    public void useAbility(Tile t) {
         System.out.println( this.toString() + " useAbility was called with param: " + t.toString());
         t.onEskimoAbility();
     }

@@ -1,7 +1,6 @@
 package modules;
 
-public abstract class Player
-{
+public abstract class Player {
     protected Tile position;
     protected int energy;
     protected int lives;
@@ -14,29 +13,24 @@ public abstract class Player
         return uniqueID;
     }
 
-    public Player()
-    {
+    public Player() {
     }
 
-    public Player(Tile t, String token1, String token2, String token3, String token4)
-    {
+    public Player(Tile t, String token1, String token2, String token3, String token4) {
        position = t;
        Integer.parseInt(token1);
        Integer.parseInt(token2);
        Boolean.parseBoolean(token3);
        Integer.parseInt(token4);
-
     }
 
-    public Player getPlayer()
-    {
+    public Player getPlayer() {
         System.out.println( this.toString() + " getPlayer was called");
         onFood();
         return this;
     }
 
-    private void addItemToInventory(Item i)
-    {
+    private void addItemToInventory(Item i) {
         System.out.println( this.toString() + " addItemToInventory was called with param: " + i.toString());
     }
 
@@ -50,8 +44,7 @@ public abstract class Player
         System.out.println( this.toString() + " turn was called");
     }
 
-    public void step(Tile t)
-    {
+    public void step(Tile t) {
         System.out.println( this.toString() + " step was called with param: " + t.toString());
         t.onPlayerStep(this);
     }
@@ -61,14 +54,11 @@ public abstract class Player
         System.out.println( this.toString() + " pass was called");
     }
 
-
-    public void useItem(Item i)
-    {
+    public void useItem(Item i) {
         System.out.println( this.toString() + " useItem was called with param: " + i.toString());
     }
 
-    public void useAbility(Tile t)
-    {
+    public void useAbility(Tile t) {
         System.out.println( this.toString() + " useAbility was called with param: " + t.toString());
     }
 
@@ -87,8 +77,7 @@ public abstract class Player
         System.out.println( this.toString() + " onHole was called");
     }
 
-    public void getPulledTo(Tile t)
-    {
+    public void getPulledTo(Tile t) {
         System.out.println( this.toString() + " getPulledTo was called with param: " + t.toString());
         t.onPlayerStep(this);
     }
@@ -102,6 +91,4 @@ public abstract class Player
     {
         System.out.println( this.toString() + " setDivingSuit was called");
     }
-
-
 }
