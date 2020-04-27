@@ -22,4 +22,6 @@ public class Scientist extends Player {
         System.out.println( this.toString() + " useAbility was called with param: " + t.toString());
         t.onScientistAbility();
     }
+
+
 }
