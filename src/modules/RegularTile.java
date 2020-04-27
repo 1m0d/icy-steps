@@ -1,47 +1,57 @@
 package modules;
 
 public class RegularTile extends Tile {
-    protected boolean igloobuilt;
-    protected boolean campbuilt;
+    private boolean iglooBuilt = false;
+    private boolean campBuilt = false;
+    private Item item;
 
-    public RegularTile(String token, String token1, String token2, String token3, String token4) {
-        super(Integer.parseInt(token), Integer.parseInt(token1), Integer.parseInt(token4));
-        igloobuilt = Boolean.parseBoolean(token2);
-        campbuilt = Boolean.parseBoolean(token3);
+    public RegularTile(int positionX, int positionY, int playerCapacity, int snowLayerCount, int uniqueID) {
+        super(positionX, positionY, playerCapacity, snowLayerCount, uniqueID);
     }
 
-    @Override
-    public void onRope() {
-        for (Player p : getPlayers())
-        {
-           // p.getPulledTo();
-        }
-    }
+    public Item getItem(){ return item; }
+    public void setItem(Item item){ this.item = item; }
 
     @Override
     public void onPlayerStep(Player p) {
-        System.out.println( this.toString() + " onPlayerStep was called with param: " + p);
+        players.add(p);
+        if(players.size() > playerCapacity)
+            flip();
     }
 
     @Override
-    public void onTurn() {
+    public void onBearStep() {
+        if(!iglooBuilt && !players.isEmpty())
+            GameController.getInstance().lose();
     }
 
     @Override
-    public void onShovel()
-    {
-        System.out.println( this.toString() + " onShovel was called");
+    public void onStorm() {
+        if(iglooBuilt || campBuilt)
+            return;
+
+        for (Player player: players ) {
+            player.damage();
+        }
     }
 
-    @Override
-    public void onStorm()
-    {
-        System.out.println( this.toString() + " onStorm was called");
+    public void onShovel() {
+        if(snowLayerCount > 0)
+            snowLayerCount -= 2;
     }
 
-    @Override
-    public void flip() {
-        System.out.println( this.toString() + "flip was called");
+    public void clearSnow(){
+        if(snowLayerCount > 0)
+            snowLayerCount -= 1;
+    }
+
+    public void buildIgloo(){ iglooBuilt = true;}
+    public void buildICamp(){
+        if(!iglooBuilt)
+            campBuilt = true;
+    }
+
+    private void flip() {
         GameController.getInstance().lose();
     }
 }

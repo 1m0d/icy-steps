@@ -1,27 +1,29 @@
 package modules;
 
 public class HoleTile extends Tile {
-    public HoleTile(String token, String token1, String token2, String token3, String token4) {
-        super(Integer.parseInt(token), Integer.parseInt(token1), Integer.parseInt(token4));
+    public HoleTile(int positionX, int positionY, int playerCapacity, int snowLayerCount, int uniqueID) {
+        super(positionX, positionY, playerCapacity, snowLayerCount, uniqueID);
     }
 
-    public void setItem(Item newItem)
-    {
-        super.setItem(null);
-    }
     public void onPlayerStep(Player p) {
-        System.out.println( this.toString() + "onPlayerStep was called with param: " + p.toString());
+        players.add(p);
         p.onHole();
     }
 
-    @Override
-    public void onTurn() {
-
+    public void onRope() {
+        players.clear();
     }
 
     @Override
-    public void onRope()
-    {
-        System.out.println( this.toString() + "onRope was called");
+    public void onBearStep(){
+        if(!players.isEmpty())
+            GameController.getInstance().lose();
+    }
+
+    @Override
+    public void onStorm() {
+        for (Player player : players ) {
+            player.damage();
+        }
     }
 }
