@@ -12,6 +12,6 @@ public class Rope extends Item {
         {
             p.position = this.tile;
         }
-        t.onRope();
+        ((HoleTile)t).onRope();
     }
 }
