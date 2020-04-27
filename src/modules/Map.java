@@ -6,18 +6,15 @@ public class Map {
     private GameController gameController;
     private ArrayList<Tile> tiles;
 
-    public Map() {
-    }
+    public Map() { }
 
     public void generateStorm() {
-        System.out.println( this.toString() + " generateStorm was called");
         for (Tile t : chooseStormTiles()) {
             t.onStorm();
         }
     }
 
     public void addTile(Tile newTile) {
-        System.out.println( this.toString() + "addTile was called with param: " + newTile.toString());
         for (Tile tile : tiles)
             if (tile.getUniqueID() == newTile.getUniqueID())
                 return;
@@ -36,13 +33,11 @@ public class Map {
     }
 
     private Tile[] chooseStormTiles() {
-        System.out.println( this.toString() + " chooseStormTiles was called");
         Tile[] tiles = {};
         return tiles;
     }
 
     public Tile getTile(int id) {
-        System.out.println( this.toString() + "getTile was called");
         for (Tile tile : tiles) {
             if (tile.getUniqueID() == id)
                 return tile;
@@ -51,7 +46,6 @@ public class Map {
     }
 
     public GameController getGameController() {
-        System.out.println( this.toString() + "getGameController was called");
         return gameController;
     }
 }
