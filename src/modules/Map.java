@@ -9,40 +9,55 @@ public class Map
 
     public Map()
     {
-
     }
 
     public void generateStorm()
     {
         System.out.println( this.toString() + " generateStorm was called");
-        chooseStormTiles();
+        for (Tile t : chooseStormTiles())
+        {
+            t.onStorm();
+        }
     }
 
-    public void addTile(int newTileId, Tile newTile)
+    public void addTile(Tile newTile)
     {
         System.out.println( this.toString() + "addTile was called with param: " + newTile.toString());
         for (Tile tile : tiles)
-            if (tile.getId() == newTile.getId())
+            if (tile.getUniqueID() == newTile.getUniqueID())
                 return;
         tiles.add(newTile);
     }
 
-    private Tile[] chooseStormTiles ()
+    public void addItem(Item i, int id)
+    {
+        i.player = GameController.getInstance().getPlayer(id);
+        if (i.player == null)
+        {
+            i.tile = getTile(id);
+            getTile(id).setItem(i);
+    }
+        else
+        {
+            i.tile = null;
+        }
+    }
+
+    private Tile[] chooseStormTiles()
     {
         System.out.println( this.toString() + " chooseStormTiles was called");
         Tile[] tiles = {};
-        for (int i = 0; i<tiles.length; i++) {
-            tiles[i].onStorm();
-        }
-        return  tiles;
+        return tiles;
     }
 
-    public Tile getTile(int Id)
+    public Tile getTile(int id)
     {
         System.out.println( this.toString() + "getTile was called");
         for (Tile tile : tiles)
-            if (tile.getId() == Id)
+        {
+            if (tile.getUniqueID() == id)
                 return tile;
+        }
         return null;
     }
 

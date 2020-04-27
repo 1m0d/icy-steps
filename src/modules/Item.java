@@ -2,17 +2,17 @@ package modules;
 
 public abstract class Item
 {
-
-    RegularTile tile;
+    Tile tile;
     Player player;
 
-    public Item()
+    public Item() {}
+    public Item(Tile t, Player p)
     {
-
+        this.tile = tile;
+        this.player = player;
     }
 
     public Item getItem()
-
     {
         System.out.println( this.toString() + "getItem was called");
         return this;
@@ -20,6 +20,5 @@ public abstract class Item
     public void useItem(Tile t)
     {
         System.out.println( this.toString() + "useItem was called with param: " + t.toString());
-        player.setDivingSuit();
     }
 }

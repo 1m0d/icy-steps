@@ -2,18 +2,29 @@ package modules;
 
 public abstract class Player
 {
-    protected int Id;
+    protected Tile position;
     protected int energy;
     protected int lives;
-    protected boolean hasDivingSuit;
-    protected Tile position;
+    protected boolean drowning = false;
+    protected int uniqueID;
 
-    public int getId(){
-        return Id;
+    protected boolean hasDivingSuit = false;
+
+    public int getUniqueID(){
+        return uniqueID;
     }
 
     public Player()
     {
+    }
+
+    public Player(Tile t, String token1, String token2, String token3, String token4)
+    {
+       position = t;
+       Integer.parseInt(token1);
+       Integer.parseInt(token2);
+       Boolean.parseBoolean(token3);
+       Integer.parseInt(token4);
 
     }
 
@@ -23,7 +34,6 @@ public abstract class Player
         onFood();
         return this;
     }
-
 
     private void addItemToInventory(Item i)
     {
@@ -51,12 +61,6 @@ public abstract class Player
         System.out.println( this.toString() + " pass was called");
     }
 
-    public void pickUpItem()
-    {
-        System.out.println( this.toString() + " pickUpItem was called");
-        addItemToInventory(position.item);
-
-    }
 
     public void useItem(Item i)
     {

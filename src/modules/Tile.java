@@ -1,63 +1,69 @@
 package modules;
 
+import java.util.ArrayList;
+
 public abstract class Tile
 {
-    protected Map map;
-    protected int Id;
-    protected int playerCapacity;
-    protected int snowLayerCount;
-    protected boolean scientistChecked;
-    protected Item item;
-    protected Player[] players;
+    private ArrayList<Tile> neighbourTiles;
 
-    public Tile(Map map, int Id){
-        this.map = map;
-        this.Id = Id;
-    }
+    private int uniqueID;
+    private int playerCapacity;
+    private boolean scientistChecked;
+    private int snowLayerCount;
 
-    public Tile()
+    private Item item;
+    private Player[] players;
+
+    public Tile(int playerCapacity, int snowLayerCount, int uniqueID)
     {
-
+        this.playerCapacity = playerCapacity;
+        this.snowLayerCount = snowLayerCount;
+        this.uniqueID = uniqueID;
     }
+
+    public abstract void onRope();
+    public abstract void onPlayerStep(Player p);
+    public abstract  void onTurn();
+
     public void setItem(Item newItem){
         item = newItem;
     }
-    public int getId(){
-        return Id;
+    public int getUniqueID(){
+        return uniqueID;
     }
-
-
-
     public Player[] getPlayers()
     {
         return players;
-    }
-    public void onPlayerStep(Player p)
-    {
-        System.out.println( this.toString() + "onPlayerStep was called with param:" + p);
     }
 
     public void onShovel()
     {
         System.out.println( this.toString() + "onShovel was called");
     }
-
-    public void onRope()
-    {
-        System.out.println( this.toString() + "onRope was called");
-    }
-
     public void onStorm()
     {
         System.out.println( this.toString() + "onStorm was called");
     }
+    public void onCamp()
+    {
+        System.out.println( this.toString() + "onCamp was called");
+    }
+
 
     public Tile getNeighbour(int i)
     {
         System.out.println( this.toString() + "getNeighbour was called with param: " + i);
-        //TODO
-        RegularTile rt = new RegularTile(map, 0);
-        return rt;
+        if (i >= 0 && i < neighbourTiles.size()) {
+            Tile ret = neighbourTiles.get(i);
+            if (ret != null) {
+                return ret;
+            }
+            else {
+                System.out.println("couldnt find neighbourtile in " + i + " direction!");
+                return null;
+            }
+        }
+        return null;
     }
 
     public void onEskimoAbility()

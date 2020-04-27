@@ -2,13 +2,16 @@ package modules;
 
 public class HoleTile extends Tile
 {
-    public HoleTile(Map map, int parseInt, int parseInt1) {
+
+    public HoleTile(String token, String token1, String token2, String token3, String token4) {
+
+        super(Integer.parseInt(token), Integer.parseInt(token1), Integer.parseInt(token4));
     }
 
-    public HoleTile(Map map, int Id) {
-        this.map = map;
+    public void setItem(Item newItem)
+    {
+        super.setItem(null);
     }
-
 
     public void onPlayerStep(Player p)
     {
@@ -17,9 +20,8 @@ public class HoleTile extends Tile
     }
 
     @Override
-    public void onShovel()
-    {
-        System.out.println( this.toString() + "onShovel was called");
+    public void onTurn() {
+
     }
 
     @Override
@@ -28,35 +30,4 @@ public class HoleTile extends Tile
         System.out.println( this.toString() + "onRope was called");
     }
 
-    @Override
-    public void onStorm()
-    {
-        System.out.println( this.toString() + "onStorm was called");
-    }
-
-    @Override
-    public Tile getNeighbour(int i)
-    {
-        System.out.println( this.toString() + "getNeighbour was called with param: " + i);
-        RegularTile rt = new RegularTile(map, 0);
-        return rt;
-    }
-
-    @Override
-    public void onEskimoAbility()
-    {
-        System.out.println( this.toString() + "onEskimoAbility was called");
-    }
-
-    @Override
-    public void onScientistAbility()
-    {
-        System.out.println( this.toString() + "onScientistAbility was called");
-    }
-
-    @Override
-    public void flip()
-    {
-        System.out.println( this.toString() + "flip was called");
-    }
 }

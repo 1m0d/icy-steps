@@ -2,9 +2,18 @@ package modules;
 
 public class RegularTile extends Tile
 {
-    public RegularTile(Map map, int Id) {
-        this.map = map;
-        this.Id = Id;
+    protected boolean igloobuilt;
+    protected boolean campbuilt;
+
+    public RegularTile(String token, String token1, String token2, String token3, String token4) {
+        super(Integer.parseInt(token), Integer.parseInt(token1), Integer.parseInt(token4));
+        igloobuilt = Boolean.parseBoolean(token2);
+        campbuilt = Boolean.parseBoolean(token3);
+    }
+
+    @Override
+    public void onRope() {
+
     }
 
     @Override
@@ -14,15 +23,14 @@ public class RegularTile extends Tile
     }
 
     @Override
-    public void onShovel()
-    {
-        System.out.println( this.toString() + " onShovel was called");
+    public void onTurn() {
+
     }
 
     @Override
-    public void onRope()
+    public void onShovel()
     {
-        System.out.println( this.toString() + " onRope was called");
+        System.out.println( this.toString() + " onShovel was called");
     }
 
     @Override
@@ -32,29 +40,9 @@ public class RegularTile extends Tile
     }
 
     @Override
-    public Tile getNeighbour(int i)
-    {
-        System.out.println( this.toString() + "getNeighbour was called with param: " + i);
-        RegularTile rt = new RegularTile(map, 0);
-        return rt;
-    }
-
-    @Override
-    public void onEskimoAbility()
-    {
-        System.out.println( this.toString() + " onEskimoAbility was called");
-    }
-
-    @Override
-    public void onScientistAbility()
-    {
-        System.out.println( this.toString() + " onScientistAbility was called");
-    }
-
-    @Override
     public void flip()
     {
         System.out.println( this.toString() + "flip was called");
-        map.getGameController().lose();
+        GameController.getInstance().lose();
     }
 }

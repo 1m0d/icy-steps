@@ -1,12 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2cd088c5-6606-473b-b12b-dc84c8b5a93d" name="Default Changelist" comment="" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <list default="true" id="2cd088c5-6606-473b-b12b-dc84c8b5a93d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/Bela.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/Bear.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/Camp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/icy-steps/main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/icy-steps/main/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/icy-steps/modules/DivingSuit.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/icy-steps/modules/DivingSuit.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/icy-steps/modules/Eskimo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/icy-steps/modules/Eskimo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/icy-steps/modules/GameController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/icy-steps/modules/GameController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/icy-steps/modules/HoleTile.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/icy-steps/modules/HoleTile.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/icy-steps/modules/Item.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/icy-steps/modules/Item.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/icy-steps/modules/Map.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/icy-steps/modules/Map.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/icy-steps/modules/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/icy-steps/modules/Player.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/icy-steps/modules/RegularTile.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/icy-steps/modules/RegularTile.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/icy-steps/modules/Scientist.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/icy-steps/modules/Scientist.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/icy-steps/modules/Tile.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/icy-steps/modules/Tile.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/DivingSuit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/DivingSuit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/Eskimo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Eskimo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/Food.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Food.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/GameController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/HoleTile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/HoleTile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Item.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/Map.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Map.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/RegularTile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/RegularTile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/Rope.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Rope.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/Scientist.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Scientist.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/Shovel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Shovel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Tile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/WinningItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/WinningItem.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -15,23 +50,23 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="1" />
+  </component>
   <component name="ProjectId" id="1ZovtJsA5p15HVRGqgnezyZcV5c" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
   </component>
   <component name="RunManager">
     <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
@@ -54,5 +89,55 @@
       <updated>1585518474133</updated>
     </task>
     <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="765" y="229" key="#com.intellij.ide.util.MemberChooser" timestamp="1588002770468">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="765" y="229" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/-1920.0.1920.1080@0.0.1920.1040" timestamp="1588002770468" />
+    <state x="543" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1587994557082">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="543" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040/-1920.0.1920.1080@0.0.1920.1040" timestamp="1587994557082" />
+    <state width="1876" height="284" key="GridCell.Tab.0.bottom" timestamp="1588004652116">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1876" height="284" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1080@0.0.1920.1040" timestamp="1588004652116" />
+    <state width="1876" height="284" key="GridCell.Tab.0.center" timestamp="1588004652116">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1876" height="284" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1080@0.0.1920.1040" timestamp="1588004652116" />
+    <state width="1876" height="284" key="GridCell.Tab.0.left" timestamp="1588004652116">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1876" height="284" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1080@0.0.1920.1040" timestamp="1588004652116" />
+    <state width="1876" height="284" key="GridCell.Tab.0.right" timestamp="1588004652116">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1876" height="284" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1080@0.0.1920.1040" timestamp="1588004652116" />
+    <state x="656" y="343" key="com.intellij.ide.util.TipDialog" timestamp="1587989990798">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="656" y="343" key="com.intellij.ide.util.TipDialog/0.0.1920.1040/-1920.0.1920.1080@0.0.1920.1040" timestamp="1587989990798" />
+    <state x="769" y="436" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1588004256786">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="769" y="436" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/-1920.0.1920.1080@0.0.1920.1040" timestamp="1588004256786" />
+    <state x="-1924" y="0" width="1857" height="1028" key="dock-window-1" timestamp="1587998863028">
+      <screen x="-1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="-1924" y="0" width="1857" height="1028" key="dock-window-1/0.0.1920.1040/-1920.0.1920.1080@0.0.1920.1040" timestamp="1587998863028" />
+    <state x="702" y="148" key="refactoring.ChangeSignatureDialog" timestamp="1588004252816">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="702" y="148" key="refactoring.ChangeSignatureDialog/0.0.1920.1040/-1920.0.1920.1080@0.0.1920.1040" timestamp="1588004252816" />
+    <state x="616" y="240" key="run.anything.popup" timestamp="1588002233190">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="616" y="240" key="run.anything.popup/0.0.1920.1040/-1920.0.1920.1080@0.0.1920.1040" timestamp="1588002233190" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1587996959760">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/-1920.0.1920.1080@0.0.1920.1040" timestamp="1587996959760" />
   </component>
 </project>
