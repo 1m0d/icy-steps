@@ -52,18 +52,22 @@ public class GameController {
         mapReader.close();
     }
 
-    }
-
-    private void parsePlayer(String s) {
-        String delims = "[,]";
-        String[] tokens = s.split(delims);
-        if(Integer.parseInt(tokens[0]) == 0)
-        {
-            addPlayer(new Eskimo(map.getTile(Integer.parseInt(tokens[0])), tokens[2], tokens[3], tokens[4], tokens[5]));
-        }
-        else if (Integer.parseInt(tokens[0]) == 1)
-        {
-            addPlayer(new Scientist(map.getTile(Integer.parseInt(tokens[0])), tokens[2], tokens[3], tokens[4], tokens[5]));
+    private void parsePlayers(String[] players) {
+        for (String player : players ) {
+            String[] tokens = player.split(",");
+            Tile position = map.getTile(Integer.parseInt(tokens[1]));
+            int energy = Integer.parseInt(tokens[2]);
+            int lives = Integer.parseInt(tokens[3]);
+            boolean drowning = tokens[4] == "1";
+            int uniqueID = Integer.parseInt(tokens[5]);
+            if(Integer.parseInt(tokens[0]) == 0) {
+                Eskimo eskimo = new Eskimo(position, energy, lives, drowning, uniqueID);
+                this.players.add(eskimo);
+            }
+            else if (Integer.parseInt(tokens[0]) == 1) {
+                Scientist scientist = new Scientist(position, energy, lives, drowning, uniqueID);
+                this.players.add(scientist);
+            }
         }
     }
 
@@ -116,11 +120,6 @@ public class GameController {
             }
             columnCount++;
         }
-    }
-
-    public void addPlayer(Player newPlayer)
-    {
-        players.add(newPlayer);
     }
 
     private void startGame() {
