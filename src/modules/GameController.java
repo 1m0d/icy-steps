@@ -18,21 +18,23 @@ public class GameController {
     public void loadMap(String path) {
         try {
             File file = new File(path);
+            System.out.println(file.getAbsolutePath());
             Scanner myReader = new Scanner(file);
             while(myReader.hasNextLine())
             {
                 String line = myReader.nextLine();
-                if (line == "Tiles:\n") {
-                    while (line != "Players:\n") {
+                if (line.equals("Tiles:")) {
+                    while (!line.equals("Players:")) {
                         parseTile(myReader.nextLine());
+                        System.out.println(line);
                     }
                 }
-                else if (line == "Players:\n") {
-                    while (line != "Players:\n") {
+                else if (line.equals("Players:")) {
+                    while (!line.equals("Players:")) {
                         parsePlayer(myReader.nextLine());
                     }
                 }
-                else if (line == "Items:\n") {
+                else if (line.equals("Items:")) {
                     while (myReader.hasNextLine()) {
                         parseItem(myReader.nextLine());
                     }
@@ -42,6 +44,7 @@ public class GameController {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+
     }
 
     private void parsePlayer(String s) {

@@ -30,10 +30,10 @@ public class Main {
             input = in.nextInt();
             System.out.println("Integer read: " + input);
             System.out.println(testCasePaths[input]);
-            interpreter.setCurrentDirectory("/" + testCasePaths[input]);
-            gameController.loadMap(new File("map").getAbsolutePath());
-            interpreter.execute(new File("input").getAbsolutePath());
-            interpreter.check(new File("expected-output").getAbsolutePath());
+            System.out.println(interpreter.setCurrentDirectory("integration_tests/" + testCasePaths[input]));
+            gameController.loadMap(new File(System.getProperty("user.dir") + "/map").getAbsolutePath());
+            //interpreter.execute(new File("input").getAbsolutePath());
+            //interpreter.check(new File("expected-output").getAbsolutePath());
         }
     }
 

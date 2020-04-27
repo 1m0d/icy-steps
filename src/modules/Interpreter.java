@@ -8,6 +8,7 @@ public class Interpreter {
         boolean result = false;  // Boolean indicating whether directory was set
         File directory;       // Desired current working directory
         directory = new File(directory_name).getAbsoluteFile();
+        System.out.println(directory.getAbsolutePath());
         if (directory.exists() || directory.mkdirs())
         {
             result = (System.setProperty("user.dir", directory.getAbsolutePath()) != null);
