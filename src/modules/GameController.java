@@ -2,8 +2,9 @@ package modules;
 
 import java.io.Console;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.io.FileNotFoundException;
+import java.lang.reflect.Method;
+import java.util.*;
 
 public class GameController {
     private Map map;
@@ -14,36 +15,42 @@ public class GameController {
             gameController = new GameController();
         return gameController;
     }
+    private int tileRowCount = 0;
 
-    public void loadMap(String path) {
-        try {
-            File file = new File(path);
-            System.out.println(file.getAbsolutePath());
-            Scanner myReader = new Scanner(file);
-            while(myReader.hasNextLine())
-            {
-                String line = myReader.nextLine();
-                if (line.equals("Tiles:")) {
-                    while (!line.equals("Players:")) {
-                        parseTile(myReader.nextLine());
-                        System.out.println(line);
-                    }
-                }
-                else if (line.equals("Players:")) {
-                    while (!line.equals("Players:")) {
-                        parsePlayer(myReader.nextLine());
-                    }
-                }
-                else if (line.equals("Items:")) {
-                    while (myReader.hasNextLine()) {
-                        parseItem(myReader.nextLine());
-                    }
-                }
+    public void loadMap(String path) throws FileNotFoundException, NoSuchMethodException {
+        List<String> mapObjects = Arrays.asList("Tiles", "Players", "Items", "Bear");
+        File file = new File(path);
+        System.out.println(file.getAbsolutePath());
+        Scanner mapReader = new Scanner(file);
+
+        String currentObject = null;
+        while(mapReader.hasNextLine()) {
+            String line = mapReader.nextLine();
+
+            if(mapObjects.contains(line.replace(":",""))){
+                currentObject = line.replace(":","");
+                continue;
             }
-            myReader.close();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+
+            String[] objects = line.split(";");
+            switch (currentObject) {
+                case "Tiles":
+                    parseTiles(objects);
+                    tileRowCount++;
+                    break;
+                case "Players":
+                    parsePlayers(objects);
+                    break;
+                case "Items":
+                    parseItems(objects);
+                    break;
+                case "Bear":
+                    parseBear(objects);
+                    break;
+            }
         }
+        mapReader.close();
+    }
 
     }
 
@@ -87,16 +94,27 @@ public class GameController {
 
     }
 
-    private void parseTile(String s) {
-        String delims = "[,]";
-        String[] tokens = s.split(delims);
-        if (Integer.parseInt(tokens[0]) == 0)
-        {
-            map.addTile(new HoleTile(tokens[0],tokens[1],tokens[2],tokens[3], tokens[4]));
-        }
-        else
-        {
-            map.addTile(new RegularTile(tokens[0], tokens[1], tokens[2], tokens[3], tokens[4]));
+    private void parseTiles(String[] tiles) {
+        int columnCount = 0;
+        for (String tile: tiles ) {
+            String[] tokens = tile.split(",");
+            int playerCapacity = Integer.parseInt(tokens[0]);
+            int snowLayerCount = Integer.parseInt(tokens[1]);
+            int UID = Integer.parseInt(tokens[4]);
+            boolean iglooBuilt = tokens[2] == "1";
+            boolean campBuilt = tokens[3] == "1";
+
+            if (Integer.parseInt(tokens[0]) == 0) {
+                map.addTile(new HoleTile(columnCount, tileRowCount, snowLayerCount, UID));
+            } else {
+                RegularTile regularTile = new RegularTile(columnCount, tileRowCount, playerCapacity, snowLayerCount, UID);
+                map.addTile(regularTile);
+                if(iglooBuilt)
+                    regularTile.buildIgloo();
+                else if(campBuilt)
+                    regularTile.buildICamp();
+            }
+            columnCount++;
         }
     }
 
