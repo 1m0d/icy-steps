@@ -11,9 +11,13 @@ public class DivingSuit extends Item
     @Override
     public void useItem(Tile t) {
         System.out.println( this.toString() + " useItem was called with param: " + t.toString());
+        if (player != null) {
+            player.hasDivingSuit = true;
+        }
     }
 
     public void getPickedBy(Player p)
     {
+        p.addItemToInventory(this);
     }
 }

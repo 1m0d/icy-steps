@@ -8,6 +8,7 @@ public class Scientist extends Player {
 
     public Scientist(Tile t, String token1, String token2, String token3, String token4) {
         super(t, token1, token2, token3, token4);
+        maxLives = 4;
     }
 
     @Override

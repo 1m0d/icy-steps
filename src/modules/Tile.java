@@ -46,6 +46,10 @@ public abstract class Tile {
     {
         System.out.println( this.toString() + "onCamp was called");
     }
+    public void onBearStep()
+    {
+        System.out.println( this.toString() + "onBearStep was called");
+    }
 
 
     public Tile getNeighbour(int i) {
@@ -67,7 +71,6 @@ public abstract class Tile {
     {
         System.out.println( this.toString() + "onEskimoAbility was called");
     }
-
     public void onScientistAbility()
     {
         System.out.println( this.toString() + "onScientistAbility was called");

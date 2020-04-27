@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class GameController {
-    Map map;
+    private Map map;
     private ArrayList<Player> players;
     private static GameController gameController;
     public static GameController getInstance() {
@@ -15,7 +15,7 @@ public class GameController {
         return gameController;
     }
 
-    private void loadMap(String path) {
+    public void loadMap(String path) {
         try {
             File file = new File(path);
             Scanner myReader = new Scanner(file);
@@ -60,32 +60,25 @@ public class GameController {
     private void parseItem(String s) {
         String delims = "[,]";
         String[] tokens = s.split(delims);
-        if (tokens[1] == "camp")
-        {
+        if (tokens[1] == "camp") {
             map.addItem(new Camp(), Integer.parseInt(tokens[0]));
         }
-        else if (tokens[1] == "divingsuit")
-        {
+        else if (tokens[1] == "divingsuit") {
             map.addItem(new DivingSuit(), Integer.parseInt(tokens[0]));
         }
-        else if(tokens[1]  == "food")
-        {
+        else if(tokens[1]  == "food") {
             map.addItem(new Food(), Integer.parseInt(tokens[0]));
         }
-        else if (tokens[1] == "rope")
-        {
+        else if (tokens[1] == "rope") {
             map.addItem(new Rope(), Integer.parseInt(tokens[0]));
         }
-        else if (tokens[1] == "shovel")
-        {
+        else if (tokens[1] == "shovel") {
             map.addItem(new Shovel(), Integer.parseInt(tokens[0]));
         }
-        else if (tokens[1] == "winningitem")
-        {
+        else if (tokens[1] == "winningitem") {
             map.addItem(new WinningItem(), Integer.parseInt(tokens[0]));
         }
-        else
-        {
+        else {
             System.out.println(tokens[1] + "type could not been found");
         }
 
@@ -109,8 +102,7 @@ public class GameController {
         players.add(newPlayer);
     }
 
-    private void startGame()
-    {
+    private void startGame() {
         System.out.println( this.toString() + " startGame was called");
         turn();
     }
@@ -130,8 +122,7 @@ public class GameController {
         System.out.println( this.toString() + " lose was called");
     }
 
-    public void checkWinningConditions()
-    {
+    public void checkWinningConditions() {
         System.out.println( this.toString() + " checkWinningConditions was called");
     }
 
@@ -141,4 +132,9 @@ public class GameController {
                 return player;
         return null;
     }
+
+    public Map getMap() {
+        return map;
+    }
+
 }

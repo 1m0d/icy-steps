@@ -29,7 +29,8 @@ public class Map {
         if (i.player == null) {
             i.tile = getTile(id);
             getTile(id).setItem(i);
-        } else {
+        }
+        else {
             i.tile = null;
         }
     }

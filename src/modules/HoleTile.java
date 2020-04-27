@@ -9,7 +9,6 @@ public class HoleTile extends Tile {
     {
         super.setItem(null);
     }
-
     public void onPlayerStep(Player p) {
         System.out.println( this.toString() + "onPlayerStep was called with param: " + p.toString());
         p.onHole();

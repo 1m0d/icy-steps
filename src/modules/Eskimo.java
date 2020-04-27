@@ -8,6 +8,7 @@ public class Eskimo extends Player {
 
     public Eskimo(Tile t, String token1, String token2, String token3, String token4) {
         super(t, token1, token2, token3, token4);
+        maxLives = 5;
     }
 
     @Override
@@ -19,7 +20,9 @@ public class Eskimo extends Player {
     @Override
     public void useAbility(Tile t) {
         System.out.println( this.toString() + " useAbility was called with param: " + t.toString());
-        t.onEskimoAbility();
+        if (work()) {
+            t.onEskimoAbility();
+        }
     }
 
 }

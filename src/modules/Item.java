@@ -1,7 +1,6 @@
 package modules;
 
-public abstract class Item
-{
+public abstract class Item {
     Tile tile;
     Player player;
 
@@ -15,7 +14,6 @@ public abstract class Item
         System.out.println( this.toString() + "getItem was called");
         return this;
     }
-    public void useItem(Tile t) {
-        System.out.println( this.toString() + "useItem was called with param: " + t.toString());
-    }
+    public abstract void useItem(Tile t);
+
 }

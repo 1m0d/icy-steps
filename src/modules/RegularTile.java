@@ -12,7 +12,10 @@ public class RegularTile extends Tile {
 
     @Override
     public void onRope() {
-
+        for (Player p : getPlayers())
+        {
+           // p.getPulledTo();
+        }
     }
 
     @Override
@@ -22,7 +25,6 @@ public class RegularTile extends Tile {
 
     @Override
     public void onTurn() {
-
     }
 
     @Override

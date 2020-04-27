@@ -1,6 +1,8 @@
 package modules;
 
-public abstract class Player {
+public abstract class Player
+{
+    public static int maxLives;
     protected Tile position;
     protected int energy;
     protected int lives;
@@ -30,13 +32,22 @@ public abstract class Player {
         return this;
     }
 
-    private void addItemToInventory(Item i) {
+    public void addItemToInventory(Item i)
+    {
         System.out.println( this.toString() + " addItemToInventory was called with param: " + i.toString());
     }
 
-    public void work()
+    boolean work()
     {
         System.out.println( this.toString() + " work was called");
+        if(energy > 0)
+        {
+            energy--;
+            return true;
+        }
+
+        System.out.println("Nincs több energiád!");
+        return false;
     }
 
     public void turn()
