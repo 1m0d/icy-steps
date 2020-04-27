@@ -1,8 +1,8 @@
 package modules;
 
 public class HoleTile extends Tile {
-    public HoleTile(int positionX, int positionY, int playerCapacity, int snowLayerCount, int uniqueID) {
-        super(positionX, positionY, playerCapacity, snowLayerCount, uniqueID);
+    public HoleTile(int positionX, int positionY, int snowLayerCount, int uniqueID) {
+        super(positionX, positionY, 0, snowLayerCount, uniqueID);
     }
 
     public void onPlayerStep(Player p) {
