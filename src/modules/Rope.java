@@ -1,16 +1,16 @@
 package modules;
 
 public class Rope extends Item {
-    public Rope(Tile t, Player p) {
-        super(t, p);
-    }
-    public Rope() {}
+
+    public Rope(Player player) { super(player); }
+
+    public Rope(Tile tile) { super(tile); }
 
     @Override
     public void useItem(Tile t) {
         for (Player p : t.getPlayers())
         {
-            p.position = this.tile;
+            p.getPulledTo(t);
         }
         ((HoleTile)t).onRope();
     }

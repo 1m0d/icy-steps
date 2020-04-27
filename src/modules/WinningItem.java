@@ -1,15 +1,12 @@
 package modules;
 
 public class WinningItem extends Item {
-    public WinningItem(Tile t, Player p) {
-        super(t, p);
-    }
+    public WinningItem(Player player) { super(player); }
 
-    public WinningItem() {}
+    public WinningItem(Tile tile) { super(tile); }
 
     @Override
     public void useItem(Tile t) {
-        System.out.println( this.toString() + " useItem was called with param: " + t.toString());
         GameController.getInstance().checkWinningConditions();
     }
 }

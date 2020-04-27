@@ -46,7 +46,7 @@ public class RegularTile extends Tile {
     }
 
     public void buildIgloo(){ iglooBuilt = true;}
-    public void buildICamp(){
+    public void buildCamp(){
         if(!iglooBuilt)
             campBuilt = true;
     }

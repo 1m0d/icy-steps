@@ -116,7 +116,7 @@ public class GameController {
                 if(iglooBuilt)
                     regularTile.buildIgloo();
                 else if(campBuilt)
-                    regularTile.buildICamp();
+                    regularTile.buildCamp();
             }
             columnCount++;
         }

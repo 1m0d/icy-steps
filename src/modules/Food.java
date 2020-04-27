@@ -1,10 +1,10 @@
 package modules;
 
 public class Food extends Item {
-    public Food(Tile t, Player p) {
-        super(t, p);
-    }
-    public Food() {}
+
+    public Food(Player player) { super(player); }
+
+    public Food(Tile tile) { super(tile); }
 
     @Override
     public void useItem(Tile t) {
