@@ -102,4 +102,6 @@ public abstract class Player
     {
         System.out.println( this.toString() + " setDivingSuit was called");
     }
+
+    public void damage(){}
 }
