@@ -15,9 +15,4 @@ public class DivingSuit extends Item
             player.hasDivingSuit = true;
         }
     }
-
-    public void getPickedBy(Player p)
-    {
-        p.addItemToInventory(this);
-    }
 }

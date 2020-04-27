@@ -8,10 +8,8 @@ public class Food extends Item {
 
     @Override
     public void useItem(Tile t) {
-        System.out.println( this.toString() + " useItem was called with param: " + t.toString());
         if (player.lives < player.maxLives) {
             player.lives++;
         }
-
     }
 }
