@@ -10,7 +10,7 @@ public abstract class Tile {
     protected boolean scientistChecked = false;
     protected int snowLayerCount;
 
-    protected ArrayList<Player> players;
+    protected ArrayList<Player> players = new ArrayList<>();
 
     public abstract void onPlayerStep(Player p);
     public abstract void onBearStep();
@@ -27,6 +27,7 @@ public abstract class Tile {
     public int getUniqueID(){ return uniqueID; }
     public int getPositionX() { return positionX; }
     public int getPositionY() { return positionY; }
+    public int getPlayerCapacity() { return playerCapacity; }
     public boolean isScientistChecked() { return scientistChecked; }
     public int getSnowLayerCount() { return snowLayerCount; }
     public ArrayList<Player> getPlayers() { return players; }

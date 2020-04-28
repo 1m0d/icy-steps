@@ -7,6 +7,7 @@ public abstract class Player
 {
     public static int maxLives;
     protected Tile position;
+
     protected int energy = 5;
     protected int lives;
     protected boolean drowning = false;
@@ -17,9 +18,13 @@ public abstract class Player
 
     protected boolean hasDivingSuit = false;
 
-    public int getUniqueID(){
-        return uniqueID;
-    }
+    public int getUniqueID(){ return uniqueID; }
+    public int getEnergy() { return energy; }
+    public int getLives() { return lives; }
+    public boolean isDrowning() { return drowning; }
+    public int getnOfWinningItems() { return nOfWinningItems; }
+    public boolean isActivePlayer() { return activePlayer; }
+    public boolean isHasDivingSuit() { return hasDivingSuit; }
 
     public Player(Tile position) { this.position = position; }
 
