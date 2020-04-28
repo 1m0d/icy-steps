@@ -57,6 +57,7 @@ public class GameController {
         }
         mapReader.close();
     }
+
     public void startGame() {
         currentPlayer = players.get(0);
         currentPlayer.startTurn();
@@ -171,18 +172,18 @@ public class GameController {
             int playerCapacity = Integer.parseInt(tokens[0]);
             int snowLayerCount = Integer.parseInt(tokens[1]);
             int UID = Integer.parseInt(tokens[4]);
-            boolean iglooBuilt = tokens[2] == "true";
-            boolean campBuilt = tokens[3] == "true";
+            boolean iglooBuilt = Boolean.parseBoolean(tokens[2]);
+            boolean campBuilt = Boolean.parseBoolean(tokens[3]);
 
             if (Integer.parseInt(tokens[0]) == 0) {
                 map.addTile(new HoleTile(columnCount, tileRowCount, snowLayerCount, UID));
             } else {
                 RegularTile regularTile = new RegularTile(columnCount, tileRowCount, playerCapacity, snowLayerCount, UID);
-                map.addTile(regularTile);
                 if(iglooBuilt)
                     regularTile.buildIgloo();
                 else if(campBuilt)
                     regularTile.buildCamp();
+                map.addTile(regularTile);
             }
             columnCount++;
         }
