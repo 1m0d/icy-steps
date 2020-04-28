@@ -24,7 +24,6 @@ public abstract class Tile {
         this.uniqueID = uniqueID;
     }
 
-
     public int getUniqueID(){ return uniqueID; }
     public int getPositionX() { return positionX; }
     public int getPositionY() { return positionY; }

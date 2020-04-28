@@ -44,8 +44,12 @@ public class Interpreter {
                 break;
 
             case "set-player-turn":
-                currentPlayer.setActivePlayer(false);
-                gameController.getPlayer(Integer.parseInt(arguments[0])).startTurn();
+                if(currentPlayer != null)
+                    currentPlayer.setActivePlayer(false);
+
+                Player player = gameController.getPlayer(Integer.parseInt(arguments[0]));
+                player.setActivePlayer(true);
+                gameController.setCurrentPlayer(player);
                 break;
 
             case "step":

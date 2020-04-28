@@ -98,6 +98,7 @@ public class GameController {
     }
 
     public Player getCurrentPlayer(){ return currentPlayer; }
+    public void setCurrentPlayer(Player player){ currentPlayer = player; }
 
     public Map getMap() { return map; }
 
