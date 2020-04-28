@@ -9,10 +9,10 @@ public class Interpreter {
         File directory;       // Desired current working directory
         directory = new File(directory_name).getAbsoluteFile();
         System.out.println(directory.getAbsolutePath());
-        if (directory.exists() || directory.mkdirs())
-        {
+        if (directory.exists()) {
             result = (System.setProperty("user.dir", directory.getAbsolutePath()) != null);
         }
+
         return result;
     }
 

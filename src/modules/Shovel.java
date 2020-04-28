@@ -2,13 +2,13 @@ package modules;
 
 public class Shovel extends Item
 {
-    public Shovel(Tile t, Player p) {
-        super(t, p);
-    }
-    public Shovel() {}
+
+    public Shovel(){}
+    public Shovel(Player player) { super(player); }
+    public Shovel(Tile tile) { super(tile); }
 
     @Override
     public void useItem(Tile t) {
-        t.onShovel();
+        ((RegularTile)t).onShovel();
     }
 }

@@ -1,29 +1,19 @@
 package modules;
 
 public class Eskimo extends Player {
-    public Eskimo(int Id)
-    {
-        super();
+
+    public Eskimo(Tile position) {
+        super(position);
     }
 
-    public Eskimo(Tile t, String token1, String token2, String token3, String token4) {
-        super(t, token1, token2, token3, token4);
-        maxLives = 5;
-    }
-
-    @Override
-    public void turn()
-    {
-        System.out.println( this.toString() + " turn was called");
+    public Eskimo(Tile position, int energy, int lives, boolean drowning, int uniqueID) {
+        super(position, energy, lives, drowning, uniqueID);
     }
 
     @Override
     public void useAbility(Tile t) {
-        System.out.println( this.toString() + " useAbility was called with param: " + t.toString());
         if (work()) {
-            t.onEskimoAbility();
+            ((RegularTile)position).buildIgloo();
         }
     }
-
-
 }
