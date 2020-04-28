@@ -12,6 +12,9 @@ public class RegularTile extends Tile {
     public Item getItem(){ return item; }
     public void setItem(Item item){ this.item = item; }
 
+    public boolean isIglooBuilt() { return iglooBuilt; }
+    public boolean isCampBuilt() { return campBuilt; }
+
     @Override
     public void onPlayerStep(Player p) {
         players.add(p);

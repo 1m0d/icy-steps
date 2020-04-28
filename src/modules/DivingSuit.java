@@ -1,5 +1,8 @@
 package modules;
 
+/**
+ *
+ */
 public class DivingSuit extends Item
 {
 

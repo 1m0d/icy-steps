@@ -12,8 +12,7 @@ public class Eskimo extends Player {
 
     @Override
     public void useAbility(Tile t) {
-        if (work()) {
-            ((RegularTile)position).buildIgloo();
-        }
+        ((RegularTile)position).buildIgloo();
+        work();
     }
 }

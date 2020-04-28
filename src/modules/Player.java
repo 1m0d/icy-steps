@@ -7,18 +7,25 @@ public abstract class Player
 {
     public static int maxLives;
     protected Tile position;
-    protected int energy;
+
+    protected int energy = 5;
     protected int lives;
     protected boolean drowning = false;
     protected int uniqueID;
     protected ArrayList<Item> items = new ArrayList<>();
-    int nOfWinningItems = 0;
+    protected int nOfWinningItems = 0;
+    protected boolean activePlayer = false;
 
     protected boolean hasDivingSuit = false;
 
-    public int getUniqueID(){
-        return uniqueID;
-    }
+    public int getUniqueID(){ return uniqueID; }
+    public int getEnergy() { return energy; }
+    public int getLives() { return lives; }
+    public boolean isDrowning() { return drowning; }
+    public int getnOfWinningItems() { return nOfWinningItems; }
+    public boolean isActivePlayer() { return activePlayer; }
+    public boolean isHasDivingSuit() { return hasDivingSuit; }
+
 
     public Player(Tile position) { this.position = position; }
 
@@ -32,37 +39,37 @@ public abstract class Player
 
     public void addItemToInventory(Item i) { items.add(i); }
 
-    boolean work()
-    {
-        System.out.println( this.toString() + " work was called");
-        if(energy != 0)
-        {
-            energy--;
-            return true;
+    protected void work() {
+        if(--energy <= 0) {
+            activePlayer = false;
+            GameController.getInstance().endPlayerTurn();
         }
-
-        System.out.println("You don't have more energy");
-        return false;
     }
 
-    // TODO: WTF
-    public void turn() {
-        System.out.println( this.toString() + " turn was called");
-        while(energy != 0){
-            work();
+    public void startTurn() {
+        energy = 5;
+        activePlayer = true;
+        if(drowning && !hasDivingSuit){
+            GameController.getInstance().lose();
         }
     }
 
     public void step(Tile t) {
         position = t;
         t.onPlayerStep(this);
+        work();
     }
 
-    // TODO
-    public void pass() { energy=0; }
+    public void pass() {
+        activePlayer = false;
+        GameController.getInstance().endPlayerTurn();
+    }
 
     // TODO useItem(Tile)
-    public void useItem(Item i) { i.useItem(position); }
+    public void useItem(Item i) {
+        i.useItem(position);
+        work();
+    }
 
     public abstract void useAbility(Tile t);
 
@@ -70,6 +77,7 @@ public abstract class Player
         if (lives < maxLives) {
             lives++;
         }
+        work();
     }
 
     public void onHole() { drowning = true; }
@@ -82,6 +90,7 @@ public abstract class Player
     public void clearSnow() {
         RegularTile t = (RegularTile)position;
         t.clearSnow();
+        work();
     }
 
     public void setDivingSuit() { hasDivingSuit = true; }
@@ -93,5 +102,22 @@ public abstract class Player
     }
 
      public int getWinningItemN() { return nOfWinningItems;}
+
+     public Tile getPosition() {
+         return this.position;
+     }
+
+     public ArrayList<Item> getItems(){
+        return items;
+     }
+
+     public void pickUpItem(){
+         Item item = ((RegularTile)position).getItem();
+         if(item == null)
+             return;
+         addItemToInventory(item);
+         ((RegularTile) position).setItem(null);
+         work();
+     }
 }
 

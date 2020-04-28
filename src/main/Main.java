@@ -4,6 +4,8 @@ import modules.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Scanner;
 
 public class Main {
@@ -13,6 +15,8 @@ public class Main {
     {
         GameController gameController = GameController.getInstance();
         Interpreter interpreter = new Interpreter();
+        MapSerializer mapSerializer = new MapSerializer();
+
         String[] testCasePaths = {
                 "00-load-map","01-player-steps-onto-regular-tile","02-player-steps-onto-hole-tile","03-player-uses-eskimo-ability","04-player-uses-scientist-ability",
                 "05-player-passes","06-player-picks-up-an-item","07-player-clears-snow","08-player-uses-diving-suit","09-player-uses-food","10-player-uses-winning-item","11-player-uses-rope",
@@ -30,16 +34,16 @@ public class Main {
         int input;
         while (true) {
             input = in.nextInt();
-            System.out.println("Integer read: " + input);
-            System.out.println(testCasePaths[input]);
-            System.out.println(interpreter.setCurrentDirectory("integration_tests/" + testCasePaths[input] ));
+            System.out.printf("Running: %s\n", testCasePaths[input]);
+            Path testDirectory = Paths.get("integration_tests/", testCasePaths[input]);
+            interpreter.setTestDirectory(testDirectory.toString());
             try {
-                gameController.loadMap(new File(System.getProperty("user.dir") + "/map").getAbsolutePath());
+                interpreter.execute();
+                mapSerializer.printMap();
+                interpreter.check();
             } catch (FileNotFoundException e) {
-                System.out.print("File not found\n");
+                System.out.printf("File not found: %s\n", e.getMessage());
             }
-            //interpreter.execute(new File("input").getAbsolutePath());
-            //interpreter.check(new File("expected-output").getAbsolutePath());
         }
     }
 

@@ -11,5 +11,8 @@ public class Scientist extends Player {
     }
 
     @Override
-    public void useAbility(Tile t) { t.onScientistAbility(); }
+    public void useAbility(Tile t) {
+        t.onScientistAbility();
+        work();
+    }
 }

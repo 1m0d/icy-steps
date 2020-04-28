@@ -11,6 +11,11 @@ public class GameController {
     private ArrayList<Player> players = new ArrayList<>();
     private Bear bear;
     private static GameController gameController;
+    private boolean gameOver = false;
+    private boolean endPlayerTurn = true;
+    private Player currentPlayer;
+    private int currentPlayerIndex = 0;
+
     public static GameController getInstance() {
         if (gameController == null)
             gameController = new GameController();
@@ -22,7 +27,6 @@ public class GameController {
         clear();
         List<String> mapObjects = Arrays.asList("Tiles", "Players", "Items", "Bear");
         File file = new File(path);
-        System.out.println(file.getAbsolutePath());
         Scanner mapReader = new Scanner(file);
 
         String currentObject = null;
@@ -52,6 +56,63 @@ public class GameController {
             }
         }
         mapReader.close();
+    }
+
+    public void startGame() {
+        currentPlayer = players.get(0);
+        currentPlayer.startTurn();
+    }
+
+    public void endPlayerTurn(){
+        currentPlayerIndex++;
+        if(currentPlayerIndex == players.size())
+            endTurn();
+
+        currentPlayer = players.get(currentPlayerIndex);
+        currentPlayer.startTurn();
+    }
+
+    public void win()
+    {
+        System.out.println( this.toString() + " win was called");
+    }
+
+    public void lose() {
+        System.out.println( this.toString() + " lose was called");
+    }
+
+    public void checkWinningConditions() {
+        System.out.println( this.toString() + " checkWinningConditions was called");
+    }
+
+    public Player getPlayer(int Id) {
+        for (Player player : players)
+            if (player.getUniqueID() == Id)
+                return player;
+        return null;
+    }
+
+    public ArrayList<Player> getAllPlayers()
+    {
+        return this.players;
+    }
+
+    public Player getCurrentPlayer(){ return currentPlayer; }
+
+    public Map getMap() { return map; }
+
+    public Bear getBear() {return bear;}
+
+    private void endTurn() {
+        map.generateStorm();
+        currentPlayerIndex = 0;
+    }
+
+    private void clear(){
+        map = new Map();
+        players.clear();
+        bear = null;
+        tileRowCount = 0;
     }
 
     private void parsePlayers(String[] players) {
@@ -111,18 +172,18 @@ public class GameController {
             int playerCapacity = Integer.parseInt(tokens[0]);
             int snowLayerCount = Integer.parseInt(tokens[1]);
             int UID = Integer.parseInt(tokens[4]);
-            boolean iglooBuilt = tokens[2] == "true";
-            boolean campBuilt = tokens[3] == "true";
+            boolean iglooBuilt = Boolean.parseBoolean(tokens[2]);
+            boolean campBuilt = Boolean.parseBoolean(tokens[3]);
 
             if (Integer.parseInt(tokens[0]) == 0) {
                 map.addTile(new HoleTile(columnCount, tileRowCount, snowLayerCount, UID));
             } else {
                 RegularTile regularTile = new RegularTile(columnCount, tileRowCount, playerCapacity, snowLayerCount, UID);
-                map.addTile(regularTile);
                 if(iglooBuilt)
                     regularTile.buildIgloo();
                 else if(campBuilt)
                     regularTile.buildCamp();
+                map.addTile(regularTile);
             }
             columnCount++;
         }
@@ -132,43 +193,4 @@ public class GameController {
         this.bear = new Bear(map.getTile(Integer.parseInt(bear[0])));
     }
 
-    private void startGame() {
-        System.out.println( this.toString() + " startGame was called");
-        turn();
-    }
-
-    private void turn()
-    {
-        System.out.println( this.toString() + " turn was called");
-    }
-
-    public void win()
-    {
-        System.out.println( this.toString() + " win was called");
-    }
-
-    public void lose()
-    {
-        System.out.println( this.toString() + " lose was called");
-    }
-
-    public void checkWinningConditions() {
-        System.out.println( this.toString() + " checkWinningConditions was called");
-    }
-
-    public Player getPlayer(int Id) {
-        for (Player player : players)
-            if (player.getUniqueID() == Id)
-                return player;
-        return null;
-    }
-
-    public Map getMap() { return map; }
-
-    private void clear(){
-        map = new Map();
-        players.clear();
-        bear = null;
-        tileRowCount = 0;
-    }
 }

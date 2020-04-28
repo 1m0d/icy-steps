@@ -1,11 +1,15 @@
 package modules;
 
+import java.awt.event.ItemEvent;
 import java.util.ArrayList;
 
 public class Map {
     private ArrayList<Tile> tiles = new ArrayList<>();
+    private ArrayList<Item> items = new ArrayList<>();
 
     public Map() { }
+
+    public ArrayList<Item> getItems(){ return items; }
 
     public void generateStorm() {
         for (Tile t : chooseStormTiles()) {
@@ -21,6 +25,7 @@ public class Map {
     }
 
     public void addItem(Item i, int id) {
+        items.add(i);
         Player player = GameController.getInstance().getPlayer(id);
         if (player == null) {
             Tile tile = getTile(id);
@@ -36,6 +41,23 @@ public class Map {
     private Tile[] chooseStormTiles() {
         Tile[] tiles = {};
         return tiles;
+    }
+
+    public ArrayList<Tile> getAllTiles()
+    {
+        return this.tiles;
+    }
+
+    public Tile getTileByCoord(int x, int y)
+    {
+        for (Tile t: this.tiles
+             ) {
+            if ( t.positionX == x && t.positionY == y)
+            {
+                return t;
+            }
+        }
+        return null;
     }
 
     public Tile getTile(int id) {
