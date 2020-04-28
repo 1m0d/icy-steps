@@ -39,8 +39,7 @@ public class Interpreter {
                 break;
             case "set-player-turn":
                 gameController.endPlayerTurn();
-                for (Player p : gameController.getAllPlayers()
-                     ) {
+                for (Player p : gameController.getAllPlayers() ) {
                     p.energy = 0;
                     p.activePlayer = false;
                 }

@@ -15,6 +15,8 @@ public class Main {
     {
         GameController gameController = GameController.getInstance();
         Interpreter interpreter = new Interpreter();
+        MapSerializer mapSerializer = new MapSerializer();
+
         String[] testCasePaths = {
                 "00-load-map","01-player-steps-onto-regular-tile","02-player-steps-onto-hole-tile","03-player-uses-eskimo-ability","04-player-uses-scientist-ability",
                 "05-player-passes","06-player-picks-up-an-item","07-player-clears-snow","08-player-uses-diving-suit","09-player-uses-food","10-player-uses-winning-item","11-player-uses-rope",
@@ -37,6 +39,7 @@ public class Main {
             interpreter.setTestDirectory(testDirectory.toString());
             try {
                 interpreter.execute();
+                mapSerializer.printMap();
                 interpreter.check();
             } catch (FileNotFoundException e) {
                 System.out.printf("File not found: %s\n", e.getMessage());
