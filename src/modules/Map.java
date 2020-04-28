@@ -15,9 +15,9 @@ public class Map {
     }
 
     public void addTile(Tile newTile) {
-        for (Tile tile : tiles)
-            if (tile.getUniqueID() == newTile.getUniqueID())
-                return;
+        if(getTile(newTile.getUniqueID()) != null)
+            throw new IllegalArgumentException("Unique ID already taken");
+
         tiles.add(newTile);
     }
 

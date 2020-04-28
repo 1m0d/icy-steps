@@ -18,7 +18,7 @@ public class GameController {
     }
     private int tileRowCount = 0;
 
-    public void loadMap(String path) throws FileNotFoundException, NoSuchMethodException {
+    public void loadMap(String path) throws FileNotFoundException {
         List<String> mapObjects = Arrays.asList("Tiles", "Players", "Items", "Bear");
         File file = new File(path);
         System.out.println(file.getAbsolutePath());
