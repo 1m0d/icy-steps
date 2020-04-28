@@ -1,6 +1,7 @@
 package modules;
 
 import java.util.ArrayList;
+import java.lang.Math;
 
 public class Map {
     private GameController gameController;
@@ -9,10 +10,30 @@ public class Map {
     public Map() {
     }
 
-    public void generateStorm() {
+   /* public void generateStorm() {
         System.out.println( this.toString() + " generateStorm was called");
         for (Tile t : chooseStormTiles()) {
             t.onStorm();
+        }
+    }
+
+    private Tile[] chooseStormTiles() {
+        System.out.println( this.toString() + " chooseStormTiles was called");
+        Tile[] tiles = {};
+        return tiles;
+        } */
+
+    public void generateStorm() {
+        System.out.println( this.toString() + " generateStorm was called");
+        for (int i=0; i<tiles.size(); i++) {
+            double rand = Math.random();
+            if (rand > 0.5) tiles.get(i).onStorm();
+        }
+    }
+
+    public void turn() {
+        for(Tile t : tiles) {
+            t.turn();
         }
     }
 
@@ -33,12 +54,6 @@ public class Map {
         else {
             i.tile = null;
         }
-    }
-
-    private Tile[] chooseStormTiles() {
-        System.out.println( this.toString() + " chooseStormTiles was called");
-        Tile[] tiles = {};
-        return tiles;
     }
 
     public Tile getTile(int id) {

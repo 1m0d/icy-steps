@@ -1,5 +1,8 @@
 package modules;
 
+import com.sun.applet2.preloader.event.ApplicationExitEvent;
+import javafx.application.Application;
+
 import java.io.Console;
 import java.io.File;
 import java.util.ArrayList;
@@ -104,26 +107,41 @@ public class GameController {
 
     private void startGame() {
         System.out.println( this.toString() + " startGame was called");
+        //loadMap(); TODO
         turn();
     }
 
     private void turn()
     {
         System.out.println( this.toString() + " turn was called");
+        map.generateStorm();
+        for(Player p : players) {
+            p.turn(); //Player osztalyban atirtam. (ha nincs buvarruha es vizben van akkor megfullad.
+        }
+        map.turn(); //map class-ban uj turn fv. Illetve tile-ban is lett egy ilyen satrak miatt.
     }
 
     public void win()
     {
         System.out.println( this.toString() + " win was called");
+        //TODO menu kell(?)
     }
 
     public void lose()
     {
-        System.out.println( this.toString() + " lose was called");
+        //System.out.println( this.toString() + " lose was called");
+        System.out.println("Game over"); //TODO (Menu?)
     }
 
-    public void checkWinningConditions() {
+    public void checkWinningConditions(Tile t) {
         System.out.println( this.toString() + " checkWinningConditions was called");
+        int winningitems=0;
+        for(int i=0; i<players.size(); i++) {
+            winningitems = winningitems + players.get(i).getWinningItemN();
+        }
+        if(winningitems == 3) {
+            if (t.getPlayers().size() == players.size()) win();
+        }
     }
 
     public Player getPlayer(int Id) {
@@ -136,5 +154,4 @@ public class GameController {
     public Map getMap() {
         return map;
     }
-
 }

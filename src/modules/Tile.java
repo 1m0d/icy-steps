@@ -9,9 +9,10 @@ public abstract class Tile {
     private int playerCapacity;
     private boolean scientistChecked;
     private int snowLayerCount;
+    private boolean campBuilt = false;
 
     private Item item;
-    private Player[] players;
+    private ArrayList<Player> p;
 
     public Tile(int playerCapacity, int snowLayerCount, int uniqueID) {
         this.playerCapacity = playerCapacity;
@@ -29,10 +30,7 @@ public abstract class Tile {
     public int getUniqueID(){
         return uniqueID;
     }
-    public Player[] getPlayers()
-    {
-        return players;
-    }
+    public ArrayList<Player> getPlayers() { return p; }
 
     public void onShovel()
     {
@@ -81,4 +79,8 @@ public abstract class Tile {
         System.out.println( this.toString() + "flip was called");
     }
 
+    public void turn() {
+        campBuilt = false;
+    }
 }
+

@@ -8,7 +8,7 @@ public abstract class Player
     protected int lives;
     protected boolean drowning = false;
     protected int uniqueID;
-
+    protected int nOfWinningItems = 0;
     protected boolean hasDivingSuit = false;
 
     public int getUniqueID(){
@@ -53,7 +53,14 @@ public abstract class Player
     public void turn()
     {
         System.out.println( this.toString() + " turn was called");
+        if(drowning && !hasDivingSuit) GameController.getInstance().lose();
+        energy = 4;
     }
+
+    public int getWinningItemN() {
+        return nOfWinningItems;
+    }
+
 
     public void step(Tile t) {
         System.out.println( this.toString() + " step was called with param: " + t.toString());
