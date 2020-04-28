@@ -4,6 +4,7 @@ import modules.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
@@ -44,6 +45,8 @@ public class Main {
                 interpreter.check();
             } catch (FileNotFoundException e) {
                 System.out.printf("File not found: %s\n", e.getMessage());
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
     }

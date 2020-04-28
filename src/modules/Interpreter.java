@@ -1,7 +1,6 @@
 package modules;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -25,8 +24,15 @@ public class Interpreter {
         }
     }
 
-    public void check() {
-
+    public void check() throws IOException {
+        System.out.println("\nExpected Output:");
+        BufferedReader in = new BufferedReader(new FileReader(testDirectory + "/expected-output"));
+        String line = in.readLine();
+        while(line != null) {
+          System.out.println(line);
+          line = in.readLine();
+        }
+        in.close();
     }
 
     private void executeCommand(String command, String[] arguments) throws FileNotFoundException {
