@@ -9,6 +9,7 @@ import java.util.*;
 public class GameController {
     private Map map;
     private ArrayList<Player> players;
+    private Bear bear;
     private static GameController gameController;
     public static GameController getInstance() {
         if (gameController == null)
@@ -121,6 +122,10 @@ public class GameController {
             }
             columnCount++;
         }
+    }
+
+    private void parseBear(String[] bear){
+        this.bear = new Bear(map.getTile(Integer.parseInt(bear[0])));
     }
 
     private void startGame() {
