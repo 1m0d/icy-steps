@@ -1,4 +1,3 @@
 load-map map
-start-game
 set-playet-turn 2
 use-item rope 0
