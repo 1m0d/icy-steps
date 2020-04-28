@@ -7,8 +7,8 @@ import java.lang.reflect.Method;
 import java.util.*;
 
 public class GameController {
-    private Map map;
-    private ArrayList<Player> players;
+    private Map map = new Map();
+    private ArrayList<Player> players = new ArrayList<>();
     private Bear bear;
     private static GameController gameController;
     public static GameController getInstance() {

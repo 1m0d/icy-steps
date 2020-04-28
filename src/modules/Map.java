@@ -3,7 +3,7 @@ package modules;
 import java.util.ArrayList;
 
 public class Map {
-    private GameController gameController;
+    private ArrayList<Tile> tiles = new ArrayList<>();
     private ArrayList<Tile> tiles;
 
     public Map() { }

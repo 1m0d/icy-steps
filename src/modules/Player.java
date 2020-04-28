@@ -1,5 +1,6 @@
 package modules;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Player
@@ -10,7 +11,7 @@ public abstract class Player
     protected int lives;
     protected boolean drowning = false;
     protected int uniqueID;
-    protected List<Item> items;
+    protected ArrayList<Item> items = new ArrayList<>();
     int nOfWinningItems = 0;
 
     protected boolean hasDivingSuit = false;
