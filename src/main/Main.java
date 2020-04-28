@@ -4,6 +4,8 @@ import modules.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Scanner;
 
 public class Main {
@@ -30,16 +32,15 @@ public class Main {
         int input;
         while (true) {
             input = in.nextInt();
-            System.out.println("Integer read: " + input);
-            System.out.println(testCasePaths[input]);
-            System.out.println(interpreter.setCurrentDirectory("integration_tests/" + testCasePaths[input] ));
+            System.out.printf("Running: %s\n", testCasePaths[input]);
+            Path testDirectory = Paths.get("integration_tests/", testCasePaths[input]);
             try {
-                gameController.loadMap(new File(System.getProperty("user.dir") + "/map").getAbsolutePath());
+                gameController.loadMap(testDirectory.toString() + "/map");
+                interpreter.execute(testDirectory.toString() + "/input");
+                interpreter.check(testDirectory.toString() + "/expected_output");
             } catch (FileNotFoundException e) {
-                System.out.print("File not found\n");
+                System.out.printf("File not found: %s\n", e.getMessage());
             }
-            //interpreter.execute(new File("input").getAbsolutePath());
-            //interpreter.check(new File("expected-output").getAbsolutePath());
         }
     }
 

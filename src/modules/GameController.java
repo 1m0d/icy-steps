@@ -22,7 +22,6 @@ public class GameController {
         clear();
         List<String> mapObjects = Arrays.asList("Tiles", "Players", "Items", "Bear");
         File file = new File(path);
-        System.out.println(file.getAbsolutePath());
         Scanner mapReader = new Scanner(file);
 
         String currentObject = null;
