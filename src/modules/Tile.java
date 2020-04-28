@@ -24,6 +24,7 @@ public abstract class Tile {
         this.uniqueID = uniqueID;
     }
 
+
     public int getUniqueID(){ return uniqueID; }
     public int getPositionX() { return positionX; }
     public int getPositionY() { return positionY; }
@@ -31,6 +32,8 @@ public abstract class Tile {
     public boolean isScientistChecked() { return scientistChecked; }
     public int getSnowLayerCount() { return snowLayerCount; }
     public ArrayList<Player> getPlayers() { return players; }
+
+    public abstract Item getItem();
 
     public void onScientistAbility() { scientistChecked = true; }
 }

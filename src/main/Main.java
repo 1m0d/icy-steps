@@ -31,11 +31,12 @@ public class Main {
         System.out.println("Choose a testcase!");
         Scanner in = new Scanner(System.in);
 
-        int input;
+
+        String input;
         while (true) {
-            input = in.nextInt();
-            System.out.printf("Running: %s\n", testCasePaths[input]);
-            Path testDirectory = Paths.get("integration_tests/", testCasePaths[input]);
+            input = in.next();
+            System.out.printf("Running: %s\n", testCasePaths[Integer.parseInt(input)]);
+            Path testDirectory = Paths.get("integration_tests/", testCasePaths[Integer.parseInt(input)]);
             interpreter.setTestDirectory(testDirectory.toString());
             try {
                 interpreter.execute();

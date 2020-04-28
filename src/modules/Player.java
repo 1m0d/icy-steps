@@ -2,7 +2,9 @@ package modules;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * A jatekosok absztrakt osztalya, ebbol szarmazik le az eszkimo es a tudos
+ */
 public abstract class Player
 {
     public static int maxLives;
@@ -18,6 +20,9 @@ public abstract class Player
 
     protected boolean hasDivingSuit = false;
 
+    /**
+     * Visszater a jatekos azonositojaval
+     */
     public int getUniqueID(){ return uniqueID; }
     public int getEnergy() { return energy; }
     public int getLives() { return lives; }
@@ -26,7 +31,9 @@ public abstract class Player
     public boolean isActivePlayer() { return activePlayer; }
     public boolean isHasDivingSuit() { return hasDivingSuit; }
 
-
+    /**
+     *Konstruktorok
+     */
     public Player(Tile position) { this.position = position; }
 
     public Player(Tile position, int energy, int lives, boolean drowning, int uniqueID) {
@@ -37,8 +44,14 @@ public abstract class Player
         this.uniqueID = uniqueID;
     }
 
+    /**
+     *Berakja az adott itemet a jatekos inveontory-jaba
+     */
     public void addItemToInventory(Item i) { items.add(i); }
 
+    /**
+     *Csokkenti a jatekos energiajat, amíg nem nulla, addig tart a jatekos kore
+     */
     protected void work() {
         if(--energy <= 0) {
             activePlayer = false;
@@ -46,6 +59,9 @@ public abstract class Player
         }
     }
 
+    /**
+     *A jatekos kore elkezdodik, kezdetben 5 az energiaja
+     */
     public void startTurn() {
         energy = 5;
         activePlayer = true;
@@ -54,17 +70,25 @@ public abstract class Player
         }
     }
 
+    /**
+     *A jatekos az adott mezore lepp
+     */
     public void step(Tile t) {
         position = t;
         t.onPlayerStep(this);
         work();
     }
-
+    /**
+     *A jatekos tovabbadja a koret a kovetkezo jatekosnak
+     */
     public void pass() {
         activePlayer = false;
         GameController.getInstance().endPlayerTurn();
     }
 
+    /**
+     *A jatekos 
+     */
     // TODO useItem(Tile)
     public void useItem(Item i) {
         i.useItem(position);

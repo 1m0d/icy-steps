@@ -74,11 +74,20 @@ public class Interpreter {
                 gameController.getCurrentPlayer().pass();
                 break;
             case "use-item":
-                gameController.getCurrentPlayer().getItems();
-                //gameController.getCurrentPlayer().useItem();
+                Item chosen;
+                for (int i = 0; i<gameController.getCurrentPlayer().getItems().size(); i++) {
+                    gameController.getCurrentPlayer().getItems().get(i).toString();
+                    System.out.print(" ");
+                    if (arguments[0] == gameController.getCurrentPlayer().getItems().get(i).toString())
+                    {
+                        chosen = gameController.getCurrentPlayer().getItems().get(i);
+                        gameController.getCurrentPlayer().useItem(chosen);
+                    }
+                }
+
                 break;
             case "pick-up-item":
-                //gameController.getCurrentPlayer().addItemToInventory(gameController.getCurrentPlayer().getPosition().);
+                gameController.getCurrentPlayer().addItemToInventory(gameController.getCurrentPlayer().getPosition().getItem());
                 break;
             case "clear-snow":
                 gameController.getCurrentPlayer().clearSnow();
@@ -111,7 +120,12 @@ public class Interpreter {
                 gameController.getMap().generateStorm();
                 break;
             case "use-ability":
-                gameController.getCurrentPlayer().useAbility(gameController.getCurrentPlayer().getPosition());
+                if (arguments[0] == null) {
+                    gameController.getCurrentPlayer().useAbility(gameController.getCurrentPlayer().getPosition());
+                }
+                else {
+                    gameController.getCurrentPlayer().useAbility(gameController.getMap().getTile(Integer.parseInt(arguments[0])));
+                }
                 break;
             default:
                 System.out.printf("Unknown command: %s", command);
