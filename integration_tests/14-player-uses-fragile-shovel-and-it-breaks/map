@@ -3,4 +3,4 @@ Tiles:
 Players:
 0,1,2,4,false,1;
 Items:
-1,fragile-shovel;
+1,fragileShovel;
