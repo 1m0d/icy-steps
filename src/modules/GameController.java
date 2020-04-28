@@ -91,6 +91,8 @@ public class GameController {
         return null;
     }
 
+    public Player getCurrentPlayer(){ return currentPlayer; }
+
     public Map getMap() { return map; }
 
     private void endTurn() {

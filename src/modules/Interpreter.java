@@ -42,6 +42,7 @@ public class Interpreter {
             case "step":
                 break;
             case "player-pass":
+                gameController.getCurrentPlayer().pass();
                 break;
             case "use-item":
                 break;
