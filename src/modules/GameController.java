@@ -19,6 +19,7 @@ public class GameController {
     private int tileRowCount = 0;
 
     public void loadMap(String path) throws FileNotFoundException {
+        clear();
         List<String> mapObjects = Arrays.asList("Tiles", "Players", "Items", "Bear");
         File file = new File(path);
         System.out.println(file.getAbsolutePath());
@@ -162,8 +163,12 @@ public class GameController {
         return null;
     }
 
-    public Map getMap() {
-        return map;
-    }
+    public Map getMap() { return map; }
 
+    private void clear(){
+        map = new Map();
+        players.clear();
+        bear = null;
+        tileRowCount = 0;
+    }
 }
