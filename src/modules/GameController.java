@@ -59,7 +59,7 @@ public class GameController {
             Tile position = map.getTile(Integer.parseInt(tokens[1]));
             int energy = Integer.parseInt(tokens[2]);
             int lives = Integer.parseInt(tokens[3]);
-            boolean drowning = tokens[4] == "1";
+            boolean drowning = tokens[4] == "true";
             int uniqueID = Integer.parseInt(tokens[5]);
             if(Integer.parseInt(tokens[0]) == 0) {
                 Eskimo eskimo = new Eskimo(position, energy, lives, drowning, uniqueID);
@@ -107,8 +107,8 @@ public class GameController {
             int playerCapacity = Integer.parseInt(tokens[0]);
             int snowLayerCount = Integer.parseInt(tokens[1]);
             int UID = Integer.parseInt(tokens[4]);
-            boolean iglooBuilt = tokens[2] == "1";
-            boolean campBuilt = tokens[3] == "1";
+            boolean iglooBuilt = tokens[2] == "true";
+            boolean campBuilt = tokens[3] == "true";
 
             if (Integer.parseInt(tokens[0]) == 0) {
                 map.addTile(new HoleTile(columnCount, tileRowCount, snowLayerCount, UID));
