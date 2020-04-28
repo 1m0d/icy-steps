@@ -91,6 +91,9 @@ public class GameController {
                 case "shovel":
                     map.addItem(new Shovel(), Integer.parseInt(tokens[0]));
                     break;
+                case "fragileShovel":
+                    map.addItem(new FragileShovel(), Integer.parseInt(tokens[0]));
+                    break;
                 case "winningItem":
                     map.addItem(new WinningItem(), Integer.parseInt(tokens[0]));
                     break;
