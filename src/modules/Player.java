@@ -87,7 +87,7 @@ public abstract class Player
     }
 
     /**
-     *A jatekos 
+     *A jatekos
      */
     // TODO useItem(Tile)
     public void useItem(Item i) {

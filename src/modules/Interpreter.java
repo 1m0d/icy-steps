@@ -75,6 +75,7 @@ public class Interpreter {
                 break;
             case "use-item":
                 Item chosen;
+                //TODO Domi
                 for (int i = 0; i<gameController.getCurrentPlayer().getItems().size(); i++) {
                     gameController.getCurrentPlayer().getItems().get(i).toString();
                     System.out.print(" ");
@@ -87,6 +88,7 @@ public class Interpreter {
 
                 break;
             case "pick-up-item":
+                //TODO Domi
                 gameController.getCurrentPlayer().addItemToInventory(gameController.getCurrentPlayer().getPosition().getItem());
                 break;
             case "clear-snow":
