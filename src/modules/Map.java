@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public class Map {
     private ArrayList<Tile> tiles = new ArrayList<>();
-    private ArrayList<Tile> tiles;
 
     public Map() { }
 
@@ -40,14 +39,13 @@ public class Map {
     }
 
     public Tile getTile(int id) {
+        if(tiles == null)
+            return null;
+
         for (Tile tile : tiles) {
             if (tile.getUniqueID() == id)
                 return tile;
         }
         return null;
-    }
-
-    public GameController getGameController() {
-        return gameController;
     }
 }
