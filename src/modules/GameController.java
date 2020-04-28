@@ -91,9 +91,16 @@ public class GameController {
         return null;
     }
 
+    public ArrayList<Player> getAllPlayers()
+    {
+        return this.players;
+    }
+
     public Player getCurrentPlayer(){ return currentPlayer; }
 
     public Map getMap() { return map; }
+
+    public Bear getBear() {return bear;}
 
     private void endTurn() {
         map.generateStorm();

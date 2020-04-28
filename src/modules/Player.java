@@ -90,5 +90,13 @@ public abstract class Player
     }
 
      public int getWinningItemN() { return nOfWinningItems;}
+
+     public Tile getPosition() {
+         return this.position;
+     }
+
+     public ArrayList<Item> getItems(){
+        return items;
+     }
 }
 

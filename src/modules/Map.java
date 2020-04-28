@@ -38,6 +38,23 @@ public class Map {
         return tiles;
     }
 
+    public ArrayList<Tile> getAllTiles()
+    {
+        return this.tiles;
+    }
+
+    public Tile getTileByCoord(int x, int y)
+    {
+        for (Tile t: this.tiles
+             ) {
+            if ( t.positionX == x && t.positionY == y)
+            {
+                return t;
+            }
+        }
+        return null;
+    }
+
     public Tile getTile(int id) {
         if(tiles == null)
             return null;
