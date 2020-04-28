@@ -4,6 +4,6 @@ Tiles:
 Players:
 1,0,4,2,false,4;
 Items:
-1,shovel;4,food;
+0,shovel;4,food;
 Bear:
 2;
