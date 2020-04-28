@@ -17,7 +17,6 @@ public abstract class Player
     protected ArrayList<Item> items = new ArrayList<>();
     protected int nOfWinningItems = 0;
     protected boolean activePlayer = false;
-
     protected boolean hasDivingSuit = false;
 
     /**
@@ -43,6 +42,8 @@ public abstract class Player
         this.drowning = drowning;
         this.uniqueID = uniqueID;
     }
+
+    public void setActivePlayer(boolean activePlayer) { this.activePlayer = activePlayer; }
 
     /**
      *Berakja az adott itemet a jatekos inveontory-jaba

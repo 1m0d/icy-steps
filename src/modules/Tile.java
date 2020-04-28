@@ -33,8 +33,5 @@ public abstract class Tile {
     public int getSnowLayerCount() { return snowLayerCount; }
     public ArrayList<Player> getPlayers() { return players; }
 
-    //TODO Domi, ezt ki kene venni:D
-    public abstract Item getItem();
-
     public void onScientistAbility() { scientistChecked = true; }
 }
