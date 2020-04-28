@@ -35,6 +35,7 @@ public class Interpreter {
                 gameController.loadMap(testDirectory + "/map");
                 break;
             case "start-game":
+                gameController.startGame();
                 break;
             case "set-player-turn":
                 break;

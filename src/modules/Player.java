@@ -7,12 +7,13 @@ public abstract class Player
 {
     public static int maxLives;
     protected Tile position;
-    protected int energy;
+    protected int energy = 5;
     protected int lives;
     protected boolean drowning = false;
     protected int uniqueID;
     protected ArrayList<Item> items = new ArrayList<>();
-    int nOfWinningItems = 0;
+    protected int nOfWinningItems = 0;
+    protected boolean activePlayer = false;
 
     protected boolean hasDivingSuit = false;
 
@@ -32,24 +33,18 @@ public abstract class Player
 
     public void addItemToInventory(Item i) { items.add(i); }
 
-    boolean work()
-    {
-        System.out.println( this.toString() + " work was called");
-        if(energy != 0)
-        {
-            energy--;
-            return true;
+    private void work() {
+        if(--energy <= 0) {
+            activePlayer = false;
+            GameController.getInstance().endPlayerTurn();
         }
-
-        System.out.println("You don't have more energy");
-        return false;
     }
 
-    // TODO: WTF
-    public void turn() {
-        System.out.println( this.toString() + " turn was called");
-        while(energy != 0){
-            work();
+    public void startTurn() {
+        energy = 5;
+        activePlayer = true;
+        if(drowning && !hasDivingSuit){
+            GameController.getInstance().lose();
         }
     }
 
@@ -58,8 +53,10 @@ public abstract class Player
         t.onPlayerStep(this);
     }
 
-    // TODO
-    public void pass() { energy=0; }
+    public void pass() {
+        activePlayer = false;
+        GameController.getInstance().endPlayerTurn();
+    }
 
     // TODO useItem(Tile)
     public void useItem(Item i) { i.useItem(position); }
