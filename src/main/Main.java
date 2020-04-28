@@ -34,10 +34,10 @@ public class Main {
             input = in.nextInt();
             System.out.printf("Running: %s\n", testCasePaths[input]);
             Path testDirectory = Paths.get("integration_tests/", testCasePaths[input]);
+            interpreter.setTestDirectory(testDirectory.toString());
             try {
-                gameController.loadMap(testDirectory.toString() + "/map");
-                interpreter.execute(testDirectory.toString() + "/input");
-                interpreter.check(testDirectory.toString() + "/expected_output");
+                interpreter.execute();
+                interpreter.check();
             } catch (FileNotFoundException e) {
                 System.out.printf("File not found: %s\n", e.getMessage());
             }
