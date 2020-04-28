@@ -26,6 +26,7 @@ public abstract class Player
     public boolean isActivePlayer() { return activePlayer; }
     public boolean isHasDivingSuit() { return hasDivingSuit; }
 
+
     public Player(Tile position) { this.position = position; }
 
     public Player(Tile position, int energy, int lives, boolean drowning, int uniqueID) {
@@ -38,7 +39,7 @@ public abstract class Player
 
     public void addItemToInventory(Item i) { items.add(i); }
 
-    private void work() {
+    protected void work() {
         if(--energy <= 0) {
             activePlayer = false;
             GameController.getInstance().endPlayerTurn();
@@ -56,6 +57,7 @@ public abstract class Player
     public void step(Tile t) {
         position = t;
         t.onPlayerStep(this);
+        work();
     }
 
     public void pass() {
@@ -64,7 +66,10 @@ public abstract class Player
     }
 
     // TODO useItem(Tile)
-    public void useItem(Item i) { i.useItem(position); }
+    public void useItem(Item i) {
+        i.useItem(position);
+        work();
+    }
 
     public abstract void useAbility(Tile t);
 
@@ -72,6 +77,7 @@ public abstract class Player
         if (lives < maxLives) {
             lives++;
         }
+        work();
     }
 
     public void onHole() { drowning = true; }
@@ -84,6 +90,7 @@ public abstract class Player
     public void clearSnow() {
         RegularTile t = (RegularTile)position;
         t.clearSnow();
+        work();
     }
 
     public void setDivingSuit() { hasDivingSuit = true; }
@@ -102,6 +109,15 @@ public abstract class Player
 
      public ArrayList<Item> getItems(){
         return items;
+     }
+
+     public void pickUpItem(){
+         Item item = ((RegularTile)position).getItem();
+         if(item == null)
+             return;
+         addItemToInventory(item);
+         ((RegularTile) position).setItem(null);
+         work();
      }
 }
 
