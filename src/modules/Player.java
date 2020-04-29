@@ -14,7 +14,6 @@ public abstract class Player {
     protected boolean drowning = false;
     protected int uniqueID;
     protected ArrayList<Item> items = new ArrayList<>();
-    protected int nOfWinningItems = 0;
     protected boolean activePlayer = false;
     protected boolean hasDivingSuit = false;
 
@@ -25,7 +24,6 @@ public abstract class Player {
     public int getEnergy() { return energy; }
     public int getLives() { return lives; }
     public boolean isDrowning() { return drowning; }
-    public int getnOfWinningItems() { return nOfWinningItems; }
     public boolean isActivePlayer() { return activePlayer; }
     public boolean isHasDivingSuit() { return hasDivingSuit; }
 
@@ -131,7 +129,6 @@ public abstract class Player {
             GameController.getInstance().lose();
     }
 
-     public int getWinningItemN() { return nOfWinningItems;}
 
      public Tile getPosition() {
          return this.position;

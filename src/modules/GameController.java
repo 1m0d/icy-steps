@@ -13,7 +13,6 @@ public class GameController {
     private static GameController gameController;
     private boolean gameOver = false;
     private boolean playersWon = false;
-    private boolean endPlayerTurn = true;
     private Player currentPlayer;
     private int currentPlayerIndex = 0;
 
@@ -87,7 +86,25 @@ public class GameController {
     }
 
     public void checkWinningConditions() {
-        System.out.println( this.toString() + " checkWinningConditions was called");
+        int winningItemCount = 0;
+        int lastPositionID = -1;
+
+        for (Player player: players) {
+            if(lastPositionID == -1)
+                lastPositionID = player.getPosition().getUniqueID();
+
+            if(lastPositionID != player.getPosition().getUniqueID())
+                return;
+
+            for (Item item: player.getItems()) {
+                if(item.toString().equals("winning-item")) {
+                    winningItemCount++;
+                }
+            }
+
+            if(winningItemCount >= 3)
+                win();
+        }
     }
 
     public Player getPlayer(int Id) {
@@ -97,8 +114,7 @@ public class GameController {
         return null;
     }
 
-    public ArrayList<Player> getAllPlayers()
-    {
+    public ArrayList<Player> getAllPlayers() {
         return this.players;
     }
 
@@ -119,6 +135,8 @@ public class GameController {
         players.clear();
         bear = null;
         tileRowCount = 0;
+        gameOver = false;
+        playersWon = false;
     }
 
     private void parsePlayers(String[] players) {
