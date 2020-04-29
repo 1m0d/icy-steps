@@ -13,6 +13,7 @@ public class Scientist extends Player {
 
     public Scientist(Tile position, int energy, int lives, boolean drowning, int uniqueID) {
         super(position, energy, lives, drowning, uniqueID);
+        maxLives = 4;
     }
 
     /**

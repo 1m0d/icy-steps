@@ -5,11 +5,10 @@ import java.util.List;
 /**
  * A jatekosok absztrakt osztalya, ebbol szarmazik le az eszkimo es a tudos
  */
-public abstract class Player
-{
-    public static int maxLives;
+public abstract class Player {
     protected Tile position;
 
+    protected int maxLives;
     protected int energy = 5;
     protected int lives;
     protected boolean drowning = false;
