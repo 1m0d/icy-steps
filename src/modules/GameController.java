@@ -137,6 +137,7 @@ public class GameController {
         tileRowCount = 0;
         gameOver = false;
         playersWon = false;
+        currentPlayerIndex = 0;
     }
 
     private void parsePlayers(String[] players) {
