@@ -39,6 +39,8 @@ public class Interpreter {
     private void executeCommand(String command, String[] arguments) throws FileNotFoundException {
         Player currentPlayer = gameController.getCurrentPlayer();
         Map map = gameController.getMap();
+        int positionX;
+        int positionY;
         int destinationX;
         int destinationY;
         switch (command){
@@ -60,22 +62,24 @@ public class Interpreter {
                 break;
 
             case "step":
+                positionX = currentPlayer.getPosition().getPositionX();
+                positionY = currentPlayer.getPosition().getPositionY();
                 switch(arguments[0]) {
                     case "right":
-                        destinationX = currentPlayer.getPosition().getPositionX() + 1;
-                        destinationY = currentPlayer.getPosition().getPositionY();
+                        destinationX = positionX + 1;
+                        destinationY = positionY;
                         break;
                     case "down":
-                        destinationX = currentPlayer.getPosition().getPositionX();
-                        destinationY = currentPlayer.getPosition().getPositionY() + 1;
+                        destinationX = positionX;
+                        destinationY = positionY + 1;
                         break;
                     case "left":
-                        destinationX = currentPlayer.getPosition().getPositionX() - 1;
-                        destinationY = currentPlayer.getPosition().getPositionY();
+                        destinationX = positionX - 1;
+                        destinationY = positionY;
                         break;
                     case "up":
-                        destinationX = currentPlayer.getPosition().getPositionX();
-                        destinationY = currentPlayer.getPosition().getPositionY() - 1;
+                        destinationX = positionX;
+                        destinationY = positionY- 1;
                         break;
                     default:
                         throw new IllegalArgumentException("illegal argument to step");
@@ -110,22 +114,24 @@ public class Interpreter {
 
             case "move-bear":
                 Bear bear = gameController.getBear();
+                positionX = bear.getPosition().getPositionX();
+                positionY = bear.getPosition().getPositionY();
                 switch(arguments[0]){
                     case "right":
-                        destinationX = currentPlayer.getPosition().getPositionX() + 1;
-                        destinationY = currentPlayer.getPosition().getPositionY();
+                        destinationX = positionX + 1;
+                        destinationY = positionY;
                         break;
                     case "down":
-                        destinationX = currentPlayer.getPosition().getPositionX();
-                        destinationY = currentPlayer.getPosition().getPositionY() + 1;
+                        destinationX = positionX;
+                        destinationY = positionY + 1;
                         break;
                     case "left":
-                        destinationX = currentPlayer.getPosition().getPositionX() - 1;
-                        destinationY = currentPlayer.getPosition().getPositionY();
+                        destinationX = positionX - 1;
+                        destinationY = positionY;
                         break;
                     case "up":
-                        destinationX = currentPlayer.getPosition().getPositionX();
-                        destinationY = currentPlayer.getPosition().getPositionY() - 1;
+                        destinationX = positionX;
+                        destinationY = positionY- 1;
                         break;
                     default:
                         throw new IllegalArgumentException("illegal argument to move-bear");
