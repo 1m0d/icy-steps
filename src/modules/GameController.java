@@ -12,6 +12,7 @@ public class GameController {
     private Bear bear;
     private static GameController gameController;
     private boolean gameOver = false;
+    private boolean playersWon = false;
     private boolean endPlayerTurn = true;
     private Player currentPlayer;
     private int currentPlayerIndex = 0;
@@ -22,6 +23,9 @@ public class GameController {
         return gameController;
     }
     private int tileRowCount = 0;
+
+    public boolean isGameOver() { return gameOver; }
+    public boolean isPlayersWon() { return playersWon; }
 
     public void loadMap(String path) throws FileNotFoundException {
         clear();
@@ -72,13 +76,14 @@ public class GameController {
         currentPlayer.startTurn();
     }
 
-    public void win()
-    {
-        System.out.println( this.toString() + " win was called");
+    public void win() {
+        gameOver = true;
+        playersWon = true;
     }
 
     public void lose() {
-        System.out.println( this.toString() + " lose was called");
+        gameOver = true;
+        playersWon = false;
     }
 
     public void checkWinningConditions() {

@@ -7,6 +7,15 @@ public class MapSerializer {
     private Map map;
 
     public void printMap(){
+        if(gameController.isGameOver()){
+            if(gameController.isPlayersWon()){
+                System.out.println("YOU WON!");
+            } else {
+                System.out.println("YOU LOST!");
+            }
+            return;
+        }
+
         map = gameController.getMap();
         printTiles();
         printPlayers();
