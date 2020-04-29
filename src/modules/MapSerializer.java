@@ -7,6 +7,15 @@ public class MapSerializer {
     private Map map;
 
     public void printMap(){
+        if(gameController.isGameOver()){
+            if(gameController.isPlayersWon()){
+                System.out.println("YOU WON!");
+            } else {
+                System.out.println("YOU LOST!");
+            }
+            return;
+        }
+
         map = gameController.getMap();
         printTiles();
         printPlayers();
@@ -77,7 +86,7 @@ public class MapSerializer {
             }else{
                 position = item.getTile().getUniqueID();
             }
-            System.out.printf("%d,%s;", position, item.getClass().getSimpleName());
+            System.out.printf("%d,%s;", position, item.getClass().getSimpleName().substring(0,1).toLowerCase() + item.getClass().getSimpleName().substring(1));
         }
     }
 

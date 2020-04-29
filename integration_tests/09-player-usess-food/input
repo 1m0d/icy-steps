@@ -1,4 +1,0 @@
-load-map map
-start-game
-set-playet-turn 1
-use-item food

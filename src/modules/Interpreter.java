@@ -1,7 +1,7 @@
 package modules;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -25,94 +25,135 @@ public class Interpreter {
         }
     }
 
-    public void check() {
-
+    public void check() throws IOException {
+        System.out.println("\nExpected Output:");
+        BufferedReader in = new BufferedReader(new FileReader(testDirectory + "/expected-output"));
+        String line = in.readLine();
+        while(line != null) {
+          System.out.println(line);
+          line = in.readLine();
+        }
+        in.close();
     }
 
     private void executeCommand(String command, String[] arguments) throws FileNotFoundException {
+        Player currentPlayer = gameController.getCurrentPlayer();
+        Map map = gameController.getMap();
+        int positionX;
+        int positionY;
+        int destinationX;
+        int destinationY;
         switch (command){
             case "load-map":
                 gameController.loadMap(testDirectory + "/map");
                 break;
+
             case "start-game":
                 gameController.startGame();
                 break;
+
             case "set-player-turn":
-                gameController.endPlayerTurn();
-                for (Player p : gameController.getAllPlayers() ) {
-                    p.energy = 0;
-                    p.activePlayer = false;
-                }
-                gameController.getPlayer(Integer.parseInt(arguments[0])).startTurn();
+                if(currentPlayer != null)
+                    currentPlayer.setActivePlayer(false);
+
+                Player player = gameController.getPlayer(Integer.parseInt(arguments[0]));
+                player.setActivePlayer(true);
+                gameController.setCurrentPlayer(player);
                 break;
+
             case "step":
+                positionX = currentPlayer.getPosition().getPositionX();
+                positionY = currentPlayer.getPosition().getPositionY();
                 switch(arguments[0]) {
                     case "right":
-                        gameController.getCurrentPlayer().step(gameController.getMap().getTileByCoord(
-                                gameController.getCurrentPlayer().getPosition().positionX+1,
-                                gameController.getCurrentPlayer().getPosition().positionY));
-
+                        destinationX = positionX + 1;
+                        destinationY = positionY;
                         break;
                     case "down":
-                        gameController.getCurrentPlayer().step(gameController.getMap().getTileByCoord(
-                                gameController.getCurrentPlayer().getPosition().positionX,
-                                gameController.getCurrentPlayer().getPosition().positionY-1));
+                        destinationX = positionX;
+                        destinationY = positionY + 1;
                         break;
                     case "left":
-                        gameController.getCurrentPlayer().step(gameController.getMap().getTileByCoord(
-                                gameController.getCurrentPlayer().getPosition().positionX-1,
-                                gameController.getCurrentPlayer().getPosition().positionY));
+                        destinationX = positionX - 1;
+                        destinationY = positionY;
                         break;
                     case "up":
-                        gameController.getCurrentPlayer().step(gameController.getMap().getTileByCoord(
-                                gameController.getCurrentPlayer().getPosition().positionX,
-                                gameController.getCurrentPlayer().getPosition().positionY+1));
+                        destinationX = positionX;
+                        destinationY = positionY- 1;
                         break;
+                    default:
+                        throw new IllegalArgumentException("illegal argument to step");
                 }
+                currentPlayer.step(map.getTileByCoord(destinationX, destinationY));
+                break;
 
             case "player-pass":
-                gameController.getCurrentPlayer().pass();
+                currentPlayer.pass();
                 break;
+
             case "use-item":
-                gameController.getCurrentPlayer().getItems();
-                //gameController.getCurrentPlayer().useItem();
+                ArrayList<Item> items = currentPlayer.getItems();
+                for (Item item : items) {
+                    if(item.toString().equals(arguments[0])) {
+                        if (arguments.length == 2) {
+                            currentPlayer.useItem(item, map.getTile(Integer.parseInt(arguments[1])));
+                        } else {
+                            currentPlayer.useItem(item);
+                        }
+                    }
+                }
                 break;
+
             case "pick-up-item":
-                //gameController.getCurrentPlayer().addItemToInventory(gameController.getCurrentPlayer().getPosition().);
+                currentPlayer.pickUpItem();
                 break;
+
             case "clear-snow":
-                gameController.getCurrentPlayer().clearSnow();
+                currentPlayer.clearSnow();
                 break;
+
             case "move-bear":
+                Bear bear = gameController.getBear();
+                positionX = bear.getPosition().getPositionX();
+                positionY = bear.getPosition().getPositionY();
                 switch(arguments[0]){
                     case "right":
-                        gameController.getBear().move(gameController.getMap().getTileByCoord
-                                (gameController.getBear().getPosition().positionX+1, gameController.getBear().getPosition().positionY ));
-
+                        destinationX = positionX + 1;
+                        destinationY = positionY;
                         break;
                     case "down":
-                        gameController.getBear().move(gameController.getMap().getTileByCoord
-                                (gameController.getBear().getPosition().positionX, gameController.getBear().getPosition().positionY-1 ));
+                        destinationX = positionX;
+                        destinationY = positionY + 1;
                         break;
                     case "left":
-                        gameController.getBear().move(gameController.getMap().getTileByCoord
-                                (gameController.getBear().getPosition().positionX-1, gameController.getBear().getPosition().positionY ));
+                        destinationX = positionX - 1;
+                        destinationY = positionY;
                         break;
                     case "up":
-                        gameController.getBear().move(gameController.getMap().getTileByCoord
-                                (gameController.getBear().getPosition().positionX, gameController.getBear().getPosition().positionY+1 ));
+                        destinationX = positionX;
+                        destinationY = positionY- 1;
                         break;
-                    case "random":
-                        break;
+                    default:
+                        throw new IllegalArgumentException("illegal argument to move-bear");
                 }
-
+                bear.move(map.getTileByCoord(destinationX, destinationY));
                 break;
+
             case "generate-storm":
+                if(arguments.length == 1)
+                    map.getTile(Integer.parseInt(arguments[0])).onStorm();
+
                 gameController.getMap().generateStorm();
                 break;
-            case "use-ability":
-                gameController.getCurrentPlayer().useAbility(gameController.getCurrentPlayer().getPosition());
+
+            case "use-eskimo-ability":
+                currentPlayer.useAbility(gameController.getCurrentPlayer().getPosition());
                 break;
+
+            case "use-scientist-ability":
+                currentPlayer.useAbility(gameController.getMap().getTile(Integer.parseInt(arguments[0])));
+                break;
+
             default:
                 System.out.printf("Unknown command: %s", command);
                 return;

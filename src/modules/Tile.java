@@ -33,4 +33,5 @@ public abstract class Tile {
     public ArrayList<Player> getPlayers() { return players; }
 
     public void onScientistAbility() { scientistChecked = true; }
+    public void addPlayer(Player player) { players.add(player); }
 }

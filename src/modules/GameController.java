@@ -12,7 +12,7 @@ public class GameController {
     private Bear bear;
     private static GameController gameController;
     private boolean gameOver = false;
-    private boolean endPlayerTurn = true;
+    private boolean playersWon = false;
     private Player currentPlayer;
     private int currentPlayerIndex = 0;
 
@@ -22,6 +22,9 @@ public class GameController {
         return gameController;
     }
     private int tileRowCount = 0;
+
+    public boolean isGameOver() { return gameOver; }
+    public boolean isPlayersWon() { return playersWon; }
 
     public void loadMap(String path) throws FileNotFoundException {
         clear();
@@ -72,17 +75,36 @@ public class GameController {
         currentPlayer.startTurn();
     }
 
-    public void win()
-    {
-        System.out.println( this.toString() + " win was called");
+    public void win() {
+        gameOver = true;
+        playersWon = true;
     }
 
     public void lose() {
-        System.out.println( this.toString() + " lose was called");
+        gameOver = true;
+        playersWon = false;
     }
 
     public void checkWinningConditions() {
-        System.out.println( this.toString() + " checkWinningConditions was called");
+        int winningItemCount = 0;
+        int lastPositionID = -1;
+
+        for (Player player: players) {
+            if(lastPositionID == -1)
+                lastPositionID = player.getPosition().getUniqueID();
+
+            if(lastPositionID != player.getPosition().getUniqueID())
+                return;
+
+            for (Item item: player.getItems()) {
+                if(item.toString().equals("winning-item")) {
+                    winningItemCount++;
+                }
+            }
+
+            if(winningItemCount >= 3)
+                win();
+        }
     }
 
     public Player getPlayer(int Id) {
@@ -92,12 +114,12 @@ public class GameController {
         return null;
     }
 
-    public ArrayList<Player> getAllPlayers()
-    {
+    public ArrayList<Player> getAllPlayers() {
         return this.players;
     }
 
     public Player getCurrentPlayer(){ return currentPlayer; }
+    public void setCurrentPlayer(Player player){ currentPlayer = player; }
 
     public Map getMap() { return map; }
 
@@ -113,6 +135,8 @@ public class GameController {
         players.clear();
         bear = null;
         tileRowCount = 0;
+        gameOver = false;
+        playersWon = false;
     }
 
     private void parsePlayers(String[] players) {
@@ -126,10 +150,12 @@ public class GameController {
             if(Integer.parseInt(tokens[0]) == 0) {
                 Eskimo eskimo = new Eskimo(position, energy, lives, drowning, uniqueID);
                 this.players.add(eskimo);
+                position.addPlayer(eskimo);
             }
             else if (Integer.parseInt(tokens[0]) == 1) {
                 Scientist scientist = new Scientist(position, energy, lives, drowning, uniqueID);
                 this.players.add(scientist);
+                position.addPlayer(scientist);
             }
         }
     }
