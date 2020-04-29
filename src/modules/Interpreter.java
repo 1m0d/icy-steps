@@ -134,6 +134,9 @@ public class Interpreter {
                 break;
 
             case "generate-storm":
+                if(arguments.length == 1)
+                    map.getTile(Integer.parseInt(arguments[0])).onStorm();
+
                 gameController.getMap().generateStorm();
                 break;
 
