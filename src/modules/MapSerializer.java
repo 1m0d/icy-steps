@@ -77,7 +77,7 @@ public class MapSerializer {
             }else{
                 position = item.getTile().getUniqueID();
             }
-            System.out.printf("%d,%s;", position, item.getClass().getSimpleName());
+            System.out.printf("%d,%s;", position, item.getClass().getSimpleName().substring(0,1).toLowerCase() + item.getClass().getSimpleName().substring(1));
         }
     }
 
