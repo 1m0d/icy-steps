@@ -1,3 +1,3 @@
 load-map map
-set-playet-turn 1
+set-player-turn 1
 use-item food
