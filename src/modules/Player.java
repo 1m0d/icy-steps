@@ -61,10 +61,10 @@ public abstract class Player
     }
 
     /**
-     *A jatekos kore elkezdodik, kezdetben 5 az energiaja
+     *A jatekos kore elkezdodik, kezdetben 4 az energiaja
      */
     public void startTurn() {
-        energy = 5;
+        energy = 4;
         activePlayer = true;
         if(drowning && !hasDivingSuit){
             GameController.getInstance().lose();
@@ -84,6 +84,7 @@ public abstract class Player
      */
     public void pass() {
         activePlayer = false;
+        energy = 0;
         GameController.getInstance().endPlayerTurn();
     }
 
@@ -141,6 +142,7 @@ public abstract class Player
          if(item == null)
              return;
          addItemToInventory(item);
+         item.setPlayer(this);
          ((RegularTile) position).setItem(null);
          work();
      }
