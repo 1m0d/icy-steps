@@ -1,103 +1,151 @@
 package modules;
 
-public abstract class Player
-{
-    protected int Id;
-    protected int energy;
-    protected int lives;
-    protected boolean hasDivingSuit;
+import java.util.ArrayList;
+import java.util.List;
+/**
+ * A jatekosok absztrakt osztalya, ebbol szarmazik le az eszkimo es a tudos
+ */
+public abstract class Player {
     protected Tile position;
 
-    public int getId(){
-        return Id;
+    protected int maxLives;
+    protected int energy = 5;
+    protected int lives;
+    protected boolean drowning = false;
+    protected int uniqueID;
+    protected ArrayList<Item> items = new ArrayList<>();
+    protected boolean activePlayer = false;
+    protected boolean hasDivingSuit = false;
+
+    /**
+     * Visszater a jatekos azonositojaval
+     */
+    public int getUniqueID(){ return uniqueID; }
+    public int getEnergy() { return energy; }
+    public int getLives() { return lives; }
+    public boolean isDrowning() { return drowning; }
+    public boolean isActivePlayer() { return activePlayer; }
+    public boolean isHasDivingSuit() { return hasDivingSuit; }
+
+    /**
+     *Konstruktorok
+     */
+    public Player(Tile position) { this.position = position; }
+
+    public Player(Tile position, int energy, int lives, boolean drowning, int uniqueID) {
+        this.position = position;
+        this.energy = energy;
+        this.lives = lives;
+        this.drowning = drowning;
+        this.uniqueID = uniqueID;
     }
 
-    public Player()
-    {
+    public void setActivePlayer(boolean activePlayer) { this.activePlayer = activePlayer; }
 
+    /**
+     *Berakja az adott itemet a jatekos inveontory-jaba
+     */
+    public void addItemToInventory(Item i) { items.add(i); }
+
+    /**
+     *Csokkenti a jatekos energiajat, amíg nem nulla, addig tart a jatekos kore
+     */
+    protected void work() {
+        if(--energy <= 0) {
+            activePlayer = false;
+            GameController.getInstance().endPlayerTurn();
+        }
     }
 
-    public Player getPlayer()
-    {
-        System.out.println( this.toString() + " getPlayer was called");
-        onFood();
-        return this;
+    /**
+     *A jatekos kore elkezdodik, kezdetben 4 az energiaja
+     */
+    public void startTurn() {
+        energy = 4;
+        activePlayer = true;
+        if(drowning && !hasDivingSuit){
+            GameController.getInstance().lose();
+        }
     }
 
-
-    private void addItemToInventory(Item i)
-    {
-        System.out.println( this.toString() + " addItemToInventory was called with param: " + i.toString());
+    /**
+     *A jatekos az adott mezore lepp
+     */
+    public void step(Tile t) {
+        position = t;
+        t.onPlayerStep(this);
+        work();
+    }
+    /**
+     *A jatekos tovabbadja a koret a kovetkezo jatekosnak
+     */
+    public void pass() {
+        activePlayer = false;
+        energy = 0;
+        GameController.getInstance().endPlayerTurn();
     }
 
-    public void work()
-    {
-        System.out.println( this.toString() + " work was called");
+    /**
+     *A jatekos
+     */
+    // TODO useItem(Tile)
+    public void useItem(Item i) {
+        i.useItem(position);
+        work();
     }
 
-    public void turn()
-    {
-        System.out.println( this.toString() + " turn was called");
+    public void useItem(Item item, Tile tile){
+        item.useItem(tile);
+        work();
     }
 
-    public void step(Tile t)
-    {
-        System.out.println( this.toString() + " step was called with param: " + t.toString());
+    public abstract void useAbility(Tile t);
+
+    public void onFood() {
+        if (lives < maxLives) {
+            lives++;
+        }
+        work();
+    }
+
+    public void onHole() { drowning = true; }
+
+    public void getPulledTo(Tile t) {
+        position = t;
         t.onPlayerStep(this);
     }
 
-    public void pass()
-    {
-        System.out.println( this.toString() + " pass was called");
+    public void clearSnow() {
+        RegularTile t = (RegularTile)position;
+        t.clearSnow();
+        work();
     }
 
-    public void pickUpItem()
-    {
-        System.out.println( this.toString() + " pickUpItem was called");
-        addItemToInventory(position.item);
+    public void setDivingSuit() { hasDivingSuit = true; }
 
-    }
-
-    public void useItem(Item i)
-    {
-        System.out.println( this.toString() + " useItem was called with param: " + i.toString());
-    }
-
-    public void useAbility(Tile t)
-    {
-        System.out.println( this.toString() + " useAbility was called with param: " + t.toString());
-    }
-
-    public void onStorm()
-    {
-        System.out.println( this.toString() + " onStorm was called");
-    }
-
-    public void onFood()
-    {
-        System.out.println( this.toString() + " onFood was called");
-    }
-
-    public void onHole()
-    {
-        System.out.println( this.toString() + " onHole was called");
-    }
-
-    public void getPulledTo(Tile t)
-    {
-        System.out.println( this.toString() + " getPulledTo was called with param: " + t.toString());
-        t.onPlayerStep(this);
-    }
-
-    public void clearSnow()
-    {
-        System.out.println( this.toString() + " clearSnow was called");
-    }
-
-    public void setDivingSuit()
-    {
-        System.out.println( this.toString() + " setDivingSuit was called");
+    public void damage() {
+        lives--;
+        if(lives <= 0)
+            GameController.getInstance().lose();
     }
 
 
+     public Tile getPosition() {
+         return this.position;
+     }
+
+     public ArrayList<Item> getItems(){
+        return items;
+     }
+
+     public void pickUpItem(){
+         Item item = ((RegularTile)position).getItem();
+         if(item == null)
+             return;
+         addItemToInventory(item);
+         item.setPlayer(this);
+         ((RegularTile) position).setItem(null);
+         work();
+     }
 }
+

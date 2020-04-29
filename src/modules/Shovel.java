@@ -1,16 +1,28 @@
 package modules;
 
+/**
+ *Az aso objektumok osztalya, az Itembol szarmazik le
+ */
 public class Shovel extends Item
 {
-    public Shovel()
-    {
-        super();
+
+    /**
+     *Konstruktorok
+     */
+    public Shovel(){}
+    public Shovel(Player player) { super(player); }
+    public Shovel(Tile tile) { super(tile); }
+
+    /**
+     *Item osztaly useItem fuggvenyet override-olja,  ez hivja meg a holapatolasert felelos fuggvenyt
+     */
+    @Override
+    public void useItem(Tile t) {
+        ((RegularTile)t).onShovel();
     }
 
     @Override
-    public void useItem(Tile t)
-    {
-        System.out.println( this.toString() + " useItem was called with param: " + t.toString());
-        t.onShovel();
+    public String toString(){
+        return "shovel";
     }
 }

@@ -1,54 +1,73 @@
 package modules;
 
+import java.awt.event.ItemEvent;
 import java.util.ArrayList;
 
-public class Map
-{
-    private GameController gameController;
-    private ArrayList<Tile> tiles;
+public class Map {
+    private ArrayList<Tile> tiles = new ArrayList<>();
+    private ArrayList<Item> items = new ArrayList<>();
 
-    public Map()
-    {
+    public Map() { }
 
+    public ArrayList<Item> getItems(){ return items; }
+
+    public void generateStorm() {
+        for (Tile t : chooseStormTiles()) {
+            t.onStorm();
+        }
     }
 
-    public void generateStorm()
-    {
-        System.out.println( this.toString() + " generateStorm was called");
-        chooseStormTiles();
-    }
+    public void addTile(Tile newTile) {
+        if(getTile(newTile.getUniqueID()) != null)
+            throw new IllegalArgumentException("Unique ID already taken");
 
-    public void addTile(int newTileId, Tile newTile)
-    {
-        System.out.println( this.toString() + "addTile was called with param: " + newTile.toString());
-        for (Tile tile : tiles)
-            if (tile.getId() == newTile.getId())
-                return;
         tiles.add(newTile);
     }
 
-    private Tile[] chooseStormTiles ()
-    {
-        System.out.println( this.toString() + " chooseStormTiles was called");
-        Tile[] tiles = {};
-        for (int i = 0; i<tiles.length; i++) {
-            tiles[i].onStorm();
+    public void addItem(Item i, int id) {
+        items.add(i);
+        Player player = GameController.getInstance().getPlayer(id);
+        if (player == null) {
+            Tile tile = getTile(id);
+            i.tile = tile;
+            ((RegularTile)tile).setItem(i);
         }
-        return  tiles;
+        else {
+            player.addItemToInventory(i);
+            i.setPlayer(player);
+        }
     }
 
-    public Tile getTile(int Id)
+    private Tile[] chooseStormTiles() {
+        Tile[] tiles = {};
+        return tiles;
+    }
+
+    public ArrayList<Tile> getAllTiles()
     {
-        System.out.println( this.toString() + "getTile was called");
-        for (Tile tile : tiles)
-            if (tile.getId() == Id)
-                return tile;
+        return this.tiles;
+    }
+
+    public Tile getTileByCoord(int x, int y)
+    {
+        for (Tile t: this.tiles
+             ) {
+            if ( t.positionX == x && t.positionY == y)
+            {
+                return t;
+            }
+        }
         return null;
     }
 
-    public GameController getGameController()
-    {
-        System.out.println( this.toString() + "getGameController was called");
-        return gameController;
+    public Tile getTile(int id) {
+        if(tiles == null)
+            return null;
+
+        for (Tile tile : tiles) {
+            if (tile.getUniqueID() == id)
+                return tile;
+        }
+        return null;
     }
 }

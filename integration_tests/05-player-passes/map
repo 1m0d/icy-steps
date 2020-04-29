@@ -1,0 +1,9 @@
+Tiles:
+3,2,true,false,0;0,0,false,false,1;
+2,3,true,false,2;0,2,false,false,3;
+Players:
+1,1,4,2,false,4;1,1,0,2,false,5;
+Items:
+2,shovel;4,food;
+Bear:
+2;

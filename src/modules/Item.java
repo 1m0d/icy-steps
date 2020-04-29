@@ -1,25 +1,34 @@
 package modules;
 
-public abstract class Item
-{
+/**
+ * Az eszkozok absztrakt osztalya, ebbol szarmazik le minden eszkoz
+ */
+public abstract class Item {
 
-    RegularTile tile;
-    Player player;
+    protected Tile tile;
+    protected Player player;
 
-    public Item()
-    {
+    /**
+     *Konstruktorok
+     */
+    public Item(){}
+    public Item(Player player) { this.player = player; }
+    public Item(Tile tile){ this.tile = tile; }
 
-    }
+    /**
+     *Visszater azzal a jatekossal, aki birtokolja
+     */
+    public Player getPlayer() { return player; }
 
-    public Item getItem()
+    /**
+     *Beallitja, hogy melyik jatekos birtokolja
+     */
+    public void setPlayer(Player player) { this.player = player; }
 
-    {
-        System.out.println( this.toString() + "getItem was called");
-        return this;
-    }
-    public void useItem(Tile t)
-    {
-        System.out.println( this.toString() + "useItem was called with param: " + t.toString());
-        player.setDivingSuit();
-    }
+    /**
+     *Visszater azzal a mezovel, amelyiken van
+     */
+    public Tile getTile() { return tile; }
+
+    public abstract void useItem(Tile t);
 }

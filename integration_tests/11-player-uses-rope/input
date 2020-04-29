@@ -1,0 +1,3 @@
+load-map map
+set-player-turn 2
+use-item rope 0

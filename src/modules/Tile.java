@@ -1,78 +1,37 @@
 package modules;
 
-public abstract class Tile
-{
-    protected Map map;
-    protected int Id;
+import java.util.ArrayList;
+
+public abstract class Tile {
+    protected int positionX;
+    protected int positionY;
+    protected int uniqueID;
     protected int playerCapacity;
+    protected boolean scientistChecked = false;
     protected int snowLayerCount;
-    protected boolean scientistChecked;
-    protected Item item;
-    protected Player[] players;
 
-    public Tile(Map map, int Id){
-        this.map = map;
-        this.Id = Id;
+    protected ArrayList<Player> players = new ArrayList<>();
+
+    public abstract void onPlayerStep(Player p);
+    public abstract void onBearStep();
+    public abstract void onStorm();
+
+    public Tile(int positionX, int positionY, int playerCapacity, int snowLayerCount, int uniqueID) {
+        this.positionX = positionX;
+        this.positionY = positionY;
+        this.playerCapacity = playerCapacity;
+        this.snowLayerCount = snowLayerCount;
+        this.uniqueID = uniqueID;
     }
 
-    public Tile()
-    {
+    public int getUniqueID(){ return uniqueID; }
+    public int getPositionX() { return positionX; }
+    public int getPositionY() { return positionY; }
+    public int getPlayerCapacity() { return playerCapacity; }
+    public boolean isScientistChecked() { return scientistChecked; }
+    public int getSnowLayerCount() { return snowLayerCount; }
+    public ArrayList<Player> getPlayers() { return players; }
 
-    }
-    public void setItem(Item newItem){
-        item = newItem;
-    }
-    public int getId(){
-        return Id;
-    }
-
-
-
-    public Player[] getPlayers()
-    {
-        return players;
-    }
-    public void onPlayerStep(Player p)
-    {
-        System.out.println( this.toString() + "onPlayerStep was called with param:" + p);
-    }
-
-    public void onShovel()
-    {
-        System.out.println( this.toString() + "onShovel was called");
-    }
-
-    public void onRope()
-    {
-        System.out.println( this.toString() + "onRope was called");
-    }
-
-    public void onStorm()
-    {
-        System.out.println( this.toString() + "onStorm was called");
-    }
-
-    public Tile getNeighbour(int i)
-    {
-        System.out.println( this.toString() + "getNeighbour was called with param: " + i);
-        //TODO
-        RegularTile rt = new RegularTile(map, 0);
-        return rt;
-    }
-
-    public void onEskimoAbility()
-    {
-        System.out.println( this.toString() + "onEskimoAbility was called");
-    }
-
-    public void onScientistAbility()
-    {
-        System.out.println( this.toString() + "onScientistAbility was called");
-    }
-
-    public void flip()
-    {
-        System.out.println( this.toString() + "flip was called");
-    }
-
+    public void onScientistAbility() { scientistChecked = true; }
+    public void addPlayer(Player player) { players.add(player); }
 }
