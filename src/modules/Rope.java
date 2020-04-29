@@ -1,4 +1,7 @@
 package modules;
+
+import java.util.ArrayList;
+
 /**
  * A kotel objektumok osztalya, az Itembol szarmazik le
  */
@@ -15,9 +18,9 @@ public class Rope extends Item {
      */
     @Override
     public void useItem(Tile t) {
-        for (Player p : t.getPlayers())
-        {
-            p.getPulledTo(t);
+        ArrayList<Player> playersInHole = t.getPlayers();
+        for (Player player : playersInHole) {
+            player.getPulledTo(this.player.getPosition());
         }
         ((HoleTile)t).onRope();
     }

@@ -96,6 +96,11 @@ public abstract class Player {
         work();
     }
 
+    public void useItem(Item item, Tile tile){
+        item.useItem(tile);
+        work();
+    }
+
     public abstract void useAbility(Tile t);
 
     public void onFood() {

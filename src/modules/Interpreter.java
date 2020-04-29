@@ -1,6 +1,7 @@
 package modules;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -86,15 +87,15 @@ public class Interpreter {
                 currentPlayer.pass();
                 break;
 
-            // TODO: use argument as item choser instead of interactive user input
             case "use-item":
-                Item chosen;
-                for (int i = 0; i < currentPlayer.getItems().size(); i++) {
-                    currentPlayer.getItems().get(i).toString();
-                    System.out.print(" ");
-                    if (arguments[0] == currentPlayer.getItems().get(i).toString()) {
-                        chosen = currentPlayer.getItems().get(i);
-                        currentPlayer.useItem(chosen);
+                ArrayList<Item> items = currentPlayer.getItems();
+                for (Item item : items) {
+                    if(item.toString().equals(arguments[0])) {
+                        if (arguments.length == 2) {
+                            currentPlayer.useItem(item, map.getTile(Integer.parseInt(arguments[1])));
+                        } else {
+                            currentPlayer.useItem(item);
+                        }
                     }
                 }
                 break;
