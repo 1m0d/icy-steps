@@ -127,10 +127,12 @@ public class GameController {
             if(Integer.parseInt(tokens[0]) == 0) {
                 Eskimo eskimo = new Eskimo(position, energy, lives, drowning, uniqueID);
                 this.players.add(eskimo);
+                position.addPlayer(eskimo);
             }
             else if (Integer.parseInt(tokens[0]) == 1) {
                 Scientist scientist = new Scientist(position, energy, lives, drowning, uniqueID);
                 this.players.add(scientist);
+                position.addPlayer(scientist);
             }
         }
     }
