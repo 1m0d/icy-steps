@@ -83,7 +83,7 @@ public class Interpreter {
                 break;
 
             case "player-pass":
-                gameController.getCurrentPlayer().pass();
+                currentPlayer.pass();
                 break;
 
             // TODO: use argument as item choser instead of interactive user input
@@ -113,7 +113,6 @@ public class Interpreter {
                     case "right":
                         destinationX = currentPlayer.getPosition().getPositionX() + 1;
                         destinationY = currentPlayer.getPosition().getPositionY();
-
                         break;
                     case "down":
                         destinationX = currentPlayer.getPosition().getPositionX();
@@ -137,13 +136,12 @@ public class Interpreter {
                 gameController.getMap().generateStorm();
                 break;
 
-            case "use-ability":
-                if (arguments[0] == null) {
-                    currentPlayer.useAbility(gameController.getCurrentPlayer().getPosition());
-                }
-                else {
-                    currentPlayer.useAbility(gameController.getMap().getTile(Integer.parseInt(arguments[0])));
-                }
+            case "use-eskimo-ability":
+                currentPlayer.useAbility(gameController.getCurrentPlayer().getPosition());
+                break;
+
+            case "use-scientist-ability":
+                currentPlayer.useAbility(gameController.getMap().getTile(Integer.parseInt(arguments[0])));
                 break;
 
             default:
