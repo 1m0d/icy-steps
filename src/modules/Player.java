@@ -1,13 +1,15 @@
 package modules;
 
+import gui.IDrawable;
+
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import java.util.List;
+
 /**
  * A jatekosok absztrakt osztalya, ebbol szarmazik le az eszkimo es a tudos
  */
-public abstract class Player {
+public abstract class Player implements IDrawable{
     protected Tile position;
-
     protected int maxLives;
     protected int energy = 5;
     protected int lives;
@@ -53,7 +55,7 @@ public abstract class Player {
     protected void work() {
         if(--energy <= 0) {
             activePlayer = false;
-            GameController.getInstance().endPlayerTurn();
+            GameModel.getInstance().endPlayerTurn();
         }
     }
 
@@ -64,7 +66,7 @@ public abstract class Player {
         energy = 4;
         activePlayer = true;
         if(drowning && !hasDivingSuit){
-            GameController.getInstance().lose();
+            GameModel.getInstance().lose();
         }
     }
 
@@ -82,7 +84,7 @@ public abstract class Player {
     public void pass() {
         activePlayer = false;
         energy = 0;
-        GameController.getInstance().endPlayerTurn();
+        GameModel.getInstance().endPlayerTurn();
     }
 
     /**
@@ -126,7 +128,7 @@ public abstract class Player {
     public void damage() {
         lives--;
         if(lives <= 0)
-            GameController.getInstance().lose();
+            GameModel.getInstance().lose();
     }
 
 

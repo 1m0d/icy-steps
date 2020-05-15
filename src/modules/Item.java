@@ -1,9 +1,11 @@
 package modules;
 
+import gui.IDrawable;
+
 /**
  * Az eszkozok absztrakt osztalya, ebbol szarmazik le minden eszkoz
  */
-public abstract class Item {
+public abstract class Item  {
 
     protected Tile tile;
     protected Player player;

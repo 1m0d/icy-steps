@@ -1,21 +1,17 @@
 package modules;
 
+import java.awt.*;
 import java.util.ArrayList;
 
-/**
- * A kotel objektumok osztalya, az Itembol szarmazik le
- */
+
 public class Rope extends Item {
-    /**
-     *Konstruktorok
-     */
+
+    private Image rtImage;
+
     public Rope(){}
     public Rope(Player player) { super(player); }
     public Rope(Tile tile) { super(tile); }
 
-    /**
-     *Item osztaly useItem fuggvenyet override-olja, ennek a segítsegevel lehet egy jatekost kimenekiteni a vizbol
-     */
     @Override
     public void useItem(Tile t) {
         ArrayList<Player> playersInHole = t.getPlayers();
@@ -29,4 +25,6 @@ public class Rope extends Item {
     public String toString(){
         return "rope";
     }
+
+
 }

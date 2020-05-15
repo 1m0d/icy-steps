@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class Interpreter {
     private String testDirectory;
-    GameController gameController = GameController.getInstance();
+    GameModel gameModel = GameModel.getInstance();
 
     public void setTestDirectory(String testDirectory){ this.testDirectory = testDirectory; }
 
@@ -37,28 +37,28 @@ public class Interpreter {
     }
 
     private void executeCommand(String command, String[] arguments) throws FileNotFoundException {
-        Player currentPlayer = gameController.getCurrentPlayer();
-        Map map = gameController.getMap();
+        Player currentPlayer = gameModel.getCurrentPlayer();
+        Map map = gameModel.getMap();
         int positionX;
         int positionY;
         int destinationX;
         int destinationY;
         switch (command){
             case "load-map":
-                gameController.loadMap(testDirectory + "/map");
+                gameModel.loadMap(testDirectory + "/map");
                 break;
 
             case "start-game":
-                gameController.startGame();
+                gameModel.startGame();
                 break;
 
             case "set-player-turn":
                 if(currentPlayer != null)
                     currentPlayer.setActivePlayer(false);
 
-                Player player = gameController.getPlayer(Integer.parseInt(arguments[0]));
+                Player player = gameModel.getPlayer(Integer.parseInt(arguments[0]));
                 player.setActivePlayer(true);
-                gameController.setCurrentPlayer(player);
+                gameModel.setCurrentPlayer(player);
                 break;
 
             case "step":
@@ -113,7 +113,7 @@ public class Interpreter {
                 break;
 
             case "move-bear":
-                Bear bear = gameController.getBear();
+                Bear bear = gameModel.getBear();
                 positionX = bear.getPosition().getPositionX();
                 positionY = bear.getPosition().getPositionY();
                 switch(arguments[0]){
@@ -143,15 +143,15 @@ public class Interpreter {
                 if(arguments.length == 1)
                     map.getTile(Integer.parseInt(arguments[0])).onStorm();
 
-                gameController.getMap().generateStorm();
+                gameModel.getMap().generateStorm();
                 break;
 
             case "use-eskimo-ability":
-                currentPlayer.useAbility(gameController.getCurrentPlayer().getPosition());
+                currentPlayer.useAbility(gameModel.getCurrentPlayer().getPosition());
                 break;
 
             case "use-scientist-ability":
-                currentPlayer.useAbility(gameController.getMap().getTile(Integer.parseInt(arguments[0])));
+                currentPlayer.useAbility(gameModel.getMap().getTile(Integer.parseInt(arguments[0])));
                 break;
 
             default:

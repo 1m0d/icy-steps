@@ -1,12 +1,22 @@
 package modules;
 
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
 public class RegularTile extends Tile {
     private boolean iglooBuilt = false;
     private boolean campBuilt = false;
     private Item item;
+    private BufferedImage rtGroundImage;
+    private BufferedImage rtIceImage;
 
     public RegularTile(int positionX, int positionY, int playerCapacity, int snowLayerCount, int uniqueID) {
         super(positionX, positionY, playerCapacity, snowLayerCount, uniqueID);
+        loadImages();
     }
 
     public Item getItem(){ return item; }
@@ -25,7 +35,7 @@ public class RegularTile extends Tile {
     @Override
     public void onBearStep() {
         if(!iglooBuilt && !players.isEmpty())
-            GameController.getInstance().lose();
+            GameModel.getInstance().lose();
     }
 
     @Override
@@ -55,6 +65,51 @@ public class RegularTile extends Tile {
     }
 
     private void flip() {
-        GameController.getInstance().lose();
+        GameModel.getInstance().lose();
     }
+
+    @Override
+    public void Draw(JPanel jp) {
+
+        JPanel pane = new JPanel()
+        {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                if(snowLayerCount == 0)
+                {
+                    g.drawImage(rtGroundImage,0,0,null);
+                }
+                else
+                {
+                    g.drawImage(rtIceImage,0,0,null);
+                }
+
+                for(Player p: players)
+                {
+                    g.drawImage(p.getImage(),getWidth()/4,0,null);
+
+                }
+            }
+        };
+
+        jp.add(pane);
+
+    }
+
+    @Override
+    public BufferedImage getImage() {
+        return null;
+    }
+
+    public void loadImages()
+    {
+        try {
+            rtGroundImage = ImageIO.read(new File("src/gui/icons/ground.jpg"));
+            rtIceImage = ImageIO.read(new File("src/gui/icons/ice.jpg"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

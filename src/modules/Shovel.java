@@ -1,21 +1,16 @@
 package modules;
 
-/**
- *Az aso objektumok osztalya, az Itembol szarmazik le
- */
+import java.awt.*;
+
 public class Shovel extends Item
 {
+    private Image rtImage;
 
-    /**
-     *Konstruktorok
-     */
     public Shovel(){}
     public Shovel(Player player) { super(player); }
     public Shovel(Tile tile) { super(tile); }
 
-    /**
-     *Item osztaly useItem fuggvenyet override-olja,  ez hivja meg a holapatolasert felelos fuggvenyt
-     */
+
     @Override
     public void useItem(Tile t) {
         ((RegularTile)t).onShovel();
@@ -25,4 +20,6 @@ public class Shovel extends Item
     public String toString(){
         return "shovel";
     }
+
+
 }

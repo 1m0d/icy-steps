@@ -1,9 +1,12 @@
 package modules;
 
-import java.awt.event.ItemEvent;
+import gui.IDrawable;
+
+import javax.swing.*;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-public class Map {
+public class Map implements IDrawable {
     private ArrayList<Tile> tiles = new ArrayList<>();
     private ArrayList<Item> items = new ArrayList<>();
 
@@ -26,7 +29,7 @@ public class Map {
 
     public void addItem(Item i, int id) {
         items.add(i);
-        Player player = GameController.getInstance().getPlayer(id);
+        Player player = GameModel.getInstance().getPlayer(id);
         if (player == null) {
             Tile tile = getTile(id);
             i.tile = tile;
@@ -68,6 +71,22 @@ public class Map {
             if (tile.getUniqueID() == id)
                 return tile;
         }
+        return null;
+    }
+
+    @Override
+    public void Draw(JPanel jp) {
+        for(Tile t: tiles)
+        {
+            t.Draw(jp);
+        }
+        for(Item item: items)
+        {
+        }
+    }
+
+    @Override
+    public BufferedImage getImage() {
         return null;
     }
 }

@@ -1,5 +1,7 @@
 package modules;
 
+import gui.IDrawable;
+
 /**
  * Az elelmek osztalya, az Itembol szarmazik le
  */
@@ -26,4 +28,6 @@ public class Food extends Item {
     public String toString(){
         return "food";
     }
+
+
 }

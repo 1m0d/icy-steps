@@ -1,5 +1,7 @@
 package modules;
 
+import gui.IDrawable;
+
 /**
  *A torekeny aso objektumok osztalya, az asobol szarmazik le (ami meg az Itembol)
  */
@@ -30,5 +32,6 @@ public class FragileShovel extends Shovel {
     public String toString(){
         return "fragile-shovel";
     }
+
 
 }

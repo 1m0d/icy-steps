@@ -1,16 +1,19 @@
 package modules;
 
+import gui.IDrawable;
+
+import java.awt.*;
 import java.util.ArrayList;
 
-public abstract class Tile {
+public abstract class Tile implements IDrawable {
     protected int positionX;
     protected int positionY;
     protected int uniqueID;
     protected int playerCapacity;
     protected boolean scientistChecked = false;
     protected int snowLayerCount;
-
     protected ArrayList<Player> players = new ArrayList<>();
+
 
     public abstract void onPlayerStep(Player p);
     public abstract void onBearStep();
@@ -34,4 +37,5 @@ public abstract class Tile {
 
     public void onScientistAbility() { scientistChecked = true; }
     public void addPlayer(Player player) { players.add(player); }
+
 }
