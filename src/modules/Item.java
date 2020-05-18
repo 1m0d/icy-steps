@@ -5,7 +5,7 @@ import gui.IDrawable;
 /**
  * Az eszkozok absztrakt osztalya, ebbol szarmazik le minden eszkoz
  */
-public abstract class Item  {
+public abstract class Item  implements IDrawable{
 
     protected Tile tile;
     protected Player player;

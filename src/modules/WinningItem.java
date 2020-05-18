@@ -1,7 +1,9 @@
 package modules;
 
 
+import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class WinningItem extends Item {
 
@@ -22,4 +24,13 @@ public class WinningItem extends Item {
     }
 
 
+    @Override
+    public void Draw(JPanel jp) {
+
+    }
+
+    @Override
+    public BufferedImage getImage() {
+        return null;
+    }
 }

@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.util.Scanner;
 
 public class OptionsView extends JPanel {
 
@@ -19,12 +21,14 @@ public class OptionsView extends JPanel {
         JLabel nOfPlayersLabel = new JLabel("Players:", JLabel.CENTER);
         JLabel chooseMapLabel = new JLabel("Map", JLabel.CENTER);
         SpinnerModel model =
-                new SpinnerNumberModel(0,
-                        0,
+                new SpinnerNumberModel(3,
                         3,
+                        5,
                 1);                //step
         JSpinner nOfPlayersSpinner = new JSpinner(model);
-        JComboBox chooseMapCombo = new JComboBox();
+        JButton mapBtn = new JButton("Choose Map");
+
+
         JButton cancelBtn = new JButton("Cancel");
         JButton okBtn = new JButton("Ok");
 
@@ -34,7 +38,7 @@ public class OptionsView extends JPanel {
         secondPanel.add(nOfPlayersLabel);
         secondPanel.add(nOfPlayersSpinner);
         secondPanel.add(chooseMapLabel);
-        secondPanel.add(chooseMapCombo);
+        secondPanel.add(mapBtn);
 
         thirdPanel.add(cancelBtn);
         thirdPanel.add(okBtn);
@@ -56,6 +60,20 @@ public class OptionsView extends JPanel {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 myFrame.changePanel(new MenuView(myFrame));
+            }
+        });
+
+        mapBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                JFileChooser fc = new JFileChooser();
+                fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
+                int returnValue = fc.showOpenDialog(null);
+                if (returnValue == JFileChooser.APPROVE_OPTION) {
+                    File selectedFile = fc.getSelectedFile();
+                    System.out.println(selectedFile.getAbsolutePath());
+                }
+
             }
         });
     }

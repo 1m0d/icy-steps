@@ -2,13 +2,15 @@ package modules;
 
 import gui.IDrawable;
 
+import java.awt.image.BufferedImage;
+
 /**
  *A torekeny aso objektumok osztalya, az asobol szarmazik le (ami meg az Itembol)
  */
 public class FragileShovel extends Shovel {
 
     private int durability = 3;
-
+    public BufferedImage fsImage;
     /**
      *Konstruktorok
      */
