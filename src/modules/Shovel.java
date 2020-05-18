@@ -9,14 +9,16 @@ import java.io.IOException;
 
 public class Shovel extends Item
 {
-    private Image rtImage;
-
-    public BufferedImage sImage;
 
     public Shovel(){}
-    public Shovel(Player player) { super(player); }
-    public Shovel(Tile tile) { super(tile); }
-
+    public Shovel(Player player) {
+        super(player);
+        super.loadImages("src/gui/icons/bear.jpg");
+    }
+    public Shovel(Tile tile) {
+        super(tile);
+        super.loadImages("src/gui/icons/bear.jpg");
+    }
 
     @Override
     public void useItem(Tile t) {
@@ -28,22 +30,5 @@ public class Shovel extends Item
         return "shovel";
     }
 
-    public void loadImages()
-    {
-        try {
-            sImage = ImageIO.read(new File("src/gui/icons/shovel.png"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
-    @Override
-    public void Draw(JPanel jp) {
-
-    }
-
-    @Override
-    public BufferedImage getImage() {
-        return sImage;
-    }
 }

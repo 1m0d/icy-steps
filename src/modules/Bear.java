@@ -1,18 +1,20 @@
 package modules;
 
-import gui.IDrawable;
-
 import javax.imageio.ImageIO;
-import javax.swing.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class Bear implements IDrawable {
+public class Bear {
 
-    public BufferedImage bImage;
+    public BufferedImage image;
     private Tile position;
-    public Bear(Tile position) {this.position = position;}
+
+    public Bear(Tile position) {
+        this.position = position;
+        loadImages();
+    }
+
     public Tile getPosition() {
         return this.position;
     }
@@ -22,24 +24,12 @@ public class Bear implements IDrawable {
         t.onBearStep();
     }
 
-    public void loadImages()
-    {
+    public void loadImages() {
         try {
-            bImage = ImageIO.read(new File("src/gui/icons/bear.png"));
+            image = ImageIO.read(new File("src/gui/icons/bear.jpg"));
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
-    @Override
-    public void Draw(JPanel jp) {
-
-    }
-
-    @Override
-    public BufferedImage getImage() {
-        return bImage;
-    }
-
 
 }

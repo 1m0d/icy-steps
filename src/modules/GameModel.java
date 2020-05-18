@@ -1,7 +1,5 @@
 package modules;
 
-import gui.IDrawable;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
@@ -15,8 +13,6 @@ public class GameModel {
     private boolean playersWon = false;
     private Player currentPlayer;
     private int currentPlayerIndex = 0;
-
-    private ArrayList<IDrawable> drawables = new ArrayList<IDrawable>();
 
     public static GameModel getInstance() {
         if (gameModel == null)
@@ -60,12 +56,6 @@ public class GameModel {
             }
         }
         mapReader.close();
-        for(Player p : players)
-        {
-            //drawables.add(p);
-        }
-        drawables.add(map);
-        //drawables.add(bear);
 
 
     }
@@ -230,8 +220,4 @@ public class GameModel {
         this.bear = new Bear(map.getTile(Integer.parseInt(bear[0])));
     }
 
-    public ArrayList<IDrawable> getDrawables()
-    {
-        return drawables;
-    }
 }

@@ -4,6 +4,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.Console;
 import java.io.File;
 import java.io.IOException;
 
@@ -76,9 +77,18 @@ public class RegularTile extends Tile {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
+                if (item != null)
+                {
+                    System.out.println("itemrajzolás hívás");
+                    g.drawImage(item.image,0,0,null);
+                    g.drawRect(10,10,30,30);
+                }
+
                 if(snowLayerCount == 0)
                 {
                     g.drawImage(rtGroundImage,0,0,null);
+                    //g.drawImage(item.image,0,0,null);
+
                 }
                 else
                 {
@@ -87,19 +97,13 @@ public class RegularTile extends Tile {
 
                 for(Player p: players)
                 {
-                    g.drawImage(p.getImage(),getWidth()/4,0,null);
-
+                    g.drawImage(p.image,getWidth()/4,0,null);
                 }
             }
         };
 
         jp.add(pane);
 
-    }
-
-    @Override
-    public BufferedImage getImage() {
-        return null;
     }
 
     public void loadImages()

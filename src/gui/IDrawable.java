@@ -7,6 +7,6 @@ import java.nio.Buffer;
 
 public interface IDrawable {
 
-    public void Draw(JPanel jp);
-    public BufferedImage getImage();
+    void Draw(JPanel jp);
+    //public BufferedImage getImage();
 }
