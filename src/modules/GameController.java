@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.util.*;
 
 public class GameController {
-    private Map map = new Map();
+    private Map map;
     private ArrayList<Player> players = new ArrayList<>();
     private Bear bear;
     private static GameController gameController;
@@ -25,6 +25,7 @@ public class GameController {
     public boolean isPlayersWon() { return playersWon; }
 
     public void loadMap(String path) throws FileNotFoundException {
+        map = new Map();
         clear();
         List<String> mapObjects = Arrays.asList("Tiles", "Players", "Items", "Bear");
         File file = new File(path);

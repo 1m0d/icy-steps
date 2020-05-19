@@ -1,8 +1,11 @@
 package gui;
+import modules.GameController;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
 
 public class MainMenu
 {
@@ -42,7 +45,16 @@ public class MainMenu
         startGame.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
+                if (GameController.getInstance().getMap() == null)
+                {
+                    try {
+                        GameController.getInstance().loadMap("maps/map");
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                }
                 mainFrame.changePanel(new GameView());
+
             }
         });
 
