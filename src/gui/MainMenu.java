@@ -4,14 +4,22 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class MainMenu extends JPanel
+public class MainMenu
 {
-    private MainFrame mainFrame;
+    private static MainMenu mainMenu;
+    private static JPanel panel = new JPanel();
+    private static MainFrame mainFrame = MainFrame.getInstance();
 
-    public MainMenu(MainFrame mainFrame) {
-        super();
-        this.mainFrame = mainFrame;
-        setLayout(new BorderLayout());
+    public static MainMenu getInstance() {
+        if (mainMenu == null) {
+            mainMenu = new MainMenu();
+            initialize();
+        }
+        return mainMenu;
+    }
+
+    private static void initialize(){
+        panel.setLayout(new BorderLayout());
         JPanel innerPanel = new JPanel();
         JPanel outerPanel = new JPanel(new BorderLayout());
 
@@ -25,24 +33,23 @@ public class MainMenu extends JPanel
         innerPanel.add(startGame);
         innerPanel.add(options);
         innerPanel.add(exit);
-        add(outerPanel, BorderLayout.NORTH);
-        add(innerPanel, BorderLayout.CENTER);
+        panel.add(outerPanel, BorderLayout.NORTH);
+        panel.add(innerPanel, BorderLayout.CENTER);
 
-        this.validate();
+        panel.validate();
 
         // action listeners
         startGame.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                MainMenu.this.mainFrame.changePanel(new GameView());
+                mainFrame.changePanel(new GameView());
             }
         });
 
         options.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                System.out.println("options button event");
-                MainMenu.this.mainFrame.changePanel(new OptionsView(MainMenu.this.mainFrame));
+                mainFrame.changePanel(OptionsMenu.getInstance().getPanel());
             }
         });
 
@@ -53,4 +60,6 @@ public class MainMenu extends JPanel
             }
         });
     }
+
+    public JPanel getPanel(){ return panel; }
 }

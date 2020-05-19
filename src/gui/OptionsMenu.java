@@ -6,12 +6,20 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
-public class OptionsView extends JPanel {
+public class OptionsMenu {
+    private static OptionsMenu optionsView;
+    private static MainFrame mainFrame = MainFrame.getInstance();
+    private static JPanel panel = new JPanel(new BorderLayout());
 
-    MainFrame myFrame;
-    public OptionsView(MainFrame mainFrame) {
-        super(new BorderLayout());
-        myFrame = mainFrame;
+    public static OptionsMenu getInstance() {
+        if (optionsView == null) {
+            optionsView = new OptionsMenu();
+            initialize();
+        }
+        return optionsView;
+    }
+
+    private static void initialize() {
         JPanel firstPanel = new JPanel();
         JPanel secondPanel = new JPanel(new GridLayout(2,2));
         JPanel thirdPanel = new JPanel();
@@ -19,14 +27,9 @@ public class OptionsView extends JPanel {
         JLabel titleLabel = new JLabel("Options", JLabel.CENTER);
         JLabel nOfPlayersLabel = new JLabel("Players:", JLabel.CENTER);
         JLabel chooseMapLabel = new JLabel("Map", JLabel.CENTER);
-        SpinnerModel model =
-                new SpinnerNumberModel(3,
-                        3,
-                        5,
-                1);                //step
+        SpinnerModel model = new SpinnerNumberModel(3, 3, 5, 1);
         JSpinner nOfPlayersSpinner = new JSpinner(model);
         JButton mapBtn = new JButton("Choose Map");
-
 
         JButton cancelBtn = new JButton("Cancel");
         JButton okBtn = new JButton("Ok");
@@ -43,22 +46,22 @@ public class OptionsView extends JPanel {
         thirdPanel.add(okBtn);
         thirdPanel.setPreferredSize(new Dimension(400,400));
 
-        add(firstPanel, BorderLayout.NORTH);
-        add(secondPanel, BorderLayout.CENTER);
-        add(thirdPanel, BorderLayout.SOUTH);
+        panel.add(firstPanel, BorderLayout.NORTH);
+        panel.add(secondPanel, BorderLayout.CENTER);
+        panel.add(thirdPanel, BorderLayout.SOUTH);
 
         //action listeners
         cancelBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                myFrame.changePanel(new MainMenu(myFrame));
+                mainFrame.changePanel(MainMenu.getInstance().getPanel());
             }
         });
 
         okBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                myFrame.changePanel(new MainMenu(myFrame));
+                mainFrame.changePanel(MainMenu.getInstance().getPanel());
             }
         });
 
@@ -75,4 +78,6 @@ public class OptionsView extends JPanel {
             }
         });
     }
+
+    public JPanel getPanel(){ return panel; }
 }

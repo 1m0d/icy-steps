@@ -1,29 +1,40 @@
 package gui;
 
+import modules.GameController;
+
 import javax.swing.*;
 import java.awt.*;
 
-public class MainFrame extends JFrame {
+public class MainFrame {
+    private static MainFrame mainFrame;
+    private static JFrame frame;
+    private static final int FrameWidth = 800;
+    private static final int FrameHeight = 600;
 
-    public static final int FrameWidth = 800;
-    public static final int FrameHeight = 600;
-
-    public MainFrame(String title) throws HeadlessException {
-        super(title);
-        pack();
-        setSize(FrameWidth, FrameHeight);
-        setResizable(false);
-        setLocationRelativeTo(null); // centers frame
-        changePanel(new MainMenu(this));
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setVisible(true);
+    public static MainFrame getInstance() {
+        if (mainFrame == null) {
+            mainFrame = new MainFrame();
+            initialize();
+        }
+        return mainFrame;
     }
 
-    public void changePanel(JPanel panel) {
-        getContentPane().removeAll();
-        getContentPane().add(panel, BorderLayout.CENTER);
-        getContentPane().doLayout();
-        update(getGraphics());
-        setVisible(true);
+    private static void initialize() throws HeadlessException {
+        frame = new JFrame();
+        frame.pack();
+        frame.setSize(FrameWidth, FrameHeight);
+        frame.setResizable(false);
+        frame.setLocationRelativeTo(null); // centers frame
+        changePanel(MainMenu.getInstance().getPanel());
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+    }
+
+    public static void changePanel(JPanel panel) {
+        frame.getContentPane().removeAll();
+        frame.getContentPane().add(panel, BorderLayout.CENTER);
+        frame.getContentPane().doLayout();
+        frame.update(frame.getGraphics());
+        frame.setVisible(true);
     }
 }
