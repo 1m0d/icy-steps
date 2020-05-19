@@ -5,14 +5,15 @@ import java.awt.*;
 
 public class MainFrame extends JFrame {
 
-    public static int FrameWidth = 800;
-    public static int FrameHeight = 600;
+    public static final int FrameWidth = 800;
+    public static final int FrameHeight = 600;
 
     public MainFrame(String title) throws HeadlessException {
         super(title);
         pack();
         setSize(FrameWidth, FrameHeight);
-        setLocationRelativeTo(null);
+        setResizable(false);
+        setLocationRelativeTo(null); // centers frame
         changePanel(new MenuView(this));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
