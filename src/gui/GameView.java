@@ -1,6 +1,6 @@
 package gui;
-import modules.GameModel;
-import modules.Player;
+import modules.GameController;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 
 public class GameView extends JPanel {
 
-    GameModel model = GameModel.getInstance();
+    GameController model = GameController.getInstance();
 
     private static int nOfRows = 4;
     private static int nOfColumns = 4;
@@ -44,7 +44,7 @@ public class GameView extends JPanel {
         passButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                GameModel.getInstance().endPlayerTurn();
+                GameController.getInstance().endPlayerTurn();
             }
         });
 
@@ -58,7 +58,7 @@ public class GameView extends JPanel {
         clearSnowButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                GameModel.getInstance().getCurrentPlayer().clearSnow();
+                GameController.getInstance().getCurrentPlayer().clearSnow();
             }
         });
 
@@ -72,14 +72,14 @@ public class GameView extends JPanel {
         pickUpItemButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                GameModel.getInstance().getCurrentPlayer().pickUpItem();
+                GameController.getInstance().getCurrentPlayer().pickUpItem();
             }
         });
 
         useAbilityButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-           GameModel.getInstance().getCurrentPlayer().useAbility( GameModel.getInstance().getCurrentPlayer().getPosition());
+           GameController.getInstance().getCurrentPlayer().useAbility( GameController.getInstance().getCurrentPlayer().getPosition());
                 //Scientist egyelore nem tud masik mezot megvizsgalni, csak amin eppen all.
                 // pont ugyanazert, amiert meg a lepes sincs kesz.
             }

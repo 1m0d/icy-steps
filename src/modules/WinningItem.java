@@ -1,10 +1,6 @@
 package modules;
 
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.image.BufferedImage;
-
 public class WinningItem extends Item {
 
     public WinningItem(){}
@@ -13,7 +9,7 @@ public class WinningItem extends Item {
 
     @Override
     public void useItem(Tile t) {
-        GameModel.getInstance().checkWinningConditions();
+        GameController.getInstance().checkWinningConditions();
     }
 
     @Override

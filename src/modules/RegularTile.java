@@ -4,7 +4,6 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.Console;
 import java.io.File;
 import java.io.IOException;
 
@@ -36,7 +35,7 @@ public class RegularTile extends Tile {
     @Override
     public void onBearStep() {
         if(!iglooBuilt && !players.isEmpty())
-            GameModel.getInstance().lose();
+            GameController.getInstance().lose();
     }
 
     @Override
@@ -66,7 +65,7 @@ public class RegularTile extends Tile {
     }
 
     private void flip() {
-        GameModel.getInstance().lose();
+        GameController.getInstance().lose();
     }
 
     @Override

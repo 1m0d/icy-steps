@@ -60,7 +60,7 @@ public abstract class Player {
     protected void work() {
         if(--energy <= 0) {
             activePlayer = false;
-            GameModel.getInstance().endPlayerTurn();
+            GameController.getInstance().endPlayerTurn();
         }
     }
 
@@ -71,7 +71,7 @@ public abstract class Player {
         energy = 4;
         activePlayer = true;
         if(drowning && !hasDivingSuit){
-            GameModel.getInstance().lose();
+            GameController.getInstance().lose();
         }
     }
 
@@ -89,7 +89,7 @@ public abstract class Player {
     public void pass() {
         activePlayer = false;
         energy = 0;
-        GameModel.getInstance().endPlayerTurn();
+        GameController.getInstance().endPlayerTurn();
     }
 
     /**
@@ -133,7 +133,7 @@ public abstract class Player {
     public void damage() {
         lives--;
         if(lives <= 0)
-            GameModel.getInstance().lose();
+            GameController.getInstance().lose();
     }
 
      public Tile getPosition() {

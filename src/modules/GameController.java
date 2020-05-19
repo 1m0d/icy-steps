@@ -4,20 +4,20 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
 
-public class GameModel {
+public class GameController {
     private Map map = new Map();
     private ArrayList<Player> players = new ArrayList<>();
     private Bear bear;
-    private static GameModel gameModel;
+    private static GameController gameController;
     private boolean gameOver = false;
     private boolean playersWon = false;
     private Player currentPlayer;
     private int currentPlayerIndex = 0;
 
-    public static GameModel getInstance() {
-        if (gameModel == null)
-            gameModel = new GameModel();
-        return gameModel;
+    public static GameController getInstance() {
+        if (gameController == null)
+            gameController = new GameController();
+        return gameController;
     }
     private int tileRowCount = 0;
 

@@ -3,7 +3,6 @@ package modules;
 import gui.IDrawable;
 
 import javax.swing.*;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 public class Map implements IDrawable {
@@ -29,7 +28,7 @@ public class Map implements IDrawable {
 
     public void addItem(Item i, int id) {
         items.add(i);
-        Player player = GameModel.getInstance().getPlayer(id);
+        Player player = GameController.getInstance().getPlayer(id);
         if (player == null) {
             Tile tile = getTile(id);
             i.tile = tile;

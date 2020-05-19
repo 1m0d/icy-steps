@@ -8,10 +8,10 @@ import java.io.FileNotFoundException;
 public class Main {
     public Map map;
     public static void main(String[] args)  {
-        GameModel gameModel = GameModel.getInstance();
+        GameController gameController = GameController.getInstance();
         Interpreter interpreter = new Interpreter();
         try {
-            gameModel.loadMap("maps/map");
+            gameController.loadMap("maps/map");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

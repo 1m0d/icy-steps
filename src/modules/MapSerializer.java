@@ -3,12 +3,12 @@ package modules;
 import java.util.ArrayList;
 
 public class MapSerializer {
-    private GameModel gameModel = GameModel.getInstance();
+    private GameController gameController = GameController.getInstance();
     private Map map;
 
     public void printMap(){
-        if(gameModel.isGameOver()){
-            if(gameModel.isPlayersWon()){
+        if(gameController.isGameOver()){
+            if(gameController.isPlayersWon()){
                 System.out.println("YOU WON!");
             } else {
                 System.out.println("YOU LOST!");
@@ -16,7 +16,7 @@ public class MapSerializer {
             return;
         }
 
-        map = gameModel.getMap();
+        map = gameController.getMap();
         printTiles();
         printPlayers();
         printItems();
@@ -52,7 +52,7 @@ public class MapSerializer {
     }
 
     private void printPlayers(){
-       ArrayList<Player> players = gameModel.getAllPlayers();
+       ArrayList<Player> players = gameController.getAllPlayers();
        if(players.isEmpty())
            return;
 
@@ -90,7 +90,7 @@ public class MapSerializer {
     }
 
     private void printBear(){
-        Bear bear = gameModel.getBear();
+        Bear bear = gameController.getBear();
         if(bear == null)
             return;
 

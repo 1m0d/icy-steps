@@ -22,7 +22,7 @@ public class HoleTile extends Tile {
     @Override
     public void onBearStep(){
         if(!players.isEmpty())
-            GameModel.getInstance().lose();
+            GameController.getInstance().lose();
     }
 
     @Override
