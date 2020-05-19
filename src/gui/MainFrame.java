@@ -14,7 +14,7 @@ public class MainFrame extends JFrame {
         setSize(FrameWidth, FrameHeight);
         setResizable(false);
         setLocationRelativeTo(null); // centers frame
-        changePanel(new MenuView(this));
+        changePanel(new MainMenu(this));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
     }

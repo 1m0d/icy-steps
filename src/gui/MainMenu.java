@@ -4,13 +4,13 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class MenuView extends JPanel
+public class MainMenu extends JPanel
 {
-    private MainFrame myFrame;
+    private MainFrame mainFrame;
 
-    public MenuView(MainFrame mainFrame) {
+    public MainMenu(MainFrame mainFrame) {
         super();
-        myFrame = mainFrame;
+        this.mainFrame = mainFrame;
         setLayout(new BorderLayout());
         JPanel innerPanel = new JPanel();
         JPanel outerPanel = new JPanel(new BorderLayout());
@@ -34,17 +34,18 @@ public class MenuView extends JPanel
         startGame.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                myFrame.changePanel(new GameView());
-
+                MainMenu.this.mainFrame.changePanel(new GameView());
             }
         });
+
         options.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 System.out.println("options button event");
-                myFrame.changePanel(new OptionsView(myFrame));
+                MainMenu.this.mainFrame.changePanel(new OptionsView(MainMenu.this.mainFrame));
             }
         });
+
         exit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {

@@ -51,14 +51,14 @@ public class OptionsView extends JPanel {
         cancelBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                myFrame.changePanel(new MenuView(myFrame));
+                myFrame.changePanel(new MainMenu(myFrame));
             }
         });
 
         okBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                myFrame.changePanel(new MenuView(myFrame));
+                myFrame.changePanel(new MainMenu(myFrame));
             }
         });
 
