@@ -7,6 +7,7 @@ public class MainFrame extends JFrame {
 
     public static int FrameWidth = 800;
     public static int FrameHeight = 600;
+
     public MainFrame(String title) throws HeadlessException {
         super(title);
         pack();

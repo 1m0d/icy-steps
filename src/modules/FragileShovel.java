@@ -1,6 +1,5 @@
 package modules;
 
-import gui.IDrawable;
 
 import java.awt.image.BufferedImage;
 
@@ -15,12 +14,14 @@ public class FragileShovel extends Shovel {
      *Konstruktorok
      */
     public FragileShovel(){}
-    public FragileShovel(Player player) { super(player); }
-    public FragileShovel(Tile tile) { super(tile); }
+    public FragileShovel(Player player) {
+        super(player);
+        super.loadImages("src/gui/icons/fragileshovel.png");
+    }
+    public FragileShovel(Tile tile) {
+        super(tile);
+    }
 
-    /**
-     *Item osztaly useItem fuggvenyet override-olja, ez hivja meg a holapatolasert felelos fuggvenyt
-     */
     @Override
     public void useItem(Tile t) {
         if (durability >= 1)

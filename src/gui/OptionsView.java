@@ -5,7 +5,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.util.Scanner;
 
 public class OptionsView extends JPanel {
 
@@ -73,7 +72,6 @@ public class OptionsView extends JPanel {
                     File selectedFile = fc.getSelectedFile();
                     System.out.println(selectedFile.getAbsolutePath());
                 }
-
             }
         });
     }

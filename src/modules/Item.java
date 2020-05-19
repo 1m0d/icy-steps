@@ -2,13 +2,19 @@ package modules;
 
 import gui.IDrawable;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
 /**
  * Az eszkozok absztrakt osztalya, ebbol szarmazik le minden eszkoz
  */
-public abstract class Item  implements IDrawable{
+public abstract class Item {
 
     protected Tile tile;
     protected Player player;
+    public BufferedImage image;
 
     /**
      *Konstruktorok
@@ -33,4 +39,14 @@ public abstract class Item  implements IDrawable{
     public Tile getTile() { return tile; }
 
     public abstract void useItem(Tile t);
+
+    public void loadImages(String path)
+    {
+        try {
+            image = ImageIO.read(new File(path));
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -10,15 +10,14 @@ import java.awt.event.ActionListener;
 public class GameView extends JPanel {
 
     GameModel model = GameModel.getInstance();
-    private int nOfRows = nOfRows = model.getMap().getAllTiles().size() / 2;
-    private int nOfColumns = model.getMap().getAllTiles().size() / 2;
+
+    private static int nOfRows = 4;
+    private static int nOfColumns = 4;
 
     private void doDrawing(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
         g2d.setColor(Color.BLACK);
-        for (IDrawable drawable : model.getDrawables()) {
-            drawable.Draw(this);
-        }
+        model.getMap().Draw(this);
     }
 
     private void initializeToolbar(){

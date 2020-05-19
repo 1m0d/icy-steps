@@ -2,7 +2,10 @@ package modules;
 
 import gui.IDrawable;
 
-import java.awt.*;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public abstract class Tile implements IDrawable {
@@ -13,7 +16,7 @@ public abstract class Tile implements IDrawable {
     protected boolean scientistChecked = false;
     protected int snowLayerCount;
     protected ArrayList<Player> players = new ArrayList<>();
-
+    public BufferedImage image;
 
     public abstract void onPlayerStep(Player p);
     public abstract void onBearStep();
@@ -37,5 +40,14 @@ public abstract class Tile implements IDrawable {
 
     public void onScientistAbility() { scientistChecked = true; }
     public void addPlayer(Player player) { players.add(player); }
+
+    public void loadImages(String path)
+    {
+        try {
+            image = ImageIO.read(new File(path));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

@@ -1,14 +1,16 @@
 package modules;
 
-import gui.IDrawable;
 
+import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
  * A jatekosok absztrakt osztalya, ebbol szarmazik le az eszkimo es a tudos
  */
-public abstract class Player implements IDrawable{
+public abstract class Player {
     protected Tile position;
     protected int maxLives;
     protected int energy = 5;
@@ -18,6 +20,11 @@ public abstract class Player implements IDrawable{
     protected ArrayList<Item> items = new ArrayList<>();
     protected boolean activePlayer = false;
     protected boolean hasDivingSuit = false;
+
+
+    public BufferedImage image;
+
+
 
     /**
      * Visszater a jatekos azonositojaval
@@ -44,9 +51,7 @@ public abstract class Player implements IDrawable{
 
     public void setActivePlayer(boolean activePlayer) { this.activePlayer = activePlayer; }
 
-    /**
-     *Berakja az adott itemet a jatekos inveontory-jaba
-     */
+
     public void addItemToInventory(Item i) { items.add(i); }
 
     /**
@@ -131,7 +136,6 @@ public abstract class Player implements IDrawable{
             GameModel.getInstance().lose();
     }
 
-
      public Tile getPosition() {
          return this.position;
      }
@@ -149,5 +153,14 @@ public abstract class Player implements IDrawable{
          ((RegularTile) position).setItem(null);
          work();
      }
+
+    public void loadImages(String path)
+    {
+        try {
+            image = ImageIO.read(new File(path));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
 

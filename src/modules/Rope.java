@@ -42,13 +42,4 @@ public class Rope extends Item {
         }
     }
 
-    @Override
-    public void Draw(JPanel jp) {
-
-    }
-
-    @Override
-    public BufferedImage getImage() {
-        return rImage;
-    }
 }

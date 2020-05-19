@@ -80,13 +80,5 @@ public class Map implements IDrawable {
         {
             t.Draw(jp);
         }
-        for(Item item: items)
-        {
-        }
-    }
-
-    @Override
-    public BufferedImage getImage() {
-        return null;
     }
 }
