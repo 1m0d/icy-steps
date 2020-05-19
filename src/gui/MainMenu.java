@@ -48,7 +48,7 @@ public class MainMenu
                 if (GameController.getInstance().getMap() == null)
                 {
                     try {
-                        GameController.getInstance().loadMap("maps/map");
+                        GameController.getInstance().loadMap("maps/3-players");
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }
