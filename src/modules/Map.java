@@ -8,6 +8,13 @@ import java.util.ArrayList;
 public class Map implements IDrawable {
     private ArrayList<Tile> tiles = new ArrayList<>();
     private ArrayList<Item> items = new ArrayList<>();
+    private int rowCount = 0;
+    private int columnCount = 0;
+
+    public int getRowCount() { return rowCount; }
+    public void addRowCount() { rowCount++; }
+    public int getColumnCount() { return columnCount; }
+    public void setColumnCount(int columnCount) { this.columnCount = columnCount; }
 
     public Map() { }
 

@@ -1,27 +1,19 @@
 package gui;
 import modules.GameController;
-import modules.Player;
-import javax.imageio.ImageIO;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
 
 public class GameView extends JPanel {
-
-    GameController model = GameController.getInstance();
-
-    private static int nOfRows = 4;
-    private static int nOfColumns = 4;
+    GameController gameController = GameController.getInstance();
 
     private void doDrawing(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
         g2d.setColor(Color.BLACK);
-        model.getMap().Draw(this);
+        gameController.getMap().Draw(this);
     }
 
     private static Icon resizeIcon(ImageIcon icon) {
@@ -141,7 +133,7 @@ public class GameView extends JPanel {
 
     public GameView() {
         super();
-        GridLayout gridLayout = new GridLayout(nOfRows, nOfColumns);
+        GridLayout gridLayout = new GridLayout(gameController.getMap().getRowCount(), gameController.getMap().getColumnCount());
         gridLayout.setHgap(5);
         gridLayout.setVgap(5);
         setLayout(gridLayout);

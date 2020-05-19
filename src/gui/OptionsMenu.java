@@ -1,10 +1,13 @@
 package gui;
 
+import modules.GameController;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileNotFoundException;
 
 public class OptionsMenu {
     private static OptionsMenu optionsView;
@@ -70,10 +73,16 @@ public class OptionsMenu {
             public void actionPerformed(ActionEvent actionEvent) {
                 JFileChooser fc = new JFileChooser();
                 fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
+                fc.setCurrentDirectory(new File("maps"));
                 int returnValue = fc.showOpenDialog(null);
-                if (returnValue == JFileChooser.APPROVE_OPTION) {
+                if (returnValue == JFileChooser.APPROVE_OPTION)
+                {
                     File selectedFile = fc.getSelectedFile();
-                    System.out.println(selectedFile.getAbsolutePath());
+                    try {
+                        GameController.getInstance().loadMap(selectedFile.getAbsolutePath());
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });

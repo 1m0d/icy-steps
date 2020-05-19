@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.util.*;
 
 public class GameController {
-    private Map map = new Map();
+    private Map map;
     private ArrayList<Player> players = new ArrayList<>();
     private Bear bear;
     private static GameController gameController;
@@ -19,12 +19,12 @@ public class GameController {
             gameController = new GameController();
         return gameController;
     }
-    private int tileRowCount = 0;
 
     public boolean isGameOver() { return gameOver; }
     public boolean isPlayersWon() { return playersWon; }
 
     public void loadMap(String path) throws FileNotFoundException {
+        map = new Map();
         clear();
         List<String> mapObjects = Arrays.asList("Tiles", "Players", "Items", "Bear");
         File file = new File(path);
@@ -42,7 +42,7 @@ public class GameController {
             switch (currentObject) {
                 case "Tiles":
                     parseTiles(objects);
-                    tileRowCount++;
+                    map.addRowCount();
                     break;
                 case "Players":
                     parsePlayers(objects);
@@ -133,7 +133,6 @@ public class GameController {
         map = new Map();
         players.clear();
         bear = null;
-        tileRowCount = 0;
         gameOver = false;
         playersWon = false;
         currentPlayerIndex = 0;
@@ -202,9 +201,9 @@ public class GameController {
             boolean campBuilt = Boolean.parseBoolean(tokens[3]);
 
             if (Integer.parseInt(tokens[0]) == 0) {
-                map.addTile(new HoleTile(columnCount, tileRowCount, snowLayerCount, UID));
+                map.addTile(new HoleTile(columnCount, map.getRowCount(), snowLayerCount, UID));
             } else {
-                RegularTile regularTile = new RegularTile(columnCount, tileRowCount, playerCapacity, snowLayerCount, UID);
+                RegularTile regularTile = new RegularTile(columnCount, map.getRowCount(), playerCapacity, snowLayerCount, UID);
                 if(iglooBuilt)
                     regularTile.buildIgloo();
                 else if(campBuilt)
@@ -212,6 +211,9 @@ public class GameController {
                 map.addTile(regularTile);
             }
             columnCount++;
+        }
+        if(map.getRowCount() == 0){
+            map.setColumnCount(columnCount);
         }
     }
 

@@ -1,5 +1,9 @@
 Tiles:
+<<<<<<< HEAD
 3,6,false,false,1;2,4,false,false,2;0,0,false,false,3;1,2,false,false,4;2,6,false,false,4;1,6,false,false,6;
+=======
+3,6,false,false,1;2,4,false,false,2;0,0,false,false,3;1,2,false,false,4;2,6,false,false,5;1,6,false,false,6;
+>>>>>>> 3b22564a2e69b01c99b6c599bae70380334ac9ef
 3,4,false,false,7;1,4,false,false,8;1,0,false,false,9;0,0,false,false,10;2,4,false,false,11;2,2,false,false,12;
 1,2,false,false,13;2,2,false,false,14;1,4,false,false,15;2,2,false,false,16;2,4,false,false,17;0,0,false,false,18;
 2,2,false,false,19;3,4,false,false,20;1,4,false,false,21;2,2,false,false,22;2,4,false,false,23;1,1,false,false,24;
