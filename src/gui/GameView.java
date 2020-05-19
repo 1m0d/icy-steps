@@ -1,8 +1,11 @@
 package gui;
 import modules.GameModel;
+import modules.Player;
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 
 public class GameView extends JPanel {
 
@@ -20,22 +23,69 @@ public class GameView extends JPanel {
 
     private void initializeToolbar(){
         JFrame frame = new JFrame("Navigate");
-        JButton stepButton,passButton, useItemButton, clearSnowButton,pickUpItemButton, useAbilityButton;
+        JButton stepButton, passButton, useItemButton, clearSnowButton,pickUpItemButton, useAbilityButton;
         JComboBox stepDirCB, useAbilityCB;
         stepButton = new JButton("Step");
         stepDirCB = new JComboBox();
         stepDirCB.addItem("up");
-        stepDirCB.addItem("right");
+        stepDirCB.addItem("up and right"); //HEXAGON
+        stepDirCB.addItem("down and right");
         stepDirCB.addItem("down");
-        stepDirCB.addItem("left");
+        stepDirCB.addItem("down and left");
+        stepDirCB.addItem("up and left");
         passButton = new JButton("Pass");
         useItemButton = new JButton("Use Item");
         clearSnowButton = new JButton("Clear Snow");
         pickUpItemButton = new JButton("Pick Up Item");
         useAbilityButton = new JButton("Use Ability");
         Integer[] ids = {0, 1, 2, 3, 4};
-
         useAbilityCB = new JComboBox(ids);
+
+        //Action listeners
+        passButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                GameModel.getInstance().endPlayerTurn();
+            }
+        });
+
+        stepButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+              //  GameModel.getInstance().getCurrentPlayer().step(...); //HEXAGON csempek kellenek
+            }
+        });
+
+        clearSnowButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                GameModel.getInstance().getCurrentPlayer().clearSnow();
+            }
+        });
+
+        useItemButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+             //   GameModel.getInstance().getCurrentPlayer().useItem(.. , GameModel.getInstance().getCurrentPlayer().getPosition());
+            }
+        });
+
+        pickUpItemButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                GameModel.getInstance().getCurrentPlayer().pickUpItem();
+            }
+        });
+
+        useAbilityButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+           GameModel.getInstance().getCurrentPlayer().useAbility( GameModel.getInstance().getCurrentPlayer().getPosition());
+                //Scientist egyelore nem tud masik mezot megvizsgalni, csak amin eppen all.
+                // pont ugyanazert, amiert meg a lepes sincs kesz.
+            }
+        });
+
 
         frame.add(stepButton);
         frame.add(stepDirCB);
@@ -48,9 +98,7 @@ public class GameView extends JPanel {
         frame.setLayout(new FlowLayout());
         frame.setSize(300,300);
         frame.setVisible(true);
-
     }
-
 
 
     public GameView() {
@@ -60,12 +108,10 @@ public class GameView extends JPanel {
         JPanel pane2 = new JPanel();
         frame.add(pane1, BorderLayout.WEST);
         frame.add(pane2, BorderLayout.EAST);
-        //GridLayout gridLayout = new GridLayout(nOfRows, nOfColumns);
-        //gridLayout.setHgap(5);
-        //gridLayout.setVgap(5);
-        //setLayout(gridLayout);
-
-
+        GridLayout gridLayout = new GridLayout(nOfRows, nOfColumns);
+        gridLayout.setHgap(5);
+        gridLayout.setVgap(5);
+        setLayout(gridLayout);
     }
 
     @Override
@@ -73,7 +119,6 @@ public class GameView extends JPanel {
         super.paintComponent(g);
         doDrawing(g);
         initializeToolbar();
-
     }
 
 }
