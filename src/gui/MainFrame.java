@@ -9,7 +9,7 @@ public class MainFrame {
     private static MainFrame mainFrame;
     private static JFrame frame;
     private static final int FrameWidth = 800;
-    private static final int FrameHeight = 600;
+    private static final int FrameHeight = 800;
 
     public static MainFrame getInstance() {
         if (mainFrame == null) {

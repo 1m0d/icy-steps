@@ -134,8 +134,6 @@ public class GameView extends JPanel {
     public GameView() {
         super();
         GridLayout gridLayout = new GridLayout(gameController.getMap().getRowCount(), gameController.getMap().getColumnCount());
-        gridLayout.setHgap(5);
-        gridLayout.setVgap(5);
         setLayout(gridLayout);
         initializeToolbar();
     }
