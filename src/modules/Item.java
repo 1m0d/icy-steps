@@ -40,8 +40,10 @@ public abstract class Item {
 
     public abstract void useItem(Tile t);
 
+
     public void loadImages(String path)
     {
+        System.out.print("kutya");
         try {
             image = ImageIO.read(new File(path));
         }

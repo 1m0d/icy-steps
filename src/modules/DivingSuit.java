@@ -6,7 +6,7 @@ public class DivingSuit extends Item
     public DivingSuit(Player player)
     {
         super(player);
-        super.loadImages("src/gui/icons/divingsuit.gif");
+        super.loadImages("src/gui/icons/diving-suit.png");
     }
     public DivingSuit(Tile tile) { super(tile); }
 
