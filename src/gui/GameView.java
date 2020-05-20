@@ -48,17 +48,17 @@ public class GameView extends JPanel {
 
         ImageIcon cImage =  new ImageIcon("src/gui/icons/camp.png");
         JButton campButton = new JButton(resizeIcon(cImage));
-        ImageIcon dsImage =  new ImageIcon("src/gui/icons/divingsuit.gif");
+        ImageIcon dsImage =  new ImageIcon("src/gui/icons/diving-suit.png");
         JButton divingsuitButton = new JButton(resizeIcon(dsImage));
-        ImageIcon fImage =  new ImageIcon("src/gui/icons/food.jpg");
+        ImageIcon fImage =  new ImageIcon("src/gui/icons/food.png");
         JButton foodButton = new JButton(resizeIcon(fImage));
-        ImageIcon fsImage =  new ImageIcon("src/gui/icons/fragileshovel.png");
+        ImageIcon fsImage =  new ImageIcon("src/gui/icons/fragile-shovel.png");
         JButton fshovelButton = new JButton(resizeIcon(fsImage));
         ImageIcon rImage =  new ImageIcon("src/gui/icons/rope.png");
         JButton ropeButton = new JButton(resizeIcon(rImage));
-        ImageIcon sImage =  new ImageIcon("src/gui/icons/shovel.gif");
+        ImageIcon sImage =  new ImageIcon("src/gui/icons/shovel.png");
         JButton shovelButton = new JButton(resizeIcon(sImage));
-        ImageIcon w1Image =  new ImageIcon("src/gui/icons/winningitem1.png");
+        ImageIcon w1Image =  new ImageIcon("src/gui/icons/winning-item.png");
         JButton w1Button = new JButton(resizeIcon(w1Image));
         ImageIcon w2Image =  new ImageIcon("src/gui/icons/winningitem2.png");
         JButton w2Button = new JButton(resizeIcon(w2Image));

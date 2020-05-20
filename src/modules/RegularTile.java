@@ -13,6 +13,7 @@ public class RegularTile extends Tile {
     private Item item;
     private static BufferedImage rtSnowImage;
     private static BufferedImage rtIceImage;
+    private static BufferedImage igloo;
 
     public RegularTile(int positionX, int positionY, int playerCapacity, int snowLayerCount, int uniqueID) {
         super(positionX, positionY, playerCapacity, snowLayerCount, uniqueID);
@@ -85,7 +86,9 @@ public class RegularTile extends Tile {
                     g.drawImage(rtIceImage, 0, 0, tileHeight, tileWidth, null);
 
                     if (item != null) {
-                        g.drawImage(item.image, 0, 0, null);
+                        System.out.print("cica");
+                        item.loadImages("src/gui/icons/"+item.toString()+".png");
+                        g.drawImage(item.image, 50, 50,50,50, null);
                     }
                 }
                 else {
@@ -94,7 +97,12 @@ public class RegularTile extends Tile {
 
                 if (scientistChecked)
                 {
-                    g.drawString(Integer.toString(RegularTile.super.getPlayerCapacity()),40,40);
+                    g.drawString(Integer.toString(RegularTile.super.getPlayerCapacity()),100,100);
+                }
+
+                if(iglooBuilt)
+                {
+                    g.drawImage(igloo, 0, 0, tileHeight,tileWidth, null);
                 }
 
                 int playerScaleX, playerScaleY;
@@ -136,7 +144,9 @@ public class RegularTile extends Tile {
     {
         try {
             rtSnowImage = ImageIO.read(new File("src/gui/icons/snow.png"));
-            rtIceImage = ImageIO.read(new File("src/gui/icons/ice.jpg"));
+            rtIceImage = ImageIO.read(new File("src/gui/icons/ice.png"));
+            igloo = ImageIO.read(new File("src/gui/icons/igloo.png"));
+
         } catch (IOException e) {
             e.printStackTrace();
         }

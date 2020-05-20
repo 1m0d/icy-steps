@@ -26,7 +26,7 @@ public class Bear {
 
     public void loadImages() {
         try {
-            image = ImageIO.read(new File("src/gui/icons/bear.jpg"));
+            image = ImageIO.read(new File("src/gui/icons/bear.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }

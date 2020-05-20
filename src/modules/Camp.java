@@ -13,6 +13,7 @@ public class Camp extends Item {
     public Camp(Tile tile) {
         super(tile);
         super.loadImages("src/gui/icons/camp.png");
+
     }
 
     @Override
