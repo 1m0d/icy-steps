@@ -60,19 +60,18 @@ public class GameView {
         toolbarPanel.setLayout(new FlowLayout());
 
         JButton stepButton, passButton, useItemButton, clearSnowButton, pickUpItemButton, useAbilityButton;
-        JComboBox stepDirCB, useAbilityCB;
+        JComboBox stepDirCB, useAbilityCB, ropeCB;
         stepButton = new JButton("Step");
-        stepDirCB = new JComboBox();
-        stepDirCB.addItem("up");
-        stepDirCB.addItem("right");
-        stepDirCB.addItem("down");
-        stepDirCB.addItem("left");
         passButton = new JButton("Pass");
         clearSnowButton = new JButton("Clear Snow");
         pickUpItemButton = new JButton("Pick Up Item");
         useAbilityButton = new JButton("Use Ability");
-        String[] ids = {"up", "right", "down", "left"};
-        useAbilityCB = new JComboBox(ids);
+        String[] dirs = {"up", "right", "down", "left"};
+        useAbilityCB = new JComboBox(dirs);
+        stepDirCB = new JComboBox(dirs);
+        ropeCB = new JComboBox(dirs);
+        ropeCB.setVisible(false);
+
         useItemButton = new JButton("Use Item");
         JLabel playerStatus = new JLabel(gameController.getCurrentPlayer().toString());
 
@@ -113,16 +112,18 @@ public class GameView {
         toolbarPanel.add(w1Button);
         toolbarPanel.add(w2Button);
         toolbarPanel.add(w3Button);
+        toolbarPanel.add(ropeCB);
 
         //Action listeners
-
         MouseAdapter mAdapter = new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
                 mainPanel.repaint();
                 playerStatus.setText(gameController.getCurrentPlayer().toString());
-                
-                //System.out.println("repaint call");
+                if (gameController.getCurrentPlayer() instanceof Eskimo) {
+
+                    useAbilityCB.setVisible(false);
+                }
             }
         };
         for (Component c: toolbarPanel.getComponents())
@@ -217,7 +218,7 @@ public class GameView {
         ropeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //interpreter.executeCommand("use-item", new String[]{"rope", String.valueOf(gameController.getInstance().getCurrentPlayer().getPosition().getUniqueID())});
+                ropeCB.setVisible(true);
                 itemType = "rope";
             }
         });
@@ -249,7 +250,15 @@ public class GameView {
         useItemButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                interpreter.executeCommand("use-item", new String[]{itemType});
+                if(itemType.equals("rope"))
+                {
+                    interpreter.executeCommand("use-item", new String[]{itemType, ropeCB.getSelectedItem().toString()});
+                    ropeCB.setVisible(false);
+                }
+                else
+                {
+                    interpreter.executeCommand("use-item", new String[]{itemType});
+                }
             }
         });
 
