@@ -11,12 +11,12 @@ public class RegularTile extends Tile {
     private boolean iglooBuilt = false;
     private boolean campBuilt = false;
     private Item item;
-    private static BufferedImage rtGroundImage;
+    private static BufferedImage rtSnowImage;
     private static BufferedImage rtIceImage;
 
     public RegularTile(int positionX, int positionY, int playerCapacity, int snowLayerCount, int uniqueID) {
         super(positionX, positionY, playerCapacity, snowLayerCount, uniqueID);
-        if(rtGroundImage == null || rtIceImage == null) {
+        if(rtSnowImage == null || rtIceImage == null) {
             loadImages();
         }
     }
@@ -82,14 +82,14 @@ public class RegularTile extends Tile {
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 if(snowLayerCount == 0) {
-                    g.drawImage(rtGroundImage, 0, 0, tileHeight, tileWidth, null);
+                    g.drawImage(rtIceImage, 0, 0, tileHeight, tileWidth, null);
 
                     if (item != null) {
                         g.drawImage(item.image, 0, 0, null);
                     }
                 }
                 else {
-                    g.drawImage(rtIceImage, 0, 0, tileHeight, tileWidth, null);
+                    g.drawImage(rtSnowImage, 0, 0, tileHeight, tileWidth, null);
                 }
 
                 int playerScaleX, playerScaleY;
@@ -126,7 +126,7 @@ public class RegularTile extends Tile {
     public void loadImages()
     {
         try {
-            rtGroundImage = ImageIO.read(new File("src/gui/icons/ground.jpg"));
+            rtSnowImage = ImageIO.read(new File("src/gui/icons/snow.png"));
             rtIceImage = ImageIO.read(new File("src/gui/icons/ice.jpg"));
         } catch (IOException e) {
             e.printStackTrace();
