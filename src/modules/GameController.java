@@ -185,7 +185,7 @@ public class GameController {
                     map.addItem(new WinningItem(), Integer.parseInt(tokens[0]));
                     break;
                 default:
-                    System.out.println(tokens[1] + "type could not been found");
+                    System.out.println(tokens[1] + " type could not been found");
             }
         }
     }
