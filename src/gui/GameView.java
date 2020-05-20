@@ -1,4 +1,5 @@
 package gui;
+import gui.controllers.GameViewController;
 import modules.*;
 import javax.swing.*;
 import java.awt.*;
@@ -8,36 +9,23 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class GameView {
-
-    GameController gameController = GameController.getInstance();
+    private static GameController gameController = GameController.getInstance();
+    private static GameViewController gameViewController;
     private static GameView gameView;
+    private static JPanel mainPanel;
 
-    private static JPanel mainPanel = new JPanel()
-    {
-        GameController gameController = GameController.getInstance();
-        @Override
-        public void paintComponent(Graphics g) {
-            super.paintComponent(g);
-            doDrawing(g);
+    public static GameView getInstance() {
+        if (gameView == null) {
+            gameView = new GameView();
+            initialize();
         }
-
-        private void doDrawing(Graphics g) {
-            Graphics2D g2d = (Graphics2D) g;
-            g2d.setColor(Color.BLACK);
-            gameController.getInstance().getMap().Draw(mainPanel);
-        }
-    };
+        return gameView;
+    }
 
     public static JPanel getMainPanel() {
         return mainPanel;
     }
 
-    public static GameView getInstance() {
-        if (gameView == null) {
-            gameView = new GameView();
-        }
-        return gameView;
-    }
     Interpreter interpreter = new Interpreter();
     private String itemType;
 
@@ -255,12 +243,24 @@ public class GameView {
 
     }
 
-    public GameView() {
-        super();
+    private static void initialize() {
+        mainPanel = new JPanel() {
+            @Override
+            public void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                doDrawing(g);
+            }
+
+            private void doDrawing(Graphics g) {
+                Graphics2D g2d = (Graphics2D) g;
+                g2d.setColor(Color.BLACK);
+                gameController.getMap().Draw(mainPanel);
+            }
+        };
+
         GridLayout gridLayout = new GridLayout(gameController.getMap().getRowCount(), gameController.getMap().getColumnCount());
         mainPanel.setLayout(gridLayout);
-        initializeToolbar();
+
+        gameViewController = new GameViewController();
     }
-
 }
-

@@ -53,7 +53,7 @@ public class MainMenu
                     }
                 }
                 GameController.getInstance().startGame();
-                mainFrame.changePanel(new GameView().getMainPanel());
+                mainFrame.changePanel(GameView.getInstance().getMainPanel());
             }
         });
 
