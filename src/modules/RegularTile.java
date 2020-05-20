@@ -92,6 +92,11 @@ public class RegularTile extends Tile {
                     g.drawImage(rtSnowImage, 0, 0, tileHeight, tileWidth, null);
                 }
 
+                if (scientistChecked)
+                {
+                    g.drawString(Integer.toString(RegularTile.super.getPlayerCapacity()),40,40);
+                }
+
                 int playerScaleX, playerScaleY;
                 if(!players.isEmpty()) {
                     switch (players.size()) {
@@ -124,7 +129,6 @@ public class RegularTile extends Tile {
                 }
             }
         };
-
         jp.add(pane);
     }
 

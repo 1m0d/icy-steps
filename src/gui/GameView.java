@@ -2,15 +2,13 @@ package gui;
 import modules.GameController;
 import modules.Interpreter;
 import modules.Player;
+import modules.Scientist;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 
 
 public class GameView extends JPanel {
@@ -43,7 +41,7 @@ public class GameView extends JPanel {
         clearSnowButton = new JButton("Clear Snow");
         pickUpItemButton = new JButton("Pick Up Item");
         useAbilityButton = new JButton("Use Ability");
-        Integer[] ids = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24}; //ezt nem igy kellene probably
+        String[] ids = {"up", "right", "down", "left"}; //ezt nem igy kellene probably
         useAbilityCB = new JComboBox(ids);
 
         ImageIcon cImage =  new ImageIcon("src/gui/icons/camp.png");
@@ -70,7 +68,8 @@ public class GameView extends JPanel {
         passButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                gameController.getInstance().getCurrentPlayer().pass();
+                interpreter.executeCommand("player-pass", null);
+                invalidate();
             }
         });
 
@@ -78,28 +77,39 @@ public class GameView extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 interpreter.executeCommand("step", new String[]{stepDirCB.getSelectedItem().toString()});
+                invalidate();
             }
         });
 
         clearSnowButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                gameController.getCurrentPlayer().clearSnow();
+                interpreter.executeCommand("clear-snow", null);
+                invalidate();
             }
         });
         
         pickUpItemButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                gameController.getCurrentPlayer().pickUpItem();
+                interpreter.executeCommand("pick-up-item", null);
+                invalidate();
             }
         });
 
         useAbilityButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                gameController.getCurrentPlayer().useAbility( gameController.getInstance().getCurrentPlayer().getPosition());
-                //TODO Scientist nem tud masik mezot megvizsgalni, csak amin eppen all (Eskimo miatt).
+                Player currentPlayer = gameController.getCurrentPlayer();
+                if (currentPlayer instanceof Scientist)
+                {
+                    interpreter.executeCommand("use-scientist-ability", new String[]{useAbilityCB.getSelectedItem().toString()});
+                }
+                else
+                {
+                    interpreter.executeCommand("use-eskimo-ability", null);
+                }
+                invalidate();
             }
         });
 
@@ -107,6 +117,7 @@ public class GameView extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 interpreter.executeCommand("use-item", new String[]{"food"});
+                invalidate();
             }
         });
 
@@ -114,13 +125,16 @@ public class GameView extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 interpreter.executeCommand("use-item", new String[]{"camp"});
+                invalidate();
             }
+
         });
 
         divingsuitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 interpreter.executeCommand("use-item", new String[]{"diving-suit"});
+                invalidate();
             }
         });
 
@@ -128,6 +142,7 @@ public class GameView extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 interpreter.executeCommand("use-item", new String[]{"shovel"});
+                invalidate();
             }
         });
 
@@ -135,13 +150,16 @@ public class GameView extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 interpreter.executeCommand("use-item", new String[]{"fragile-shovel"});
+                invalidate();
             }
         });
 
         ropeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 interpreter.executeCommand("use-item", new String[]{"rope", String.valueOf(gameController.getInstance().getCurrentPlayer().getPosition().getUniqueID())});
+                invalidate();
             }
         });
 
@@ -149,6 +167,7 @@ public class GameView extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 interpreter.executeCommand("use-item", new String[]{"winning-item"});
+                invalidate();
             }
         });
 
@@ -156,6 +175,7 @@ public class GameView extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 interpreter.executeCommand("use-item", new String[]{"winning-item"});
+                invalidate();
             }
         });
 
@@ -163,9 +183,9 @@ public class GameView extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 interpreter.executeCommand("use-item", new String[]{"winning-item"});
+                invalidate();
             }
         });
-
 
         frame.add(stepButton);
         frame.add(stepDirCB);
