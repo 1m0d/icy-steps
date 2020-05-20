@@ -97,7 +97,7 @@ public class RegularTile extends Tile {
 
                     if (item != null) {
                         item.loadImages("src/gui/icons/"+item.toString()+".png");
-                        g.drawImage(item.image, 50, 50,50,50, null);
+                        g.drawImage(item.image, 35, 35,50,50, null);
                     }
                 }
                 else {

@@ -58,7 +58,7 @@ public class GameView extends JPanel {
         JButton ropeButton = new JButton(resizeIcon(rImage));
         ImageIcon sImage =  new ImageIcon("src/gui/icons/shovel.png");
         JButton shovelButton = new JButton(resizeIcon(sImage));
-        ImageIcon w1Image =  new ImageIcon("src/gui/icons/winning-item.png");
+        ImageIcon w1Image =  new ImageIcon("src/gui/icons/winning-item1.png");
         JButton w1Button = new JButton(resizeIcon(w1Image));
         ImageIcon w2Image =  new ImageIcon("src/gui/icons/winningitem2.png");
         JButton w2Button = new JButton(resizeIcon(w2Image));
