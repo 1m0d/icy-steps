@@ -14,6 +14,8 @@ public class RegularTile extends Tile {
     private static BufferedImage rtSnowImage;
     private static BufferedImage rtIceImage;
     private static BufferedImage igloo;
+    private static BufferedImage bear;
+
 
     public RegularTile(int positionX, int positionY, int playerCapacity, int snowLayerCount, int uniqueID) {
         super(positionX, positionY, playerCapacity, snowLayerCount, uniqueID);
@@ -27,6 +29,12 @@ public class RegularTile extends Tile {
 
     public boolean isIglooBuilt() { return iglooBuilt; }
     public boolean isCampBuilt() { return campBuilt; }
+
+    public boolean checkBear()
+    {
+        return GameController.getInstance().getBear().getPosition() == this;
+
+    }
 
     @Override
     public void onPlayerStep(Player p) {
@@ -43,6 +51,8 @@ public class RegularTile extends Tile {
 
     @Override
     public void onStorm() {
+        snowLayerCount++;
+        System.out.print(snowLayerCount);
         if(iglooBuilt || campBuilt)
             return;
 
@@ -86,9 +96,8 @@ public class RegularTile extends Tile {
                     g.drawImage(rtIceImage, 0, 0, tileHeight, tileWidth, null);
 
                     if (item != null) {
-                        System.out.print("cica");
                         item.loadImages("src/gui/icons/"+item.toString()+".png");
-                        g.drawImage(item.image, 50, 50,50,50, null);
+                        g.drawImage(item.image, 35, 35,50,50, null);
                     }
                 }
                 else {
@@ -97,13 +106,21 @@ public class RegularTile extends Tile {
 
                 if (scientistChecked)
                 {
-                    g.drawString(Integer.toString(RegularTile.super.getPlayerCapacity()),100,100);
+                    g.drawString(Integer.toString(RegularTile.super.getPlayerCapacity()), tileHeight-20, tileWidth-50);
                 }
+
+                g.drawString(Integer.toString(RegularTile.super.getSnowLayerCount()), tileHeight-20, tileWidth-20);
 
                 if(iglooBuilt)
                 {
                     g.drawImage(igloo, 0, 0, tileHeight,tileWidth, null);
                 }
+
+                if (checkBear())
+                {
+                    g.drawImage(bear, 0, 0, tileHeight,tileWidth, null);
+                }
+
 
                 int playerScaleX, playerScaleY;
                 if(!players.isEmpty()) {
@@ -146,6 +163,7 @@ public class RegularTile extends Tile {
             rtSnowImage = ImageIO.read(new File("src/gui/icons/snow.png"));
             rtIceImage = ImageIO.read(new File("src/gui/icons/ice.png"));
             igloo = ImageIO.read(new File("src/gui/icons/igloo.png"));
+            bear = ImageIO.read(new File("src/gui/icons/bear.png"));
 
         } catch (IOException e) {
             e.printStackTrace();

@@ -73,14 +73,13 @@ public abstract class Player {
     }
 
     /**
-     *A jatekos az adott mezore lepp
+     *A jatekos az adott mezore lep
      */
     public void step(Tile t) {
-        position.removePlayer(this);
-        position = t;
-        t.onPlayerStep(this);
-
-        work();
+            position.removePlayer(this);
+            position = t;
+            t.onPlayerStep(this);
+            work();
     }
     /**
      *A jatekos tovabbadja a koret a kovetkezo jatekosnak
