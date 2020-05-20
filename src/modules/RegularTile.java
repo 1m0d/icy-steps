@@ -11,12 +11,14 @@ public class RegularTile extends Tile {
     private boolean iglooBuilt = false;
     private boolean campBuilt = false;
     private Item item;
-    private BufferedImage rtGroundImage;
-    private BufferedImage rtIceImage;
+    private static BufferedImage rtGroundImage;
+    private static BufferedImage rtIceImage;
 
     public RegularTile(int positionX, int positionY, int playerCapacity, int snowLayerCount, int uniqueID) {
         super(positionX, positionY, playerCapacity, snowLayerCount, uniqueID);
-        loadImages();
+        if(rtGroundImage == null || rtIceImage == null) {
+            loadImages();
+        }
     }
 
     public Item getItem(){ return item; }
