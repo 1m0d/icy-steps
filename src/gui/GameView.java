@@ -70,39 +70,35 @@ public class GameView extends JPanel {
         passButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                GameModel.getInstance().getCurrentPlayer().pass();
+                gameController.getInstance().getCurrentPlayer().pass();
             }
         });
 
         stepButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    interpreter.executeCommand("step", new String[]{stepDirCB.getSelectedItem().toString()});
-                } catch (FileNotFoundException ex) {
-                    ex.printStackTrace();
-                }
+                interpreter.executeCommand("step", new String[]{stepDirCB.getSelectedItem().toString()});
             }
         });
 
         clearSnowButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                GameController.getInstance().getCurrentPlayer().clearSnow();
+                gameController.getCurrentPlayer().clearSnow();
             }
         });
         
         pickUpItemButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                GameModel.getInstance().getCurrentPlayer().pickUpItem();
+                gameController.getCurrentPlayer().pickUpItem();
             }
         });
 
         useAbilityButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-           GameModel.getInstance().getCurrentPlayer().useAbility( GameModel.getInstance().getCurrentPlayer().getPosition());
+                gameController.getCurrentPlayer().useAbility( gameController.getInstance().getCurrentPlayer().getPosition());
                 //TODO Scientist nem tud masik mezot megvizsgalni, csak amin eppen all (Eskimo miatt).
             }
         });
@@ -110,99 +106,63 @@ public class GameView extends JPanel {
         foodButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    interpreter.executeCommand("use-item", new String[]{"food"});
-                } catch (FileNotFoundException ex) {
-                    ex.printStackTrace();
-                }
+                interpreter.executeCommand("use-item", new String[]{"food"});
             }
         });
 
         campButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    interpreter.executeCommand("use-item", new String[]{"camp"});
-                } catch (FileNotFoundException ex) {
-                    ex.printStackTrace();
-                }
+                interpreter.executeCommand("use-item", new String[]{"camp"});
             }
         });
 
         divingsuitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    interpreter.executeCommand("use-item", new String[]{"diving-suit"});
-                } catch (FileNotFoundException ex) {
-                    ex.printStackTrace();
-                }
+                interpreter.executeCommand("use-item", new String[]{"diving-suit"});
             }
         });
 
         shovelButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    interpreter.executeCommand("use-item", new String[]{"shovel"});
-                } catch (FileNotFoundException ex) {
-                    ex.printStackTrace();
-                }
+                interpreter.executeCommand("use-item", new String[]{"shovel"});
             }
         });
 
         fshovelButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    interpreter.executeCommand("use-item", new String[]{"fragile-shovel"});
-                } catch (FileNotFoundException ex) {
-                    ex.printStackTrace();
-                }
+                interpreter.executeCommand("use-item", new String[]{"fragile-shovel"});
             }
         });
 
         ropeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    interpreter.executeCommand("use-item", new String[]{"rope", String.valueOf(GameModel.getInstance().getCurrentPlayer().getPosition().getUniqueID())});
-                } catch (FileNotFoundException ex) {
-                    ex.printStackTrace();
-                }
+                interpreter.executeCommand("use-item", new String[]{"rope", String.valueOf(gameController.getInstance().getCurrentPlayer().getPosition().getUniqueID())});
             }
         });
 
         w1Button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    interpreter.executeCommand("use-item", new String[]{"winning-item"});
-                } catch (FileNotFoundException ex) {
-                    ex.printStackTrace();
-                }
+                interpreter.executeCommand("use-item", new String[]{"winning-item"});
             }
         });
 
         w2Button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    interpreter.executeCommand("use-item", new String[]{"winning-item"});
-                } catch (FileNotFoundException ex) {
-                    ex.printStackTrace();
-                }
+                interpreter.executeCommand("use-item", new String[]{"winning-item"});
             }
         });
 
         w3Button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    interpreter.executeCommand("use-item", new String[]{"winning-item"});
-                } catch (FileNotFoundException ex) {
-                    ex.printStackTrace();
-                }
+                interpreter.executeCommand("use-item", new String[]{"winning-item"});
             }
         });
 
