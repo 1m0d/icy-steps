@@ -1,5 +1,8 @@
 package gui;
 
+import gui.controllers.GameViewController;
+import gui.controllers.ToolBarController;
+import jdk.jshell.spi.ExecutionControl;
 import modules.GameController;
 import modules.Interpreter;
 import modules.Player;
@@ -14,9 +17,12 @@ import java.awt.event.MouseEvent;
 
 public class ToolbarView {
     private static ToolbarView toolbarview;
+    private static ToolBarController toolBarController;
     private static GameView gameView;
     private static GameController gameController;
     private static Interpreter interpreter = new Interpreter();
+    private static JPanel toolbarPanel;
+    private static JLabel playerStatus = new JLabel();
 
     public static ToolbarView getInstance(){
         if(toolbarview == null){
@@ -27,10 +33,18 @@ public class ToolbarView {
     }
 
     private static void initialize(){
+        toolBarController = new ToolBarController();
         gameView = GameView.getInstance();
         gameController = GameController.getInstance();
         JFrame toolbarFrame = new JFrame();
-        JPanel toolbarPanel = new JPanel();
+        toolbarPanel = new JPanel(){
+            @Override
+            public void paintComponent(Graphics g) {
+                super.paintComponent(g);
+
+                playerStatus.setText(gameController.getCurrentPlayer().toString());
+            }
+        };
 
         toolbarFrame.add(toolbarPanel);
         toolbarFrame.setSize(250,500);
@@ -39,7 +53,7 @@ public class ToolbarView {
         toolbarFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         toolbarPanel.setLayout(new FlowLayout());
 
-        JButton stepButton, passButton, useItemButton, clearSnowButton, pickUpItemButton, useAbilityButton;
+        JButton stepButton, passButton, clearSnowButton, pickUpItemButton, useAbilityButton;
         JComboBox stepDirCB, useAbilityCB;
         stepButton = new JButton("Step");
         stepDirCB = new JComboBox();
@@ -53,7 +67,6 @@ public class ToolbarView {
         useAbilityButton = new JButton("Use Ability");
         String[] ids = {"up", "right", "down", "left"};
         useAbilityCB = new JComboBox(ids);
-        useItemButton = new JButton("Use Item");
         JLabel playerStatus = new JLabel(gameController.getCurrentPlayer().toString());
 
         ImageIcon cImage =  new ImageIcon("src/gui/icons/camp.png");
@@ -63,7 +76,7 @@ public class ToolbarView {
         ImageIcon fImage =  new ImageIcon("src/gui/icons/food.png");
         JButton foodButton = new JButton(resizeIcon(fImage));
         ImageIcon fsImage =  new ImageIcon("src/gui/icons/fragile-shovel.png");
-        JButton fshovelButton = new JButton(resizeIcon(fsImage));
+        JButton fShovelButton = new JButton(resizeIcon(fsImage));
         ImageIcon rImage =  new ImageIcon("src/gui/icons/rope.png");
         JButton ropeButton = new JButton(resizeIcon(rImage));
         ImageIcon sImage =  new ImageIcon("src/gui/icons/shovel.png");
@@ -83,11 +96,10 @@ public class ToolbarView {
         toolbarPanel.add(useAbilityCB);
         toolbarPanel.add(clearSnowButton);
         toolbarPanel.add(pickUpItemButton);
-        toolbarPanel.add(useItemButton);
         toolbarPanel.add(campButton);
         toolbarPanel.add(divingsuitButton);
         toolbarPanel.add(foodButton);
-        toolbarPanel.add(fshovelButton);
+        toolbarPanel.add(fShovelButton);
         toolbarPanel.add(ropeButton);
         toolbarPanel.add(shovelButton);
         toolbarPanel.add(w1Button);
@@ -95,14 +107,10 @@ public class ToolbarView {
         toolbarPanel.add(w3Button);
 
         //Action listeners
-
         MouseAdapter mAdapter = new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
-                gameView.getMainPanel().repaint();
-                playerStatus.setText(gameController.getCurrentPlayer().toString());
-
-                //System.out.println("repaint call");
+                toolBarController.toolbarButtonPressed();
             }
         };
 
@@ -150,14 +158,73 @@ public class ToolbarView {
             }
         });
 
-        useItemButton.addActionListener(new ActionListener() {
+        foodButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                interpreter.executeCommand("use-item", new String[]{itemType});
+            public void actionPerformed(ActionEvent e) {
+                interpreter.executeCommand("use-item", new String[]{"food"});
             }
         });
 
+        campButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                interpreter.executeCommand("use-item", new String[]{"camp"});
+            }
+
+        });
+
+        divingsuitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                interpreter.executeCommand("use-item", new String[]{"diving-suit"});
+            }
+        });
+
+        shovelButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                interpreter.executeCommand("use-item", new String[]{"shovel"});
+            }
+        });
+
+        fShovelButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                interpreter.executeCommand("use-item", new String[]{"fragile-shovel"});
+            }
+        });
+
+        ropeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO: should be able to choose which square to use it on
+                throw new UnsupportedOperationException("Not implemented yet");
+            }
+        });
+
+        w1Button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                interpreter.executeCommand("use-item", new String[]{"winning-item"});
+            }
+        });
+
+        w2Button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                interpreter.executeCommand("use-item", new String[]{"winning-item"});
+            }
+        });
+
+        w3Button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                interpreter.executeCommand("use-item", new String[]{"winning-item"});
+            }
+        });
     }
+
+    public JPanel getToolbarPanel(){ return toolbarPanel; }
 
     private static Icon resizeIcon(ImageIcon icon) {
         Image img = icon.getImage();

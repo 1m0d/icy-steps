@@ -19,6 +19,4 @@ public class Eskimo extends Player  {
         ((RegularTile)position).buildIgloo();
         work();
     }
-
-
 }
