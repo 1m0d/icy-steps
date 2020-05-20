@@ -36,7 +36,7 @@ public class Interpreter {
         in.close();
     }
 
-    private void executeCommand(String command, String[] arguments) throws FileNotFoundException {
+    public void executeCommand(String command, String[] arguments){
         Player currentPlayer = gameController.getCurrentPlayer();
         Map map = gameController.getMap();
         int positionX;
@@ -45,7 +45,11 @@ public class Interpreter {
         int destinationY;
         switch (command){
             case "load-map":
-                gameController.loadMap(testDirectory + "/map");
+                try {
+                    gameController.loadMap(testDirectory + "/map");
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
                 break;
 
             case "start-game":
