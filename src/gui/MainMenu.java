@@ -53,8 +53,8 @@ public class MainMenu
                         e.printStackTrace();
                     }
                 }
+                GameController.getInstance().startGame();
                 mainFrame.changePanel(new GameView());
-
             }
         });
 
