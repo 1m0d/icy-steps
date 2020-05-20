@@ -163,7 +163,7 @@ public abstract class Player {
     }
     @Override
     public String toString() {
-        return "lives " + lives + " energy: " + energy;
+        return "lives:" + lives + " energy: " + energy;
     }
 
 }
