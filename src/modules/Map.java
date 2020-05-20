@@ -82,8 +82,7 @@ public class Map implements IDrawable {
 
     @Override
     public void Draw(JPanel jp) {
-        for(Tile t: tiles)
-        {
+        for(Tile t: tiles) {
             t.Draw(jp);
         }
     }

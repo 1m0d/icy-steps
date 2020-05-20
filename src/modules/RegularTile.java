@@ -70,39 +70,34 @@ public class RegularTile extends Tile {
 
     @Override
     public void Draw(JPanel jp) {
+        if (tileHeight == -1 || tileWidth == -1) {
+            calculateTileDimensions();
+        }
 
         JPanel pane = new JPanel()
         {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                if (item != null)
-                {
-                    System.out.println("itemrajzolás hívás");
-                    g.drawImage(item.image,0,0,null);
-                    g.drawRect(10,10,30,30);
+                if(snowLayerCount == 0) {
+                    g.drawImage(rtGroundImage,0,0,tileHeight,tileWidth,null);
+
+                    if (item != null) {
+                        g.drawImage(item.image,0,0,null);
+                        g.drawRect(10,10,30,30);
+                    }
+                }
+                else {
+                    g.drawImage(rtIceImage,0,0,tileHeight,tileWidth,null);
                 }
 
-                if(snowLayerCount == 0)
-                {
-                    g.drawImage(rtGroundImage,0,0,null);
-                    //g.drawImage(item.image,0,0,null);
-
-                }
-                else
-                {
-                    g.drawImage(rtIceImage,0,0,null);
-                }
-
-                for(Player p: players)
-                {
+                for(Player p: players) {
                     g.drawImage(p.image,getWidth()/4,0,null);
                 }
             }
         };
 
         jp.add(pane);
-
     }
 
     public void loadImages()

@@ -1,6 +1,7 @@
 package modules;
 
 import gui.IDrawable;
+import gui.MainFrame;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -17,6 +18,8 @@ public abstract class Tile implements IDrawable {
     protected int snowLayerCount;
     protected ArrayList<Player> players = new ArrayList<>();
     public BufferedImage image;
+    protected static int tileWidth = -1;
+    protected static int tileHeight = -1;
 
     public abstract void onPlayerStep(Player p);
     public abstract void onBearStep();
@@ -50,4 +53,8 @@ public abstract class Tile implements IDrawable {
         }
     }
 
+    protected void calculateTileDimensions(){
+        tileHeight = MainFrame.getFrameHeight() / GameController.getInstance().getMap().getRowCount();
+        tileWidth = MainFrame.getFrameWidth() / GameController.getInstance().getMap().getColumnCount();
+    }
 }

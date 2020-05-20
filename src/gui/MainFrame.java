@@ -37,4 +37,7 @@ public class MainFrame {
         frame.update(frame.getGraphics());
         frame.setVisible(true);
     }
+
+    public static int getFrameWidth() { return FrameWidth; }
+    public static int getFrameHeight() { return FrameHeight; }
 }
