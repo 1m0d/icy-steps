@@ -43,7 +43,6 @@ public abstract class Item {
 
     public void loadImages(String path)
     {
-        System.out.print("kutya");
         try {
             image = ImageIO.read(new File(path));
         }

@@ -76,14 +76,19 @@ public abstract class Player {
     }
 
     /**
-     *A jatekos az adott mezore lepp
+     *A jatekos az adott mezore lep
      */
     public void step(Tile t) {
-        position.removePlayer(this);
-        position = t;
-        t.onPlayerStep(this);
-
-        work();
+        System.out.print("fasz");
+        //if ((t.getPositionX() >= 0 && t.getPositionX() <= GameController.getInstance().getMap().getRowCount() &&
+          //     t.getPositionY() >= 0 && t.getPositionY() <= GameController.getInstance().getMap().getColumnCount()))
+        //{
+            System.out.print("   ifesfasz   ");
+            position.removePlayer(this);
+            position = t;
+            t.onPlayerStep(this);
+            work();
+        //}
     }
     /**
      *A jatekos tovabbadja a koret a kovetkezo jatekosnak
