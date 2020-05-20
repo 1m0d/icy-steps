@@ -21,10 +21,7 @@ public abstract class Player {
     protected boolean activePlayer = false;
     protected boolean hasDivingSuit = false;
 
-
     public BufferedImage image;
-
-
 
     /**
      * Visszater a jatekos azonositojaval
@@ -81,14 +78,13 @@ public abstract class Player {
     }
 
     /**
-     *A jatekos az adott mezore lepp
+     *A jatekos az adott mezore lep
      */
     public void step(Tile t) {
-        position.removePlayer(this);
-        position = t;
-        t.onPlayerStep(this);
-
-        work();
+            position.removePlayer(this);
+            position = t;
+            t.onPlayerStep(this);
+            work();
     }
     /**
      *A jatekos tovabbadja a koret a kovetkezo jatekosnak
@@ -174,7 +170,7 @@ public abstract class Player {
     }
     @Override
     public String toString() {
-        return "lives " + lives + " energy: " + energy;
+        return "lives:" + lives + " energy: " + energy;
     }
 
 }

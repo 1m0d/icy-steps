@@ -7,7 +7,7 @@ public class HoleTile extends Tile {
 
     public HoleTile(int positionX, int positionY, int snowLayerCount, int uniqueID) {
         super(positionX, positionY, 0, snowLayerCount, uniqueID);
-        super.loadImages("src/gui/icons/water.jpg");
+        super.loadImages("src/gui/icons/water.png");
     }
 
     public void onPlayerStep(Player p) {

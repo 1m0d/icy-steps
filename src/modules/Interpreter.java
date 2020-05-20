@@ -68,7 +68,13 @@ public class Interpreter {
             case "step":
                 positionX = currentPlayer.getPosition().getPositionX();
                 positionY = currentPlayer.getPosition().getPositionY();
-                currentPlayer.step(getTileByDirection(arguments[0], positionX, positionY));
+                if ((positionX == 0 && arguments[0] == "left" ||
+                        positionX == GameController.getInstance().getMap().getRowCount()-1 && arguments[0] == "right" ||
+                        positionY == 0 && arguments[0] == "up" ||
+                         positionY == GameController.getInstance().getMap().getColumnCount()-1 && arguments[0] == "down"))
+                {break;
+                    }
+                else {currentPlayer.step(getTileByDirection(arguments[0], positionX, positionY));}
                 break;
 
             case "player-pass":
@@ -100,6 +106,7 @@ public class Interpreter {
                 Bear bear = gameController.getBear();
                 positionX = bear.getPosition().getPositionX();
                 positionY = bear.getPosition().getPositionY();
+
                 bear.move(getTileByDirection(arguments[0], positionX, positionY));
                 break;
 

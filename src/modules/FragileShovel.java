@@ -16,7 +16,7 @@ public class FragileShovel extends Shovel {
     public FragileShovel(){}
     public FragileShovel(Player player) {
         super(player);
-        super.loadImages("src/gui/icons/fragileshovel.png");
+        super.loadImages("src/gui/icons/fragile-shovel.png");
     }
     public FragileShovel(Tile tile) {
         super(tile);

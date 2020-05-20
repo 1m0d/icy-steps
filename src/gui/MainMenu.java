@@ -38,7 +38,6 @@ public class MainMenu
         innerPanel.add(exit);
         panel.add(outerPanel, BorderLayout.NORTH);
         panel.add(innerPanel, BorderLayout.CENTER);
-
         panel.validate();
 
         // action listeners
@@ -54,7 +53,7 @@ public class MainMenu
                     }
                 }
                 GameController.getInstance().startGame();
-                mainFrame.changePanel(new GameView());
+                mainFrame.changePanel(GameView.getInstance().getMainPanel());
             }
         });
 

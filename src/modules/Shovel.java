@@ -13,11 +13,11 @@ public class Shovel extends Item
     public Shovel(){}
     public Shovel(Player player) {
         super(player);
-        super.loadImages("src/gui/icons/bear.jpg");
+        super.loadImages("src/gui/icons/bear.png");
     }
     public Shovel(Tile tile) {
         super(tile);
-        super.loadImages("src/gui/icons/bear.jpg");
+        super.loadImages("src/gui/icons/bear.png");
     }
 
     @Override
