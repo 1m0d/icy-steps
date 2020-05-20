@@ -1,18 +1,18 @@
 package gui;
-import modules.GameController;
-import modules.Interpreter;
-import modules.Player;
-import modules.Scientist;
+import modules.*;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 
 public class GameView extends JPanel {
     GameController gameController = GameController.getInstance();
+    String itemType;
+
 
     Interpreter interpreter = new Interpreter();
     private void doDrawing(Graphics g) {
@@ -41,8 +41,10 @@ public class GameView extends JPanel {
         clearSnowButton = new JButton("Clear Snow");
         pickUpItemButton = new JButton("Pick Up Item");
         useAbilityButton = new JButton("Use Ability");
-        String[] ids = {"up", "right", "down", "left"}; //ezt nem igy kellene probably
+        String[] ids = {"up", "right", "down", "left"};
         useAbilityCB = new JComboBox(ids);
+        useItemButton = new JButton("Use Item");
+        JLabel playerStatus = new JLabel(gameController.getCurrentPlayer().toString());
 
         ImageIcon cImage =  new ImageIcon("src/gui/icons/camp.png");
         JButton campButton = new JButton(resizeIcon(cImage));
@@ -63,13 +65,17 @@ public class GameView extends JPanel {
         ImageIcon w3Image =  new ImageIcon("src/gui/icons/winningitem3.png");
         JButton w3Button = new JButton(resizeIcon(w3Image));
 
+        //ArrayList<Item> items = gameController.getCurrentPlayer().getItems();
+
+
+
 
         //Action listeners
         passButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 interpreter.executeCommand("player-pass", null);
-                invalidate();
+                repaint();
             }
         });
 
@@ -77,7 +83,7 @@ public class GameView extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 interpreter.executeCommand("step", new String[]{stepDirCB.getSelectedItem().toString()});
-                invalidate();
+                repaint();
             }
         });
 
@@ -85,7 +91,7 @@ public class GameView extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 interpreter.executeCommand("clear-snow", null);
-                invalidate();
+                repaint();
             }
         });
         
@@ -93,7 +99,7 @@ public class GameView extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 interpreter.executeCommand("pick-up-item", null);
-                invalidate();
+                repaint();
             }
         });
 
@@ -109,23 +115,27 @@ public class GameView extends JPanel {
                 {
                     interpreter.executeCommand("use-eskimo-ability", null);
                 }
-                invalidate();
+                repaint();
             }
         });
+
 
         foodButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                interpreter.executeCommand("use-item", new String[]{"food"});
-                invalidate();
+                //interpreter.executeCommand("use-item", new String[]{"food"});
+                //repaint();
+                itemType = "food";
+
             }
         });
 
         campButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                interpreter.executeCommand("use-item", new String[]{"camp"});
-                invalidate();
+                //interpreter.executeCommand("use-item", new String[]{"camp"});
+                //repaint();
+                itemType ="camp";
             }
 
         });
@@ -133,24 +143,27 @@ public class GameView extends JPanel {
         divingsuitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                interpreter.executeCommand("use-item", new String[]{"diving-suit"});
-                invalidate();
+                //interpreter.executeCommand("use-item", new String[]{"diving-suit"});
+                //repaint();
+                itemType = "diving-suit";
             }
         });
 
         shovelButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                interpreter.executeCommand("use-item", new String[]{"shovel"});
-                invalidate();
+                //interpreter.executeCommand("use-item", new String[]{"shovel"});
+                //repaint();
+                itemType = "shovel";
             }
         });
 
         fshovelButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                interpreter.executeCommand("use-item", new String[]{"fragile-shovel"});
-                invalidate();
+                //interpreter.executeCommand("use-item", new String[]{"fragile-shovel"});
+                //repaint();
+                itemType ="fragile-shovel";
             }
         });
 
@@ -158,16 +171,18 @@ public class GameView extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                interpreter.executeCommand("use-item", new String[]{"rope", String.valueOf(gameController.getInstance().getCurrentPlayer().getPosition().getUniqueID())});
-                invalidate();
+                //interpreter.executeCommand("use-item", new String[]{"rope", String.valueOf(gameController.getInstance().getCurrentPlayer().getPosition().getUniqueID())});
+                //repaint();
+                itemType = "rope";
             }
         });
 
         w1Button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                interpreter.executeCommand("use-item", new String[]{"winning-item"});
-                invalidate();
+                //interpreter.executeCommand("use-item", new String[]{"winning-item"});
+                //repaint();
+                itemType ="winning-item";
             }
         });
 
@@ -175,7 +190,8 @@ public class GameView extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 interpreter.executeCommand("use-item", new String[]{"winning-item"});
-                invalidate();
+                repaint();
+                itemType ="winning-item";
             }
         });
 
@@ -183,10 +199,20 @@ public class GameView extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 interpreter.executeCommand("use-item", new String[]{"winning-item"});
-                invalidate();
+                repaint();
+                itemType ="winning-item";
             }
         });
 
+        useItemButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                interpreter.executeCommand("use-item", new String[]{itemType});
+                repaint();
+            }
+        });
+
+        frame.add(playerStatus);
         frame.add(stepButton);
         frame.add(stepDirCB);
         frame.add(passButton);
@@ -194,6 +220,7 @@ public class GameView extends JPanel {
         frame.add(useAbilityCB);
         frame.add(clearSnowButton);
         frame.add(pickUpItemButton);
+        frame.add(useItemButton);
         frame.add(campButton);
         frame.add(divingsuitButton);
         frame.add(foodButton);

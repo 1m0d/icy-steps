@@ -43,6 +43,7 @@ public abstract class Tile implements IDrawable {
 
     public void onScientistAbility() { scientistChecked = true; }
     public void addPlayer(Player player) { players.add(player); }
+    public void removePlayer(Player player) {players.remove(player);}
 
     public void loadImages(String path)
     {
