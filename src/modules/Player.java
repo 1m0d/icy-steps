@@ -21,10 +21,7 @@ public abstract class Player {
     protected boolean activePlayer = false;
     protected boolean hasDivingSuit = false;
 
-
     public BufferedImage image;
-
-
 
     /**
      * Visszater a jatekos azonositojaval
