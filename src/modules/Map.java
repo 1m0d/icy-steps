@@ -4,17 +4,20 @@ import gui.IDrawable;
 
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Map implements IDrawable {
     private ArrayList<Tile> tiles = new ArrayList<>();
     private ArrayList<Item> items = new ArrayList<>();
     private int rowCount = 0;
     private int columnCount = 0;
+    private Interpreter interpreter = new Interpreter();
 
     public int getRowCount() { return rowCount; }
     public void addRowCount() { rowCount++; }
     public int getColumnCount() { return columnCount; }
     public void setColumnCount(int columnCount) { this.columnCount = columnCount; }
+
 
     public Map() { }
 
@@ -47,9 +50,40 @@ public class Map implements IDrawable {
         }
     }
 
-    private Tile[] chooseStormTiles() {
-        Tile[] tiles = {};
-        return tiles;
+    private ArrayList<Tile> chooseStormTiles() {
+        ArrayList<Tile> stormTiles = new ArrayList<>();
+        for (Tile t: tiles)
+        {
+            for(int i = 0; i<5; i++)
+            {
+            int id = ThreadLocalRandom.current().nextInt(1, rowCount * columnCount + 1);
+            if(t.getUniqueID() == id)
+                stormTiles.add(t);
+            }
+        }
+        return stormTiles;
+    }
+
+    public void moveBear()
+    {
+        int randomNum = ThreadLocalRandom.current().nextInt(1, 5);
+       String arg[] ={"1"};
+
+        switch(randomNum){
+            case 1:
+                arg[0]="left";
+                break;
+            case 2:
+                arg[0]="down";
+                break;
+            case 3:
+                arg[0]="right";
+                break;
+            case 4:
+                arg[0]="up";
+                break;
+        }
+        interpreter.executeCommand("move-bear", arg);
     }
 
     public ArrayList<Tile> getAllTiles()

@@ -51,6 +51,8 @@ public class RegularTile extends Tile {
 
     @Override
     public void onStorm() {
+        snowLayerCount++;
+        System.out.print(snowLayerCount);
         if(iglooBuilt || campBuilt)
             return;
 
@@ -104,8 +106,10 @@ public class RegularTile extends Tile {
 
                 if (scientistChecked)
                 {
-                    g.drawString(Integer.toString(RegularTile.super.getPlayerCapacity()),100,100);
+                    g.drawString(Integer.toString(RegularTile.super.getPlayerCapacity()), tileHeight-20, tileWidth-50);
                 }
+
+                g.drawString(Integer.toString(RegularTile.super.getSnowLayerCount()), tileHeight-20, tileWidth-20);
 
                 if(iglooBuilt)
                 {

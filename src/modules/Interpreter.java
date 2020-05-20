@@ -68,9 +68,6 @@ public class Interpreter {
             case "step":
                 positionX = currentPlayer.getPosition().getPositionX();
                 positionY = currentPlayer.getPosition().getPositionY();
-                System.out.println(positionX + " " + positionY);
-                System.out.println(GameController.getInstance().getMap().getRowCount());
-                System.out.println(GameController.getInstance().getMap().getColumnCount());
                 if ((positionX == 0 && arguments[0] == "left" ||
                         positionX == GameController.getInstance().getMap().getRowCount()-1 && arguments[0] == "right" ||
                         positionY == 0 && arguments[0] == "up" ||
@@ -109,6 +106,7 @@ public class Interpreter {
                 Bear bear = gameController.getBear();
                 positionX = bear.getPosition().getPositionX();
                 positionY = bear.getPosition().getPositionY();
+
                 bear.move(getTileByDirection(arguments[0], positionX, positionY));
                 break;
 

@@ -3,6 +3,7 @@ package modules;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class GameController {
     private Map map;
@@ -13,6 +14,7 @@ public class GameController {
     private boolean playersWon = false;
     private Player currentPlayer;
     private int currentPlayerIndex = 0;
+
 
     public static GameController getInstance() {
         if (gameController == null)
@@ -127,6 +129,7 @@ public class GameController {
     private void endTurn() {
         map.generateStorm();
         currentPlayerIndex = 0;
+        map.moveBear();
     }
 
     private void clear(){
