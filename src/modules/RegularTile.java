@@ -110,10 +110,15 @@ public class RegularTile extends Tile {
                     }
 
                     int playerIndex = 0;
-                    for (Player p : players) {
+                    for (Player player : players) {
                         int playerPositionX = playerIndex * playerScaleX;
                         int playerPositionY = (tileHeight / 2) - (playerScaleY / 2); // center vertically
-                        g.drawImage(p.image, playerPositionX, playerPositionY, playerScaleX, playerScaleY, null);
+                        g.drawImage(player.image, playerPositionX, playerPositionY, playerScaleX, playerScaleY, null);
+                        if(player.isActivePlayer()){
+                            // draw rectangle to show active player
+                            g.setColor(Color.RED);
+                            g.fillRect(playerPositionX, playerPositionY,10,10);
+                        }
                         playerIndex++;
                     }
                 }
