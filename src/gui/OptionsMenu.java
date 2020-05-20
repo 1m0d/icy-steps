@@ -3,6 +3,8 @@ package gui;
 import modules.GameController;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -83,6 +85,21 @@ public class OptionsMenu {
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }
+                }
+                if(fc.getSelectedFile().getName().startsWith("3")) {
+                    model.setValue(3); }
+                else if(fc.getSelectedFile().getName().startsWith("4")) {
+                    model.setValue(4);}
+                else if(fc.getSelectedFile().getName().startsWith("5")) {
+                    model.setValue(5);}
+            }
+        });
+
+        model.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent changeEvent) {
+                if(model.getValue() == "3"){
+                    //todo
                 }
             }
         });

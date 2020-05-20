@@ -79,8 +79,10 @@ public abstract class Player {
      *A jatekos az adott mezore lepp
      */
     public void step(Tile t) {
+        position.removePlayer(this);
         position = t;
         t.onPlayerStep(this);
+
         work();
     }
     /**
@@ -162,5 +164,10 @@ public abstract class Player {
             e.printStackTrace();
         }
     }
+    @Override
+    public String toString() {
+        return "lives " + lives + " energy: " + energy;
+    }
+
 }
 
