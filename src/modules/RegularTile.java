@@ -82,19 +82,40 @@ public class RegularTile extends Tile {
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 if(snowLayerCount == 0) {
-                    g.drawImage(rtGroundImage,0,0,tileHeight,tileWidth,null);
+                    g.drawImage(rtGroundImage, 0, 0, tileHeight, tileWidth, null);
 
                     if (item != null) {
-                        g.drawImage(item.image,0,0,null);
-                        g.drawRect(10,10,30,30);
+                        g.drawImage(item.image, 0, 0, null);
                     }
                 }
                 else {
-                    g.drawImage(rtIceImage,0,0,tileHeight,tileWidth,null);
+                    g.drawImage(rtIceImage, 0, 0, tileHeight, tileWidth, null);
                 }
 
-                for(Player p: players) {
-                    g.drawImage(p.image,getWidth()/4,0,null);
+                int playerScaleX, playerScaleY;
+                if(!players.isEmpty()) {
+                    switch (players.size()) {
+                        case 5:
+                            playerScaleX = playerScaleY = 25;
+                            break;
+                        case 4:
+                            playerScaleX = playerScaleY = 32;
+                            break;
+                        case 3:
+                            playerScaleX = playerScaleY = 40;
+                            break;
+                        default:
+                            playerScaleX = playerScaleY = 64;
+                            break;
+                    }
+
+                    int playerIndex = 0;
+                    for (Player p : players) {
+                        int playerPositionX = playerIndex * playerScaleX;
+                        int playerPositionY = (tileHeight / 2) - (playerScaleY / 2); // center vertically
+                        g.drawImage(p.image, playerPositionX, playerPositionY, playerScaleX, playerScaleY, null);
+                        playerIndex++;
+                    }
                 }
             }
         };
