@@ -1,25 +1,46 @@
 package gui;
 import modules.*;
-
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
+public class GameView {
 
-public class GameView extends JPanel {
     GameController gameController = GameController.getInstance();
-    String itemType;
+    private static GameView gameView;
 
+    private static JPanel mainPanel = new JPanel()
+    {
+        GameController gameController = GameController.getInstance();
+        @Override
+        public void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            doDrawing(g);
+        }
 
-    Interpreter interpreter = new Interpreter();
-    private void doDrawing(Graphics g) {
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setColor(Color.BLACK);
-        gameController.getMap().Draw(this);
+        private void doDrawing(Graphics g) {
+            Graphics2D g2d = (Graphics2D) g;
+            g2d.setColor(Color.BLACK);
+            gameController.getInstance().getMap().Draw(mainPanel);
+        }
+    };
+
+    public static JPanel getMainPanel() {
+        return mainPanel;
     }
+
+    public static GameView getInstance() {
+        if (gameView == null) {
+            gameView = new GameView();
+        }
+        return gameView;
+    }
+    Interpreter interpreter = new Interpreter();
+    private String itemType;
+
 
     private static Icon resizeIcon(ImageIcon icon) {
         Image img = icon.getImage();
@@ -28,8 +49,17 @@ public class GameView extends JPanel {
     }
 
     private void initializeToolbar(){
-        JFrame frame = new JFrame("Navigate");
-        JButton stepButton, passButton, useItemButton, clearSnowButton,pickUpItemButton, useAbilityButton;
+        JFrame toolbarFrame = new JFrame();
+        JPanel toolbarPanel = new JPanel();
+
+        toolbarFrame.add(toolbarPanel);
+        toolbarFrame.setSize(250,500);
+        toolbarFrame.setVisible(true);
+        toolbarFrame.setResizable(false);
+        toolbarFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        toolbarPanel.setLayout(new FlowLayout());
+
+        JButton stepButton, passButton, useItemButton, clearSnowButton, pickUpItemButton, useAbilityButton;
         JComboBox stepDirCB, useAbilityCB;
         stepButton = new JButton("Step");
         stepDirCB = new JComboBox();
@@ -65,25 +95,51 @@ public class GameView extends JPanel {
         ImageIcon w3Image =  new ImageIcon("src/gui/icons/winningitem3.png");
         JButton w3Button = new JButton(resizeIcon(w3Image));
 
-        //ArrayList<Item> items = gameController.getCurrentPlayer().getItems();
-
-
-
+        toolbarPanel.add(playerStatus);
+        toolbarPanel.add(stepButton);
+        toolbarPanel.add(stepDirCB);
+        toolbarPanel.add(passButton);
+        toolbarPanel.add(useAbilityButton);
+        toolbarPanel.add(useAbilityCB);
+        toolbarPanel.add(clearSnowButton);
+        toolbarPanel.add(pickUpItemButton);
+        toolbarPanel.add(useItemButton);
+        toolbarPanel.add(campButton);
+        toolbarPanel.add(divingsuitButton);
+        toolbarPanel.add(foodButton);
+        toolbarPanel.add(fshovelButton);
+        toolbarPanel.add(ropeButton);
+        toolbarPanel.add(shovelButton);
+        toolbarPanel.add(w1Button);
+        toolbarPanel.add(w2Button);
+        toolbarPanel.add(w3Button);
 
         //Action listeners
+
+        MouseAdapter mAdapter = new MouseAdapter() {
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                mainPanel.repaint();
+                playerStatus.setText(gameController.getCurrentPlayer().toString());
+                
+                //System.out.println("repaint call");
+            }
+        };
+        for (Component c: toolbarPanel.getComponents())
+        {
+            c.addMouseListener(mAdapter);
+        }
+
         passButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 interpreter.executeCommand("player-pass", null);
-                repaint();
             }
         });
-
         stepButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 interpreter.executeCommand("step", new String[]{stepDirCB.getSelectedItem().toString()});
-                repaint();
             }
         });
 
@@ -91,7 +147,6 @@ public class GameView extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 interpreter.executeCommand("clear-snow", null);
-                repaint();
             }
         });
         
@@ -99,7 +154,6 @@ public class GameView extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 interpreter.executeCommand("pick-up-item", null);
-                repaint();
             }
         });
 
@@ -115,16 +169,13 @@ public class GameView extends JPanel {
                 {
                     interpreter.executeCommand("use-eskimo-ability", null);
                 }
-                repaint();
             }
         });
-
 
         foodButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //interpreter.executeCommand("use-item", new String[]{"food"});
-                //repaint();
                 itemType = "food";
 
             }
@@ -134,7 +185,6 @@ public class GameView extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //interpreter.executeCommand("use-item", new String[]{"camp"});
-                //repaint();
                 itemType ="camp";
             }
 
@@ -144,7 +194,6 @@ public class GameView extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //interpreter.executeCommand("use-item", new String[]{"diving-suit"});
-                //repaint();
                 itemType = "diving-suit";
             }
         });
@@ -153,7 +202,6 @@ public class GameView extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //interpreter.executeCommand("use-item", new String[]{"shovel"});
-                //repaint();
                 itemType = "shovel";
             }
         });
@@ -162,7 +210,6 @@ public class GameView extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //interpreter.executeCommand("use-item", new String[]{"fragile-shovel"});
-                //repaint();
                 itemType ="fragile-shovel";
             }
         });
@@ -170,9 +217,7 @@ public class GameView extends JPanel {
         ropeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
                 //interpreter.executeCommand("use-item", new String[]{"rope", String.valueOf(gameController.getInstance().getCurrentPlayer().getPosition().getUniqueID())});
-                //repaint();
                 itemType = "rope";
             }
         });
@@ -181,7 +226,6 @@ public class GameView extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //interpreter.executeCommand("use-item", new String[]{"winning-item"});
-                //repaint();
                 itemType ="winning-item";
             }
         });
@@ -189,8 +233,7 @@ public class GameView extends JPanel {
         w2Button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                interpreter.executeCommand("use-item", new String[]{"winning-item"});
-                repaint();
+                //interpreter.executeCommand("use-item", new String[]{"winning-item"});
                 itemType ="winning-item";
             }
         });
@@ -198,8 +241,7 @@ public class GameView extends JPanel {
         w3Button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                interpreter.executeCommand("use-item", new String[]{"winning-item"});
-                repaint();
+                //interpreter.executeCommand("use-item", new String[]{"winning-item"});
                 itemType ="winning-item";
             }
         });
@@ -208,48 +250,17 @@ public class GameView extends JPanel {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 interpreter.executeCommand("use-item", new String[]{itemType});
-                repaint();
             }
         });
 
-        frame.add(playerStatus);
-        frame.add(stepButton);
-        frame.add(stepDirCB);
-        frame.add(passButton);
-        frame.add(useAbilityButton);
-        frame.add(useAbilityCB);
-        frame.add(clearSnowButton);
-        frame.add(pickUpItemButton);
-        frame.add(useItemButton);
-        frame.add(campButton);
-        frame.add(divingsuitButton);
-        frame.add(foodButton);
-        frame.add(fshovelButton);
-        frame.add(ropeButton);
-        frame.add(shovelButton);
-        frame.add(w1Button);
-        frame.add(w2Button);
-        frame.add(w3Button);
-
-        frame.setLayout(new FlowLayout());
-        frame.setSize(250,500);
-        frame.setVisible(true);
-        frame.setResizable(false);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
-
 
     public GameView() {
         super();
         GridLayout gridLayout = new GridLayout(gameController.getMap().getRowCount(), gameController.getMap().getColumnCount());
-        setLayout(gridLayout);
+        mainPanel.setLayout(gridLayout);
         initializeToolbar();
     }
 
-    @Override
-    public void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        doDrawing(g);
-    }
 }
 
