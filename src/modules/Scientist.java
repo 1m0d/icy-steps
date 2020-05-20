@@ -7,7 +7,7 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * Az eszzkimo tipusu jatekosok osztalya, a Playerbol szarmazik le
+ * Az eszkimo tipusu jatekosok osztalya, a Playerbol szarmazik le
  */
 public class Scientist extends Player {
 

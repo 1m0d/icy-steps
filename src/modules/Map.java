@@ -27,7 +27,7 @@ public class Map implements IDrawable {
     }
 
     public void addTile(Tile newTile) {
-        if(getTile(newTile.getUniqueID()) != null)
+        if(getTileById(newTile.getUniqueID()) != null)
             throw new IllegalArgumentException("Unique ID already taken");
 
         tiles.add(newTile);
@@ -37,7 +37,7 @@ public class Map implements IDrawable {
         items.add(i);
         Player player = GameController.getInstance().getPlayer(id);
         if (player == null) {
-            Tile tile = getTile(id);
+            Tile tile = getTileById(id);
             i.tile = tile;
             ((RegularTile)tile).setItem(i);
         }
@@ -68,8 +68,7 @@ public class Map implements IDrawable {
         }
         return null;
     }
-
-    public Tile getTile(int id) {
+    public Tile getTileById(int id) {
         if(tiles == null)
             return null;
 

@@ -68,27 +68,7 @@ public class Interpreter {
             case "step":
                 positionX = currentPlayer.getPosition().getPositionX();
                 positionY = currentPlayer.getPosition().getPositionY();
-                switch(arguments[0]) {
-                    case "right":
-                        destinationX = positionX + 1;
-                        destinationY = positionY;
-                        break;
-                    case "down":
-                        destinationX = positionX;
-                        destinationY = positionY + 1;
-                        break;
-                    case "left":
-                        destinationX = positionX - 1;
-                        destinationY = positionY;
-                        break;
-                    case "up":
-                        destinationX = positionX;
-                        destinationY = positionY- 1;
-                        break;
-                    default:
-                        throw new IllegalArgumentException("illegal argument to step");
-                }
-                currentPlayer.step(map.getTileByCoord(destinationX, destinationY));
+                currentPlayer.step(getTileByDirection(arguments[0], positionX, positionY));
                 break;
 
             case "player-pass":
@@ -100,7 +80,7 @@ public class Interpreter {
                 for (Item item : items) {
                     if(item.toString().equals(arguments[0])) {
                         if (arguments.length == 2) {
-                            currentPlayer.useItem(item, map.getTile(Integer.parseInt(arguments[1])));
+                            currentPlayer.useItem(item, map.getTileById(Integer.parseInt(arguments[1])));
                         } else {
                             currentPlayer.useItem(item);
                         }
@@ -120,32 +100,12 @@ public class Interpreter {
                 Bear bear = gameController.getBear();
                 positionX = bear.getPosition().getPositionX();
                 positionY = bear.getPosition().getPositionY();
-                switch(arguments[0]){
-                    case "right":
-                        destinationX = positionX + 1;
-                        destinationY = positionY;
-                        break;
-                    case "down":
-                        destinationX = positionX;
-                        destinationY = positionY + 1;
-                        break;
-                    case "left":
-                        destinationX = positionX - 1;
-                        destinationY = positionY;
-                        break;
-                    case "up":
-                        destinationX = positionX;
-                        destinationY = positionY- 1;
-                        break;
-                    default:
-                        throw new IllegalArgumentException("illegal argument to move-bear");
-                }
-                bear.move(map.getTileByCoord(destinationX, destinationY));
+                bear.move(getTileByDirection(arguments[0], positionX, positionY));
                 break;
 
             case "generate-storm":
                 if(arguments.length == 1)
-                    map.getTile(Integer.parseInt(arguments[0])).onStorm();
+                    map.getTileById(Integer.parseInt(arguments[0])).onStorm();
 
                 gameController.getMap().generateStorm();
                 break;
@@ -155,7 +115,9 @@ public class Interpreter {
                 break;
 
             case "use-scientist-ability":
-                currentPlayer.useAbility(gameController.getMap().getTile(Integer.parseInt(arguments[0])));
+                positionX = currentPlayer.getPosition().getPositionX();
+                positionY = currentPlayer.getPosition().getPositionY();
+                currentPlayer.useAbility(getTileByDirection(arguments[0], positionX, positionY));
                 break;
 
             default:
@@ -163,5 +125,33 @@ public class Interpreter {
                 return;
         }
 
+    }
+
+    public Tile getTileByDirection(String argument, int positionX, int positionY)
+    {
+        Map map = gameController.getMap();
+        int destinationX;
+        int destinationY;
+        switch(argument) {
+            case "right":
+                destinationX = positionX + 1;
+                destinationY = positionY;
+                break;
+            case "down":
+                destinationX = positionX;
+                destinationY = positionY + 1;
+                break;
+            case "left":
+                destinationX = positionX - 1;
+                destinationY = positionY;
+                break;
+            case "up":
+                destinationX = positionX;
+                destinationY = positionY- 1;
+                break;
+            default:
+                throw new IllegalArgumentException("illegal argument");
+        }
+        return map.getTileByCoord(destinationX, destinationY);
     }
 }

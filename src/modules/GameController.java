@@ -141,7 +141,7 @@ public class GameController {
     private void parsePlayers(String[] players) {
         for (String player : players ) {
             String[] tokens = player.split(",");
-            Tile position = map.getTile(Integer.parseInt(tokens[1]));
+            Tile position = map.getTileById(Integer.parseInt(tokens[1]));
             int energy = Integer.parseInt(tokens[2]);
             int lives = Integer.parseInt(tokens[3]);
             boolean drowning = tokens[4] == "true";
@@ -219,7 +219,7 @@ public class GameController {
 
     private void parseBear(String[] bear)
     {
-        this.bear = new Bear(map.getTile(Integer.parseInt(bear[0])));
+        this.bear = new Bear(map.getTileById(Integer.parseInt(bear[0])));
     }
 
 }

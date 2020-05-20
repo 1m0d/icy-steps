@@ -12,7 +12,6 @@ import java.util.ArrayList;
 public class Rope extends Item {
 
     private Image rtImage;
-
     public BufferedImage rImage;
     public Rope(){}
     public Rope(Player player) { super(player); }
