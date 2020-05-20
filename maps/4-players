@@ -8,6 +8,6 @@ Tiles:
 Players:
 1,36,4,4,false,37;1,30,4,4,false,38;0,22,4,5,false,39;0,28,4,5,false,40;
 Items:
-2,camp;31,camp;9,diving-suit;14,food;34,food;27,food;36,food;25,food;15,fragile-shovel;18,fragile-shovel;7,rope;10,rope;23,shovel;26,shovel;1,winning-item;8,winning-item;18,winning-item;
+2,camp;30,camp;9,divingSuit;14,food;34,food;27,food;36,food;25,food;15,fragileShovel;17,fragileShovel;7,rope;11,rope;23,shovel;26,shovel;1,winningItem;8,winningItem;35,winningItem;
 Bear:
 7;
