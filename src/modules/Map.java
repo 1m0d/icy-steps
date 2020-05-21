@@ -13,7 +13,7 @@ public class Map{
     private int rowCount = 0;
     private int columnCount = 0;
     private Interpreter interpreter = new Interpreter();
-    GameController gameController = GameController.getInstance();
+    private static GameController gameController = GameController.getInstance();
 
     /**
      *sorok, oszlopok getterei, setterei
