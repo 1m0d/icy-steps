@@ -7,6 +7,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 
+/**
+ *a főmenü
+ */
 public class MainMenu
 {
     private static MainMenu mainMenu;
@@ -21,6 +24,9 @@ public class MainMenu
         return mainMenu;
     }
 
+    /**
+     *főmenü inicializálása
+     */
     private static void initialize(){
         panel.setLayout(new BorderLayout());
         JPanel innerPanel = new JPanel();
@@ -40,7 +46,9 @@ public class MainMenu
         panel.add(innerPanel, BorderLayout.CENTER);
         panel.validate();
 
-        // action listeners
+        /**
+         *action listenerek
+         */
         startGame.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {

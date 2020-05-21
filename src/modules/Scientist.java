@@ -7,10 +7,13 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * Az eszkimo tipusu jatekosok osztalya, a Playerbol szarmazik le
+ * A tudós tipusu jatekosok osztalya, a Playerbol szarmazik le
  */
 public class Scientist extends Player {
 
+    /**
+     *konstruktorok
+     */
     public Scientist(Tile position) {
         super(position);
     }
@@ -21,6 +24,9 @@ public class Scientist extends Player {
         super.loadImages("src/gui/icons/scientist.png");
     }
 
+    /**
+     *a tudós használja a képességét
+     */
     @Override
     public void useAbility(Tile t) {
         t.onScientistAbility();

@@ -1,10 +1,14 @@
 package modules;
-
+/**
+ *a sátor eszközökért felelős osztály, az Itemből származik le
+ */
 public class Camp extends Item {
 
     public Camp() {
     }
-
+    /**
+     *konsturktorok
+     */
     public Camp(Player player) {
         super(player);
         super.loadImages("src/gui/icons/camp.png");
@@ -15,7 +19,9 @@ public class Camp extends Item {
         super.loadImages("src/gui/icons/camp.png");
 
     }
-
+    /**
+     *sátor felálíltása a mezőn
+     */
     @Override
     public void useItem(Tile t) {
         ((RegularTile) t).buildCamp();

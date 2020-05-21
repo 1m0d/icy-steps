@@ -11,6 +11,9 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
 
+/**
+ *a beállítások menüje
+ */
 public class OptionsMenu {
     private static OptionsMenu optionsView;
     private static MainFrame mainFrame = MainFrame.getInstance();
@@ -25,6 +28,9 @@ public class OptionsMenu {
         return optionsView;
     }
 
+    /**
+     *a beállítások menüjének inicializálása
+     */
     private static void initialize() {
         JPanel firstPanel = new JPanel();
         JPanel secondPanel = new JPanel(new GridLayout(2,2));
@@ -56,7 +62,9 @@ public class OptionsMenu {
         panel.add(secondPanel, BorderLayout.CENTER);
         panel.add(thirdPanel, BorderLayout.SOUTH);
 
-        //action listeners
+        /**
+         *action listenerek
+         */
         cancelBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {

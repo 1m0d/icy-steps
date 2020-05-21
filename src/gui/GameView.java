@@ -14,11 +14,17 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ *a játék nézete
+ */
 public class GameView {
     private static GameController gameController = GameController.getInstance();
     private static GameView gameView;
     private static ToolbarView toolbarView;
     private static JPanel mainPanel;
+    /**
+     *képek
+     */
     private static BufferedImage snowImage;
     private static BufferedImage iceImage;
     private static BufferedImage iglooImage;
@@ -35,6 +41,9 @@ public class GameView {
 
     public static JPanel getMainPanel() { return mainPanel; }
 
+    /**
+     *a játék grafikájának inicializálása
+     */
     private static void initialize() {
         try {
             snowImage = ImageIO.read(new File("src/gui/icons/snow.png"));
@@ -65,6 +74,9 @@ public class GameView {
         toolbarView = ToolbarView.getInstance();
     }
 
+    /**
+     *a mezők kirajzolása
+     */
     private static void drawTile(Graphics g, Tile tile) {
         int tileHeight = Tile.getTileHeight();
         int tileWidth = Tile.getTileWidth();
@@ -116,6 +128,10 @@ public class GameView {
         };
         mainPanel.add(pane);
     }
+
+    /**
+     *kirajzolja a játékosokat a pályára
+     */
     private static void drawPlayers(Graphics g, ArrayList<Player> players, int tileHeight) {
         int playerScaleX, playerScaleY;
         if (!players.isEmpty()) {

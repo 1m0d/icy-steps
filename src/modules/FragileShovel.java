@@ -22,6 +22,9 @@ public class FragileShovel extends Shovel {
         super(tile);
     }
 
+    /**
+     *meghívja a hólapátolásért felelős függvényt
+     */
     @Override
     public void useItem(Tile t) {
         if (durability >= 1)

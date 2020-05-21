@@ -3,8 +3,10 @@ package modules;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
-import java.util.concurrent.ThreadLocalRandom;
 
+/**
+ *a játék vezérléésért felelős osztály
+ */
 public class GameController {
     private Map map;
     private ArrayList<Player> players = new ArrayList<>();
@@ -22,9 +24,20 @@ public class GameController {
         return gameController;
     }
 
+    /**
+     *vége a játéknak
+     */
     public boolean isGameOver() { return gameOver; }
+
+    /**
+     *a játékosok nyertek
+     */
     public boolean isPlayersWon() { return playersWon; }
 
+
+    /**
+     *betölti a kiválasztott térképet
+     */
     public void loadMap(String path) throws FileNotFoundException {
         map = new Map();
         clear();
@@ -62,11 +75,17 @@ public class GameController {
 
     }
 
+    /**
+     *elkezdi a játékot, megkezdődik az első játékos köre
+     */
     public void startGame() {
         currentPlayer = players.get(0);
         currentPlayer.startTurn();
     }
 
+    /**
+     *befejeződik az adott játékos köre, a következő játékos következik
+     */
     public void endPlayerTurn(){
         currentPlayerIndex++;
         if(currentPlayerIndex == players.size())
@@ -76,16 +95,25 @@ public class GameController {
         currentPlayer.startTurn();
     }
 
+    /**
+     *vége a játéknak, a játékosok nyertek
+     */
     public void win() {
         gameOver = true;
         playersWon = true;
     }
 
+    /**
+     *vége a játéknak, a játékosok vesztettek
+     */
     public void lose() {
         gameOver = true;
         playersWon = false;
     }
 
+    /**
+     *ellenőrzi, hogy teljesülnek-e a nyeréshez szükséges feltételek
+     */
     public void checkWinningConditions() {
         int winningItemCount = 0;
         int lastPositionID = -1;
@@ -108,6 +136,9 @@ public class GameController {
         }
     }
 
+    /**
+     *visszatér az adott id-jú játékossal
+     */
     public Player getPlayer(int Id) {
         for (Player player : players)
             if (player.getUniqueID() == Id)
@@ -115,23 +146,46 @@ public class GameController {
         return null;
     }
 
+    /**
+     *visszatér az összes játékossal
+     */
     public ArrayList<Player> getAllPlayers() {
         return this.players;
     }
 
+
+    /**
+     *visszatér az aktuális játékossal
+     */
     public Player getCurrentPlayer(){ return currentPlayer; }
+
+    /**
+     *beállítja az aktuális játékost
+     */
     public void setCurrentPlayer(Player player){ currentPlayer = player; }
 
+    /**
+     *megkapja a térképet
+     */
     public Map getMap() { return map; }
 
+    /**
+     *megkapja a medvét
+     */
     public Bear getBear() {return bear;}
 
+    /**
+     *befejeződik egy kör, vihar generálódik és a medve lép
+     */
     private void endTurn() {
         map.generateStorm();
         currentPlayerIndex = 0;
         map.moveBear();
     }
 
+    /**
+     *törlünk mindent
+     */
     private void clear(){
         map = new Map();
         players.clear();
@@ -141,6 +195,9 @@ public class GameController {
         currentPlayerIndex = 0;
     }
 
+    /**
+     *a játékosok parse-olása
+     */
     private void parsePlayers(String[] players) {
         for (String player : players ) {
             String[] tokens = player.split(",");
@@ -162,6 +219,9 @@ public class GameController {
         }
     }
 
+    /**
+     *az itemek parse-olása
+     */
     private void parseItems(String[] items) {
         for (String item : items ) {
             String[] tokens = item.split(",");
@@ -193,6 +253,9 @@ public class GameController {
         }
     }
 
+    /**
+     *a mezők parse-olása
+     */
     private void parseTiles(String[] tiles) {
         int columnCount = 0;
         for (String tile: tiles ) {
@@ -220,6 +283,9 @@ public class GameController {
         }
     }
 
+    /**
+     *a medve parse-olása
+     */
     private void parseBear(String[] bear)
     {
         this.bear = new Bear(map.getTileById(Integer.parseInt(bear[0])));

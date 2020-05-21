@@ -7,6 +7,9 @@ import modules.*;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ *a toolbart irányító osztály
+ */
 public class ToolBarController {
     private ToolbarView toolbarView;
     private GameView gameView = GameView.getInstance();
@@ -18,7 +21,9 @@ public class ToolBarController {
         toolbarView = ToolbarView.getInstance();
     }
 
-    // runs on any button press
+    /**
+     *minden gombnyomásra meghívódik
+     */
     public void toolbarButtonPressed(JComboBox useAbilityCB, JComboBox ropeCB, JLabel playerStatus){
         if (gameController.getCurrentPlayer() instanceof Eskimo) {
             useAbilityCB.setVisible(false);
@@ -79,22 +84,37 @@ public class ToolBarController {
         toolbarView.getToolbarPanel().repaint();
     }
 
+    /**
+     *pass button
+     */
     public void passButtonPressed(){
         interpreter.executeCommand("player-pass", null);
     }
 
+    /**
+     *step button
+     */
     public void stepButtonPressed(JComboBox stepDirCB){
         interpreter.executeCommand("step", new String[]{stepDirCB.getSelectedItem().toString()});
     }
 
+    /**
+     *clear snow button
+     */
     public void clearSnowButtonPressed(){
         interpreter.executeCommand("clear-snow", null);
     }
 
+    /**
+     *pick up item button
+     */
     public void pickUpItemButtonPressed(){
         interpreter.executeCommand("pick-up-item", null);
     }
 
+    /**
+     *use ability button
+     */
     public void useAbilityButtonPressed(JComboBox useAbilityCB){
         Player currentPlayer = gameController.getCurrentPlayer();
         if (currentPlayer instanceof Scientist) {
@@ -105,7 +125,9 @@ public class ToolBarController {
         }
     }
 
-    // item buttons
+    /**
+     *itemek gombjai
+     */
     public void foodButtonPressed(){
         itemSelected = "food";
         interpreter.executeCommand("use-item", new String[]{"food"});

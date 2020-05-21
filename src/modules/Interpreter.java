@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
+/**
+ *ez az osztály értelmezi az inputokat
+ */
 public class Interpreter {
     private String testDirectory;
     GameController gameController = GameController.getInstance();
@@ -36,14 +39,18 @@ public class Interpreter {
         in.close();
     }
 
+    /**
+     *az adott utasításnak megfelelően meghívja a szükséges függvényeket
+     */
     public void executeCommand(String command, String[] arguments){
         Player currentPlayer = gameController.getCurrentPlayer();
         Map map = gameController.getMap();
         int positionX;
         int positionY;
-        int destinationX;
-        int destinationY;
         switch (command){
+            /**
+             *térkép betöltése
+             */
             case "load-map":
                 try {
                     gameController.loadMap(testDirectory + "/map");
@@ -52,10 +59,16 @@ public class Interpreter {
                 }
                 break;
 
+            /**
+             *játék kezdete
+             */
             case "start-game":
                 gameController.startGame();
                 break;
 
+            /**
+             *aktuális játékos beállítása
+             */
             case "set-player-turn":
                 if(currentPlayer != null)
                     currentPlayer.setActivePlayer(false);
@@ -65,6 +78,9 @@ public class Interpreter {
                 gameController.setCurrentPlayer(player);
                 break;
 
+            /**
+             *lépés
+             */
             case "step":
                 positionX = currentPlayer.getPosition().getPositionX();
                 positionY = currentPlayer.getPosition().getPositionY();
@@ -77,10 +93,16 @@ public class Interpreter {
                 else {currentPlayer.step(getTileByDirection(arguments[0], positionX, positionY));}
                 break;
 
+            /**
+             *a játékos passzolja a körét
+             */
             case "player-pass":
                 currentPlayer.pass();
                 break;
 
+            /**
+             *a játékos használja az itemet
+             */
             case "use-item":
                 ArrayList<Item> items = currentPlayer.getItems();
                 for (Item item : items) {
@@ -94,14 +116,23 @@ public class Interpreter {
                 }
                 break;
 
+            /**
+             *a játékos felveszi az itemet
+             */
             case "pick-up-item":
                 currentPlayer.pickUpItem();
                 break;
 
+            /**
+             *havat tisztít
+             */
             case "clear-snow":
                 currentPlayer.clearSnow();
                 break;
 
+            /**
+             *a medve mozog
+             */
             case "move-bear":
                 Bear bear = gameController.getBear();
                 positionX = bear.getPosition().getPositionX();
@@ -110,6 +141,9 @@ public class Interpreter {
                 bear.move(getTileByDirection(arguments[0], positionX, positionY));
                 break;
 
+            /**
+             *vihar generálódik
+             */
             case "generate-storm":
                 if(arguments.length == 1)
                     map.getTileById(Integer.parseInt(arguments[0])).onStorm();
@@ -117,10 +151,16 @@ public class Interpreter {
                 gameController.getMap().generateStorm();
                 break;
 
+            /**
+             *az eszkimo használja a képességét
+             */
             case "use-eskimo-ability":
                 currentPlayer.useAbility(gameController.getCurrentPlayer().getPosition());
                 break;
 
+            /**
+             *a tudós használja a képességét
+             */
             case "use-scientist-ability":
                 positionX = currentPlayer.getPosition().getPositionX();
                 positionY = currentPlayer.getPosition().getPositionY();
@@ -134,6 +174,9 @@ public class Interpreter {
 
     }
 
+    /**
+     *a kapott irányoknak megfelelően változtatja meg a koordinátákat
+     */
     public Tile getTileByDirection(String argument, int positionX, int positionY)
     {
         Map map = gameController.getMap();

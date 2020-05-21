@@ -4,6 +4,9 @@ import javax.swing.*;
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
+/**
+ *a térkép osztálya
+ */
 public class Map{
     private ArrayList<Tile> tiles = new ArrayList<>();
     private ArrayList<Item> items = new ArrayList<>();
@@ -12,22 +15,36 @@ public class Map{
     private Interpreter interpreter = new Interpreter();
     GameController gameController = GameController.getInstance();
 
+    /**
+     *sorok, oszlopok getterei, setterei
+     */
     public int getRowCount() { return rowCount; }
     public void addRowCount() { rowCount++; }
     public int getColumnCount() { return columnCount; }
     public void setColumnCount(int columnCount) { this.columnCount = columnCount; }
 
-
+    /**
+     *konstruktor
+     */
     public Map() { }
 
+    /**
+     *a térképen lévő eszközök
+     */
     public ArrayList<Item> getItems(){ return items; }
 
+    /**
+     *vihar generálása
+     */
     public void generateStorm() {
         for (Tile t : chooseStormTiles()) {
             t.onStorm();
         }
     }
 
+    /**
+     *mező hozzáadása a térképhez
+     */
     public void addTile(Tile newTile) {
         if(getTileById(newTile.getUniqueID()) != null)
             throw new IllegalArgumentException("Unique ID already taken");
@@ -35,6 +52,9 @@ public class Map{
         tiles.add(newTile);
     }
 
+    /**
+     *eszköz hozzáadása a térképhez
+     */
     public void addItem(Item i, int id) {
         items.add(i);
         Player player = GameController.getInstance().getPlayer(id);
@@ -49,6 +69,9 @@ public class Map{
         }
     }
 
+    /**
+     *kiválasztja, hogy mely mezőket érinti a vihar
+     */
     private ArrayList<Tile> chooseStormTiles() {
         ArrayList<Tile> stormTiles = new ArrayList<>();
         for (Tile t: tiles)
@@ -63,6 +86,9 @@ public class Map{
         return stormTiles;
     }
 
+    /**
+     *a medve mozog
+     */
     public boolean moveBear()
     {
         int randomNum = ThreadLocalRandom.current().nextInt(1, 5);
@@ -98,6 +124,9 @@ public class Map{
         return this.tiles;
     }
 
+    /**
+     *koordináták alapján megkap egy mezőt
+     */
     public Tile getTileByCoord(int x, int y)
     {
         for (Tile t: this.tiles
@@ -109,6 +138,10 @@ public class Map{
         }
         return null;
     }
+    
+    /**
+     *id alapján megkap egy mezőt
+     */
     public Tile getTileById(int id) {
         if(tiles == null)
             return null;
