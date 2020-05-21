@@ -18,6 +18,8 @@ public class GameController {
     private int currentPlayerIndex = 0;
 
 
+
+
     public static GameController getInstance() {
         if (gameController == null)
             gameController = new GameController();
@@ -28,7 +30,7 @@ public class GameController {
     public boolean isPlayersWon() { return playersWon; }
 
     public void loadMap(String path) throws FileNotFoundException {
-        map = new Map();
+        //map = new Map();
         clear();
         List<String> mapObjects = Arrays.asList("Tiles", "Players", "Items", "Bear");
         File file = new File(path);
@@ -81,19 +83,20 @@ public class GameController {
     public void win() {
         gameOver = true;
         playersWon = true;
-        /*GameView.getInstance().gameOver();
-        clear();
-        map = null; */
+        GameView.getInstance().gameOver();
+        /*clear();
+        map = null;*/
         System.exit(0);
     }
 
     public void lose() {
         gameOver = true;
         playersWon = false;
-       /* GameView.getInstance().gameOver();
-        clear();
+        GameView.getInstance().gameOver();
+        /*clear();
         map = null; */
         System.exit(0);
+
     }
 
     public void checkWinningConditions() {
@@ -143,7 +146,7 @@ public class GameController {
     }
 
     private void clear(){
-        //map = new Map();
+        map = new Map();
         players.clear();
         bear = null;
         gameOver = false;

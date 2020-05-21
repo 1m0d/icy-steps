@@ -2,6 +2,7 @@ package gui;
 import gui.controllers.GameViewController;
 import modules.*;
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import javax.tools.Tool;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -25,7 +26,9 @@ public class GameView {
         return gameView;
     }
 
-    public static JPanel getMainPanel() { return mainPanel; }
+    public static JPanel getMainPanel() {
+        return mainPanel;
+    }
 
     private static void initialize() {
         mainPanel = new JPanel() {
@@ -48,9 +51,37 @@ public class GameView {
         gameViewController = new GameViewController();
         toolbarView = ToolbarView.getInstance();
     }
+
     public void gameOver() {
-        mainFrame.changePanel(MainMenu.getInstance().getPanel());
+        //mainFrame.changePanel(MainMenu.getInstance().getPanel());
+
+        JFrame frame = new JFrame();
+        frame.setLayout(new GridBagLayout());
+        JPanel panel = new JPanel();
+        JLabel jlabel = new JLabel();
+        if (gameController.isGameOver()) {
+            if (gameController.isPlayersWon()) {
+                jlabel.setText("YOU WON!");
+            } else {
+                jlabel.setText("YOU LOST!");
+            }
+        }
+        jlabel.setFont(new Font("Verdana",1,55));
+        panel.add(jlabel);
+        panel.setBorder(new LineBorder(Color.BLACK));
+        frame.add(panel, new GridBagConstraints());
+        frame.setSize(400, 400);
+        frame.setLocationRelativeTo(null);
+        frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+       /* try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } */
+
+        }
     }
-}
+
 
 
