@@ -64,8 +64,7 @@ public class ToolbarView {
         stepDirCB = new JComboBox(dirs);
         ropeCB = new JComboBox(dirs);
         ropeCB.setVisible(false);
-        String[] ids = {"up", "right", "down", "left"};
-        useAbilityCB = new JComboBox(ids);
+        useAbilityCB = new JComboBox(dirs);
         JLabel playerStatus = new JLabel(gameController.getCurrentPlayer().toString());
 
         ImageIcon cImage =  new ImageIcon("src/gui/icons/camp.png");
@@ -92,8 +91,8 @@ public class ToolbarView {
         toolbarPanel.add(stepDirCB);
         toolbarPanel.add(passButton);
         toolbarPanel.add(useAbilityButton);
-        toolbarPanel.add(useItemButton);
         toolbarPanel.add(useAbilityCB);
+        toolbarPanel.add(useItemButton);
         toolbarPanel.add(clearSnowButton);
         toolbarPanel.add(pickUpItemButton);
         toolbarPanel.add(campButton);
