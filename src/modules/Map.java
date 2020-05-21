@@ -89,7 +89,7 @@ public class Map{
     /**
      *a medve mozog
      */
-    public boolean moveBear()
+    public void moveBear()
     {
         int randomNum = ThreadLocalRandom.current().nextInt(1, 5);
 
@@ -110,13 +110,13 @@ public class Map{
                 break;
         }
 
-        if ((gameController.getBear().getPosition().getPositionX() == 0 && arg[0] == "left" ||
+        if (!(gameController.getBear().getPosition().getPositionX() == 0 && arg[0] == "left" ||
                 gameController.getBear().getPosition().getPositionX() == GameController.getInstance().getMap().getRowCount()-1 && arg[0] == "right" ||
                 gameController.getBear().getPosition().getPositionY() == 0 && arg[0] == "up" ||
                 gameController.getBear().getPosition().getPositionY() == GameController.getInstance().getMap().getColumnCount()-1 && arg[0] == "down"))
-        {return false; }
-        interpreter.executeCommand("move-bear", arg);
-        return true;
+        {  interpreter.executeCommand("move-bear", arg);}
+
+
     }
 
     public ArrayList<Tile> getAllTiles()
@@ -138,7 +138,7 @@ public class Map{
         }
         return null;
     }
-    
+
     /**
      *id alapján megkap egy mezőt
      */
