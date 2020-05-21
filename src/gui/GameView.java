@@ -78,7 +78,7 @@ public class GameView {
             Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
-        } */
+        } */  //TODO
 
         }
     }
