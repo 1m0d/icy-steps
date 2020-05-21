@@ -65,10 +65,15 @@ public abstract class Player {
      *A jatekos kore elkezdodik, kezdetben 4 az energiaja
      */
     public void startTurn() {
-        energy = 4;
-        activePlayer = true;
-        if(drowning && !hasDivingSuit){
-            GameController.getInstance().lose();
+        if(drowning) {
+            if (!hasDivingSuit){
+                GameController.getInstance().lose();
+            }
+            pass();
+        }
+        else {
+            energy = 4;
+            activePlayer = true;
         }
     }
 
@@ -113,7 +118,10 @@ public abstract class Player {
         work();
     }
 
-    public void onHole() { drowning = true; }
+    public void onHole() {
+        drowning = true;
+        energy = 0;
+    }
 
     public void getPulledTo(Tile t) {
         position = t;

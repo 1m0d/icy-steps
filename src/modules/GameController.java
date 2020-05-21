@@ -1,5 +1,7 @@
 package modules;
 
+import gui.GameView;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
@@ -79,11 +81,19 @@ public class GameController {
     public void win() {
         gameOver = true;
         playersWon = true;
+        /*GameView.getInstance().gameOver();
+        clear();
+        map = null; */
+        System.exit(0);
     }
 
     public void lose() {
         gameOver = true;
         playersWon = false;
+       /* GameView.getInstance().gameOver();
+        clear();
+        map = null; */
+        System.exit(0);
     }
 
     public void checkWinningConditions() {
@@ -133,7 +143,7 @@ public class GameController {
     }
 
     private void clear(){
-        map = new Map();
+        //map = new Map();
         players.clear();
         bear = null;
         gameOver = false;

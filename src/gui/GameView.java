@@ -15,6 +15,7 @@ public class GameView {
     private static GameView gameView;
     private static ToolbarView toolbarView;
     private static JPanel mainPanel;
+    private static MainFrame mainFrame = MainFrame.getInstance();
 
     public static GameView getInstance() {
         if (gameView == null) {
@@ -47,4 +48,9 @@ public class GameView {
         gameViewController = new GameViewController();
         toolbarView = ToolbarView.getInstance();
     }
+    public void gameOver() {
+        mainFrame.changePanel(MainMenu.getInstance().getPanel());
+    }
 }
+
+
