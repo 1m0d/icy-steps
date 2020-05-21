@@ -39,7 +39,9 @@ public abstract class Item {
 
     public abstract void useItem(Tile t);
 
-
+    /**
+     *betölti a megfelelő képeket
+     */
     public void loadImages(String path)
     {
         try {

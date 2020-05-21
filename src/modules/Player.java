@@ -91,14 +91,16 @@ public abstract class Player {
     }
 
     /**
-     *A jatekos
+     *A jatekos használja az adott eszközt
      */
-    // TODO useItem(Tile)
     public void useItem(Item i) {
         i.useItem(position);
         work();
     }
 
+    /**
+     *A jatekos használja az adott eszközt
+     */
     public void useItem(Item item, Tile tile){
         item.useItem(tile);
         work();
@@ -106,6 +108,9 @@ public abstract class Player {
 
     public abstract void useAbility(Tile t);
 
+    /**
+     *a játékos eszik, nő az élete, ha nem a maximális értéken van
+     */
     public void onFood() {
         if (lives < maxLives) {
             lives++;
@@ -113,13 +118,22 @@ public abstract class Player {
         work();
     }
 
+    /**
+     *a játékos fulldoklik
+     */
     public void onHole() { drowning = true; }
 
+    /**
+     *az adott mezőre húzzák a játékost
+     */
     public void getPulledTo(Tile t) {
         position = t;
         t.onPlayerStep(this);
     }
 
+    /**
+     *a játékos havat lapátol
+     */
     public void clearSnow() {
         RegularTile t = (RegularTile)position;
         t.clearSnow();
@@ -128,12 +142,18 @@ public abstract class Player {
 
     public void setDivingSuit() { hasDivingSuit = true; }
 
+    /**
+     *a játékos élete csökken eggyel
+     */
     public void damage() {
         lives--;
         if(lives <= 0)
             GameController.getInstance().lose();
     }
 
+    /**
+     *getterek
+     */
      public Tile getPosition() {
          return this.position;
      }
@@ -142,6 +162,9 @@ public abstract class Player {
         return items;
      }
 
+    /**
+     *a játékos felveszi az adott mezőn lévő eszközt
+     */
      public void pickUpItem(){
          Item item = ((RegularTile)position).getItem();
          if(item == null)
@@ -152,6 +175,9 @@ public abstract class Player {
          work();
      }
 
+    /**
+     *betölti az adott képeket
+     */
     public void loadImages(String path)
     {
         try {

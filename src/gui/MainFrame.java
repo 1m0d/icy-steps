@@ -5,6 +5,9 @@ import modules.GameController;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ *a main frame osztálya
+ */
 public class MainFrame {
     private static MainFrame mainFrame;
     private static JFrame frame;
@@ -19,6 +22,9 @@ public class MainFrame {
         return mainFrame;
     }
 
+    /**
+     *main frame incializálása
+     */
     private static void initialize() throws HeadlessException {
         frame = new JFrame();
         frame.pack();

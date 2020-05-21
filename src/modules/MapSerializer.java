@@ -2,6 +2,9 @@ package modules;
 
 import java.util.ArrayList;
 
+/**
+ *a térkép szerializálásáért felelős (a grafikus felületben már nincs haszna)
+ */
 public class MapSerializer {
     private GameController gameController = GameController.getInstance();
     private Map map;

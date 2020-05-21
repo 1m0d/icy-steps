@@ -7,9 +7,14 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ *az ásó eszközök osztálya, au Itemből származik le
+ */
 public class Shovel extends Item
 {
-
+    /**
+     *konstruktorok
+     */
     public Shovel(){}
     public Shovel(Player player) {
         super(player);
@@ -20,6 +25,9 @@ public class Shovel extends Item
         super.loadImages("src/gui/icons/bear.png");
     }
 
+    /**
+     *meghívja a hólapátolásért felelős függvényt
+     */
     @Override
     public void useItem(Tile t) {
         ((RegularTile)t).onShovel();

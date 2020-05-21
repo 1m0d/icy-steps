@@ -21,6 +21,9 @@ public class Food extends Item {
         super.loadImages("src/gui/icons/food.png");
     }
 
+    /**
+     *növeli a játékos életét, ha az nem a maximális érétken van
+     */
     @Override
     public void useItem(Tile t) {
         if (player.lives < player.maxLives) {

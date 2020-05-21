@@ -11,6 +11,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Vector;
 
+/**
+ *a toolbar megjelenítéséért felelős osztály
+ */
 public class ToolbarView {
     private static ToolbarView toolbarview;
     private static ToolBarController toolBarController;
@@ -32,6 +35,9 @@ public class ToolbarView {
         return toolbarview;
     }
 
+    /**
+     *toolbar inicializálása
+     */
     private static void initialize(){
         toolBarController = new ToolBarController();
         gameView = GameView.getInstance();
@@ -46,6 +52,9 @@ public class ToolbarView {
         toolbarFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         toolbarPanel.setLayout(new FlowLayout());
 
+        /**
+         *elemek létrehozása
+         */
         JButton stepButton, passButton, clearSnowButton, pickUpItemButton, useAbilityButton, useItemButton;
         JComboBox stepDirCB, useAbilityCB, ropeCB;;
         stepButton = new JButton("Step");
@@ -80,8 +89,9 @@ public class ToolbarView {
         ImageIcon w3Image =  new ImageIcon("src/gui/icons/winningitem3.png");
         JButton w3Button = new JButton(resizeIcon(w3Image));
 
-
-
+        /**
+         *elemek hozzáadása a toolbarhoz
+         */
         toolbarPanel.add(playerStatus);
         toolbarPanel.add(stepButton);
         toolbarPanel.add(stepDirCB);
@@ -117,7 +127,9 @@ public class ToolbarView {
             btn.setVisible(false);
         }
 
-        //Action listeners
+        /**
+         *action listenerek
+         */
         MouseAdapter mAdapter = new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
@@ -238,6 +250,9 @@ public class ToolbarView {
 
     public JPanel getToolbarPanel(){ return toolbarPanel; }
 
+    /**
+     *ikonok átméretéséért felelős függvény
+     */
     private static Icon resizeIcon(ImageIcon icon) {
         Image img = icon.getImage();
         Image resizedImage = img.getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH);
