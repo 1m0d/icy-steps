@@ -10,6 +10,7 @@ public class Map{
     private int rowCount = 0;
     private int columnCount = 0;
     private Interpreter interpreter = new Interpreter();
+    GameController gameController = GameController.getInstance();
 
     public int getRowCount() { return rowCount; }
     public void addRowCount() { rowCount++; }
@@ -62,9 +63,10 @@ public class Map{
         return stormTiles;
     }
 
-    public void moveBear()
+    public boolean moveBear()
     {
         int randomNum = ThreadLocalRandom.current().nextInt(1, 5);
+
        String arg[] ={"1"};
 
         switch(randomNum){
@@ -81,7 +83,14 @@ public class Map{
                 arg[0]="up";
                 break;
         }
+
+        if ((gameController.getBear().getPosition().getPositionX() == 0 && arg[0] == "left" ||
+                gameController.getBear().getPosition().getPositionX() == GameController.getInstance().getMap().getRowCount()-1 && arg[0] == "right" ||
+                gameController.getBear().getPosition().getPositionY() == 0 && arg[0] == "up" ||
+                gameController.getBear().getPosition().getPositionY() == GameController.getInstance().getMap().getColumnCount()-1 && arg[0] == "down"))
+        {return false; }
         interpreter.executeCommand("move-bear", arg);
+        return true;
     }
 
     public ArrayList<Tile> getAllTiles()

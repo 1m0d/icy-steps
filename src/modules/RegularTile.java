@@ -38,8 +38,8 @@ public class RegularTile extends Tile {
 
     @Override
     public void onStorm() {
-        snowLayerCount++;
-        System.out.print(snowLayerCount);
+        if (snowLayerCount<6){
+        snowLayerCount++;}
         if(iglooBuilt || campBuilt)
             return;
 
