@@ -1,11 +1,18 @@
 package modules;
 
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
 /**
- * Az eszzkimo tipusu jatekosok osztalya, a Playerbol szarmazik le
+ * A tudós tipusu jatekosok osztalya, a Playerbol szarmazik le
  */
 public class Scientist extends Player {
+
     /**
-     * Konstruktorok
+     *konstruktorok
      */
     public Scientist(Tile position) {
         super(position);
@@ -14,14 +21,17 @@ public class Scientist extends Player {
     public Scientist(Tile position, int energy, int lives, boolean drowning, int uniqueID) {
         super(position, energy, lives, drowning, uniqueID);
         maxLives = 4;
+        super.loadImages("src/gui/icons/scientist.png");
     }
 
     /**
-     * a Player useAbility fuggvenyenek override-ja, egy adott Tile-t ellenoriz, hogy hany ember fer el rajta
+     *a tudós használja a képességét
      */
     @Override
     public void useAbility(Tile t) {
         t.onScientistAbility();
         work();
     }
+
+
 }

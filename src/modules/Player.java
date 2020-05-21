@@ -1,13 +1,17 @@
 package modules;
 
+
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
+
 /**
  * A jatekosok absztrakt osztalya, ebbol szarmazik le az eszkimo es a tudos
  */
 public abstract class Player {
     protected Tile position;
-
     protected int maxLives;
     protected int energy = 5;
     protected int lives;
@@ -16,6 +20,8 @@ public abstract class Player {
     protected ArrayList<Item> items = new ArrayList<>();
     protected boolean activePlayer = false;
     protected boolean hasDivingSuit = false;
+
+    public BufferedImage image;
 
     /**
      * Visszater a jatekos azonositojaval
@@ -42,9 +48,7 @@ public abstract class Player {
 
     public void setActivePlayer(boolean activePlayer) { this.activePlayer = activePlayer; }
 
-    /**
-     *Berakja az adott itemet a jatekos inveontory-jaba
-     */
+
     public void addItemToInventory(Item i) { items.add(i); }
 
     /**
@@ -61,20 +65,29 @@ public abstract class Player {
      *A jatekos kore elkezdodik, kezdetben 4 az energiaja
      */
     public void startTurn() {
-        energy = 4;
-        activePlayer = true;
-        if(drowning && !hasDivingSuit){
-            GameController.getInstance().lose();
+        if(drowning) {
+            if (!hasDivingSuit){
+                GameController.getInstance().lose();
+            }
+            pass();
+        }
+        else {
+            energy = 4;
+            activePlayer = true;
         }
     }
 
     /**
-     *A jatekos az adott mezore lepp
+     *A jatekos az adott mezore lep
      */
     public void step(Tile t) {
-        position = t;
-        t.onPlayerStep(this);
-        work();
+            if (!GameController.getInstance().getBear().getPosition().equals(t))
+            {
+                position.removePlayer(this);
+                position = t;
+                t.onPlayerStep(this);
+                work();
+            }
     }
     /**
      *A jatekos tovabbadja a koret a kovetkezo jatekosnak
@@ -86,14 +99,16 @@ public abstract class Player {
     }
 
     /**
-     *A jatekos
+     *A jatekos használja az adott eszközt
      */
-    // TODO useItem(Tile)
     public void useItem(Item i) {
         i.useItem(position);
         work();
     }
 
+    /**
+     *A jatekos használja az adott eszközt
+     */
     public void useItem(Item item, Tile tile){
         item.useItem(tile);
         work();
@@ -101,6 +116,9 @@ public abstract class Player {
 
     public abstract void useAbility(Tile t);
 
+    /**
+     *a játékos eszik, nő az élete, ha nem a maximális értéken van
+     */
     public void onFood() {
         if (lives < maxLives) {
             lives++;
@@ -108,13 +126,25 @@ public abstract class Player {
         work();
     }
 
-    public void onHole() { drowning = true; }
+    /**
+     *a játékos fulldoklik
+     */
+    public void onHole() {
+        drowning = true;
+        energy = 0;
+    }
 
+    /**
+     *az adott mezőre húzzák a játékost
+     */
     public void getPulledTo(Tile t) {
         position = t;
         t.onPlayerStep(this);
     }
 
+    /**
+     *a játékos havat lapátol
+     */
     public void clearSnow() {
         RegularTile t = (RegularTile)position;
         t.clearSnow();
@@ -123,13 +153,18 @@ public abstract class Player {
 
     public void setDivingSuit() { hasDivingSuit = true; }
 
+    /**
+     *a játékos élete csökken eggyel
+     */
     public void damage() {
         lives--;
         if(lives <= 0)
             GameController.getInstance().lose();
     }
 
-
+    /**
+     *getterek
+     */
      public Tile getPosition() {
          return this.position;
      }
@@ -138,6 +173,9 @@ public abstract class Player {
         return items;
      }
 
+    /**
+     *a játékos felveszi az adott mezőn lévő eszközt
+     */
      public void pickUpItem(){
          Item item = ((RegularTile)position).getItem();
          if(item == null)
@@ -147,5 +185,22 @@ public abstract class Player {
          ((RegularTile) position).setItem(null);
          work();
      }
+
+    /**
+     *betölti az adott képeket
+     */
+    public void loadImages(String path)
+    {
+        try {
+            image = ImageIO.read(new File(path));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    @Override
+    public String toString() {
+        return "lives:" + lives + " energy: " + energy;
+    }
+
 }
 

@@ -1,0 +1,13 @@
+Tiles:
+3,6,false,false,1;2,4,false,false,2;0,0,false,false,3;1,2,false,false,4;2,6,false,false,5;1,6,false,false,6;
+3,4,false,false,7;1,4,false,false,8;1,0,false,false,9;0,0,false,false,10;2,4,false,false,11;2,2,false,false,12;
+1,2,false,false,13;2,2,false,false,14;1,4,false,false,15;2,2,false,false,16;2,4,false,false,17;0,0,false,false,18;
+2,2,false,false,19;3,4,false,false,20;1,2,false,false,21;3,2,false,false,22;1,4,false,false,23;1,1,false,false,24;
+3,0,false,false,25;2,2,false,false,26;1,0,false,false,27;3,2,false,false,28;3,0,false,false,29;1,2,false,false,30;
+0,0,false,false,31;2,0,false,false,32;1,2,false,false,33;3,2,false,false,34;3,6,false,false,35;3,4,false,false,36;
+Players:
+1,36,4,4,false,37;1,30,4,4,false,38;0,22,4,5,false,39;0,28,4,5,false,40;
+Items:
+2,camp;30,camp;9,divingSuit;14,food;34,food;27,food;36,food;25,food;15,fragileShovel;17,fragileShovel;7,rope;11,rope;23,shovel;26,shovel;1,winningItem;8,winningItem;35,winningItem;
+Bear:
+7;

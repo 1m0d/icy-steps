@@ -1,19 +1,22 @@
 package modules;
-
 /**
- * A buvarruha objekctumok osztalya, az Itembol szarmazik le
+ *búvárruha eszközök osztálya, az Itemből származik le
  */
 public class DivingSuit extends Item
 {
     /**
-     * Konstruktorok
+     *konstruktor
      */
     public DivingSuit(){}
-    public DivingSuit(Player player) { super(player); }
+    public DivingSuit(Player player)
+    {
+        super(player);
+        super.loadImages("src/gui/icons/diving-suit.png");
+    }
     public DivingSuit(Tile tile) { super(tile); }
 
     /**
-     *Item osztaly useItem fuggvenyet override-olja, a player hasDivingSuit booljat igazra allitja
+     *igazra állítja a hasDivingSuit változót
      */
     @Override
     public void useItem(Tile t) {
@@ -26,4 +29,6 @@ public class DivingSuit extends Item
     public String toString(){
         return "diving-suit";
     }
+
+
 }

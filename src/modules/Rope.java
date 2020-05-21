@@ -1,20 +1,31 @@
 package modules;
 
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * A kotel objektumok osztalya, az Itembol szarmazik le
+ *a kötél eszközök osztálya, az Itemből származik le
  */
 public class Rope extends Item {
+
+    private Image rtImage;
+    public BufferedImage rImage;
+
     /**
-     *Konstruktorok
+     *konstruktorok
      */
     public Rope(){}
     public Rope(Player player) { super(player); }
     public Rope(Tile tile) { super(tile); }
 
+
     /**
-     *Item osztaly useItem fuggvenyet override-olja, ennek a segítsegevel lehet egy jatekost kimenekiteni a vizbol
+     *kihúzza a szomszédos mezőn fulldokló játékost
      */
     @Override
     public void useItem(Tile t) {
@@ -29,4 +40,17 @@ public class Rope extends Item {
     public String toString(){
         return "rope";
     }
+
+    /**
+     *betölti a megfelelő képet
+     */
+    public void loadImages()
+    {
+        try {
+            rImage = ImageIO.read(new File("src/gui/icons/rope.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

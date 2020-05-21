@@ -1,31 +1,46 @@
 package modules;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 /**
- * A medve osztalya
+ *medvéért felelős osztály
  */
 public class Bear {
-    /**
-     * A medve pozicioja
-     */
+
+    public BufferedImage image;
     private Tile position;
 
     /**
-     * Konstruktor
+     *Konstruktor
      */
-    public Bear(Tile position) {this.position = position;}
+    public Bear(Tile position) {
+        this.position = position;
+        loadImages();
+    }
 
     /**
-     * Ez mozgatja a medvet
+     *visszatér a medve pozíciójával
      */
+    public Tile getPosition() {
+        return this.position;
+    }
+
     public void move(Tile t) {
         position = t;
         t.onBearStep();
     }
 
     /**
-     * Visszater a medve poziciojaval
+     *kép betöltése
      */
-    public Tile getPosition() {
-        return this.position;
+    public void loadImages() {
+        try {
+            image = ImageIO.read(new File("src/gui/icons/bear.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
 }

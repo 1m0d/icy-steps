@@ -1,19 +1,28 @@
 package modules;
 
+import java.awt.image.BufferedImage;
+
 /**
  * Az elelmek osztalya, az Itembol szarmazik le
  */
 public class Food extends Item {
 
+    public BufferedImage fImage;
     /**
      * Konstruktorok
      */
     public Food() {}
-    public Food(Player player) { super(player); }
-    public Food(Tile tile) { super(tile); }
+    public Food(Player player) {
+        super(player);
+        super.loadImages("src/gui/icons/food.png");
+    }
+    public Food(Tile tile) {
+        super(tile);
+        super.loadImages("src/gui/icons/food.png");
+    }
 
     /**
-     *Item osztaly useItem fuggvenyet override-olja, a jatekos eleten novel egyet, amennyiben annak nem maximalis az elete
+     *növeli a játékos életét, ha az nem a maximális érétken van
      */
     @Override
     public void useItem(Tile t) {
@@ -26,4 +35,6 @@ public class Food extends Item {
     public String toString(){
         return "food";
     }
+
+
 }

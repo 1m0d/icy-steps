@@ -1,12 +1,18 @@
 package modules;
 
+
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
 /**
  * Az eszkozok absztrakt osztalya, ebbol szarmazik le minden eszkoz
  */
 public abstract class Item {
-
     protected Tile tile;
     protected Player player;
+    private BufferedImage image;
 
     /**
      *Konstruktorok
@@ -31,4 +37,19 @@ public abstract class Item {
     public Tile getTile() { return tile; }
 
     public abstract void useItem(Tile t);
+
+    /**
+     *betölti a megfelelő képeket
+     */
+    public void loadImages(String path)
+    {
+        try {
+            image = ImageIO.read(new File(path));
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public BufferedImage getImage(){ return image; }
 }

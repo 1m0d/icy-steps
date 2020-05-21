@@ -1,20 +1,32 @@
 package modules;
 
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
 /**
- *Az aso objektumok osztalya, az Itembol szarmazik le
+ *az ásó eszközök osztálya, au Itemből származik le
  */
 public class Shovel extends Item
 {
-
     /**
-     *Konstruktorok
+     *konstruktorok
      */
     public Shovel(){}
-    public Shovel(Player player) { super(player); }
-    public Shovel(Tile tile) { super(tile); }
+    public Shovel(Player player) {
+        super(player);
+        super.loadImages("src/gui/icons/bear.png");
+    }
+    public Shovel(Tile tile) {
+        super(tile);
+        super.loadImages("src/gui/icons/bear.png");
+    }
 
     /**
-     *Item osztaly useItem fuggvenyet override-olja,  ez hivja meg a holapatolasert felelos fuggvenyt
+     *meghívja a hólapátolásért felelős függvényt
      */
     @Override
     public void useItem(Tile t) {
@@ -25,4 +37,6 @@ public class Shovel extends Item
     public String toString(){
         return "shovel";
     }
+
+
 }

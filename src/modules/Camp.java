@@ -1,27 +1,35 @@
 package modules;
-
 /**
- * A tabor objektumok osztalya, az Itembol szarmazik le
+ *a sátor eszközökért felelős osztály, az Itemből származik le
  */
 public class Camp extends Item {
 
+    public Camp() {
+    }
     /**
-     * Konstruktorok
+     *konsturktorok
      */
-    public Camp(){}
+    public Camp(Player player) {
+        super(player);
+        super.loadImages("src/gui/icons/camp.png");
+    }
 
-    public Camp(Player player) { super(player); }
-    public Camp(Tile tile) { super(tile); }
+    public Camp(Tile tile) {
+        super(tile);
+        super.loadImages("src/gui/icons/camp.png");
 
-
+    }
     /**
-     *Item osztaly useItem fuggvenyet override-olja, tabort epit az adott mezore
+     *sátor felálíltása a mezőn
      */
     @Override
-    public void useItem(Tile t) { ((RegularTile)t).buildCamp(); }
+    public void useItem(Tile t) {
+        ((RegularTile) t).buildCamp();
+    }
 
     @Override
-    public String toString(){
+    public String toString() {
         return "camp";
     }
+
 }

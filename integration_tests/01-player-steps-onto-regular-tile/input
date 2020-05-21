@@ -1,3 +1,0 @@
-load-map map
-set-player-turn 2
-step left

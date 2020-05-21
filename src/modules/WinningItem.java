@@ -1,20 +1,20 @@
 package modules;
 
 /**
- * a nyero objektumok osztalya, az Itembol szarmazik le
+ *nyerő eszközök osztálya, az Itemből származik le
  */
 public class WinningItem extends Item {
 
     /**
-     * Konstruktorok
+     *konstruktorok
      */
     public WinningItem(){}
     public WinningItem(Player player) { super(player); }
-    public WinningItem(Tile tile) { super(tile); }
+    public WinningItem(Tile tile) { super(tile);
+        super.loadImages("src/gui/icons/winning-item.png");}
 
     /**
-     *Item osztaly useItem fuggvenyet override-olja,  meghivja a GameControllernek azt a fuggvenyet, ami ellenorzi, hogy
-     * a jatekosok nyertek-e
+     *eszköz használata, meghívja azt a függvényt, ami ellenőrzi, hogy nyertek-e a játéosok
      */
     @Override
     public void useItem(Tile t) {
@@ -25,4 +25,7 @@ public class WinningItem extends Item {
     public String toString(){
         return "winning-item";
     }
+
+
+
 }
