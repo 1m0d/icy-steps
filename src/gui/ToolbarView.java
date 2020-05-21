@@ -1,10 +1,7 @@
 package gui;
 
 import gui.controllers.ToolBarController;
-import modules.GameController;
-import modules.Interpreter;
-import modules.Player;
-import modules.Scientist;
+import modules.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Vector;
 
 public class ToolbarView {
     private static ToolbarView toolbarview;
@@ -21,6 +19,11 @@ public class ToolbarView {
     private static JPanel toolbarPanel;
     private static JLabel playerStatus = new JLabel();
 
+    private static Vector<JButton> itemButtons = new Vector<>();
+
+    public static Vector<JButton> getItemButtons() {
+        return itemButtons;
+    }
     public static ToolbarView getInstance(){
         if(toolbarview == null){
             toolbarview = new ToolbarView();
@@ -77,6 +80,8 @@ public class ToolbarView {
         ImageIcon w3Image =  new ImageIcon("src/gui/icons/winningitem3.png");
         JButton w3Button = new JButton(resizeIcon(w3Image));
 
+
+
         toolbarPanel.add(playerStatus);
         toolbarPanel.add(stepButton);
         toolbarPanel.add(stepDirCB);
@@ -89,13 +94,28 @@ public class ToolbarView {
         toolbarPanel.add(campButton);
         toolbarPanel.add(divingsuitButton);
         toolbarPanel.add(foodButton);
-        toolbarPanel.add(fShovelButton);
         toolbarPanel.add(ropeButton);
+        toolbarPanel.add(fShovelButton);
         toolbarPanel.add(shovelButton);
         toolbarPanel.add(w1Button);
         toolbarPanel.add(w2Button);
         toolbarPanel.add(w3Button);
         toolbarPanel.add(ropeCB);
+
+        itemButtons.add(campButton);
+        itemButtons.add(divingsuitButton);
+        itemButtons.add(foodButton);
+        itemButtons.add(ropeButton);
+        itemButtons.add(shovelButton);
+        itemButtons.add(fShovelButton);
+        itemButtons.add(w1Button);
+        itemButtons.add(w2Button);
+        itemButtons.add(w3Button);
+
+        for (JButton btn : itemButtons)
+        {
+            btn.setVisible(false);
+        }
 
         //Action listeners
         MouseAdapter mAdapter = new MouseAdapter() {

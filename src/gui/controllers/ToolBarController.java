@@ -5,6 +5,7 @@ import gui.ToolbarView;
 import modules.*;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class ToolBarController {
     private ToolbarView toolbarView;
@@ -27,6 +28,49 @@ public class ToolBarController {
 
         if(itemSelected != "rope"){
             ropeCB.setVisible(false);
+        }
+        Boolean btnVisibilities[] = new Boolean[]{false,false,false,false,false,false,false,false,false};
+        int iter = 6;
+        for(Item i : gameController.getCurrentPlayer().getItems()) {
+            System.out.println(i.toString());
+            switch (i.toString()) {
+                case "camp":
+                    btnVisibilities[0] = true;
+                    break;
+                case "diving-suit":
+                    btnVisibilities[1] = true;
+                    break;
+                case "food":
+                    btnVisibilities[2] = true;
+                    break;
+                case "rope":
+                    btnVisibilities[3] = true;
+                    break;
+                case "shovel":
+                    btnVisibilities[4] = true;
+                    break;
+                case "fragile-shovel":
+                    btnVisibilities[5] = true;
+                    break;
+                case "winning-item":
+                    btnVisibilities[iter] = true;
+                    iter++;
+                    break;
+                default:
+                    System.out.println(i.toString() + "type could not been found");
+            }
+        }
+        for (int i = 0; i < ToolbarView.getItemButtons().size(); i++)
+        {
+            if(btnVisibilities[i] == false)
+            {
+                ToolbarView.getItemButtons().get(i).setVisible(false);
+            }
+            else
+            {
+                ToolbarView.getItemButtons().get(i).setVisible(true);
+
+            }
         }
 
         playerStatus.setText(gameController.getCurrentPlayer().toString());
@@ -62,7 +106,6 @@ public class ToolBarController {
     }
 
     // item buttons
-
     public void foodButtonPressed(){
         itemSelected = "food";
         interpreter.executeCommand("use-item", new String[]{"food"});
