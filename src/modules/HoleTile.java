@@ -13,6 +13,7 @@ public class HoleTile extends Tile {
     public void onPlayerStep(Player p) {
         players.add(p);
         p.onHole();
+        snowLayerCount = 0;
     }
 
     public void onRope() {
@@ -23,6 +24,8 @@ public class HoleTile extends Tile {
     public void onBearStep(){
         if(!players.isEmpty())
             GameController.getInstance().lose();
+
+        snowLayerCount = 0;
     }
 
     @Override
