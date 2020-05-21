@@ -84,19 +84,12 @@ public class GameController {
         gameOver = true;
         playersWon = true;
         GameView.getInstance().gameOver();
-        /*clear();
-        map = null;*/
-        System.exit(0);
     }
 
     public void lose() {
         gameOver = true;
         playersWon = false;
         GameView.getInstance().gameOver();
-        /*clear();
-        map = null; */
-        System.exit(0);
-
     }
 
     public void checkWinningConditions() {

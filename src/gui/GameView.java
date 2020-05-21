@@ -16,7 +16,6 @@ public class GameView {
     private static GameView gameView;
     private static ToolbarView toolbarView;
     private static JPanel mainPanel;
-    private static MainFrame mainFrame = MainFrame.getInstance();
 
     public static GameView getInstance() {
         if (gameView == null) {
@@ -53,12 +52,11 @@ public class GameView {
     }
 
     public void gameOver() {
-        //mainFrame.changePanel(MainMenu.getInstance().getPanel());
-
         JFrame frame = new JFrame();
         frame.setLayout(new GridBagLayout());
         JPanel panel = new JPanel();
         JLabel jlabel = new JLabel();
+
         if (gameController.isGameOver()) {
             if (gameController.isPlayersWon()) {
                 jlabel.setText("YOU WON!");
@@ -66,6 +64,7 @@ public class GameView {
                 jlabel.setText("YOU LOST!");
             }
         }
+
         jlabel.setFont(new Font("Verdana",1,55));
         panel.add(jlabel);
         panel.setBorder(new LineBorder(Color.BLACK));
@@ -81,6 +80,3 @@ public class GameView {
         exitTimer.start();
     }
 }
-
-
-
