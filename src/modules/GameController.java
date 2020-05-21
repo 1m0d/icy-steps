@@ -1,5 +1,7 @@
 package modules;
 
+import gui.GameView;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
@@ -16,6 +18,8 @@ public class GameController {
     private boolean playersWon = false;
     private Player currentPlayer;
     private int currentPlayerIndex = 0;
+
+
 
 
     public static GameController getInstance() {
@@ -39,7 +43,7 @@ public class GameController {
      *betölti a kiválasztott térképet
      */
     public void loadMap(String path) throws FileNotFoundException {
-        map = new Map();
+        //map = new Map();
         clear();
         List<String> mapObjects = Arrays.asList("Tiles", "Players", "Items", "Bear");
         File file = new File(path);
@@ -101,6 +105,7 @@ public class GameController {
     public void win() {
         gameOver = true;
         playersWon = true;
+        GameView.getInstance().gameOver();
     }
 
     /**
@@ -109,6 +114,7 @@ public class GameController {
     public void lose() {
         gameOver = true;
         playersWon = false;
+        GameView.getInstance().gameOver();
     }
 
     /**

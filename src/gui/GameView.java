@@ -3,6 +3,7 @@ import modules.*;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import javax.tools.Tool;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -39,7 +40,9 @@ public class GameView {
         return gameView;
     }
 
-    public static JPanel getMainPanel() { return mainPanel; }
+    public static JPanel getMainPanel() {
+        return mainPanel;
+    }
 
     /**
      *a játék grafikájának inicializálása
@@ -164,5 +167,34 @@ public class GameView {
             }
 
         }
+    }
+
+    public void gameOver() {
+        JFrame frame = new JFrame();
+        frame.setLayout(new GridBagLayout());
+        JPanel panel = new JPanel();
+        JLabel jlabel = new JLabel();
+
+        if (gameController.isGameOver()) {
+            if (gameController.isPlayersWon()) {
+                jlabel.setText("YOU WON!");
+            } else {
+                jlabel.setText("YOU LOST!");
+            }
+        }
+
+        jlabel.setFont(new Font("Verdana",1,55));
+        panel.add(jlabel);
+        panel.setBorder(new LineBorder(Color.BLACK));
+        frame.add(panel, new GridBagConstraints());
+        frame.setSize(400, 400);
+        frame.setLocationRelativeTo(null);
+        frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+
+        Timer exitTimer = new Timer(2500, e -> {
+            System.exit(0);
+        });
+        exitTimer.start();
     }
 }
