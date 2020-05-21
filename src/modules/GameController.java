@@ -19,9 +19,6 @@ public class GameController {
     private Player currentPlayer;
     private int currentPlayerIndex = 0;
 
-
-
-
     public static GameController getInstance() {
         if (gameController == null)
             gameController = new GameController();

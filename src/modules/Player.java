@@ -180,10 +180,14 @@ public abstract class Player {
          Item item = ((RegularTile)position).getItem();
          if(item == null)
              return;
-         addItemToInventory(item);
-         item.setPlayer(this);
-         ((RegularTile) position).setItem(null);
-         work();
+
+         if(position.snowLayerCount == 0)
+         {
+             addItemToInventory(item);
+             item.setPlayer(this);
+             ((RegularTile) position).setItem(null);
+             work();
+         }
      }
 
     /**
