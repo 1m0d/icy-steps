@@ -10,10 +10,9 @@ import java.io.IOException;
  * Az eszkozok absztrakt osztalya, ebbol szarmazik le minden eszkoz
  */
 public abstract class Item {
-
     protected Tile tile;
     protected Player player;
-    public BufferedImage image;
+    private BufferedImage image;
 
     /**
      *Konstruktorok
@@ -51,4 +50,6 @@ public abstract class Item {
             e.printStackTrace();
         }
     }
+
+    public BufferedImage getImage(){ return image; }
 }

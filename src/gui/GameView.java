@@ -4,12 +4,7 @@ import modules.*;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
-import javax.tools.Tool;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -31,6 +26,7 @@ public class GameView {
     private static BufferedImage iglooImage;
     private static BufferedImage bearImage;
     private static BufferedImage waterImage;
+    private static BufferedImage campImage;
 
     public static GameView getInstance() {
         if (gameView == null) {
@@ -54,6 +50,7 @@ public class GameView {
             iglooImage = ImageIO.read(new File("src/gui/icons/igloo.png"));
             bearImage = ImageIO.read(new File("src/gui/icons/bear.png"));
             waterImage = ImageIO.read(new File("src/gui/icons/water.png"));
+            campImage = ImageIO.read(new File("src/gui/icons/camp.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -95,8 +92,10 @@ public class GameView {
 
                         Item item = ((RegularTile)tile).getItem();
                         if (item != null) {
-                            item.loadImages("src/gui/icons/" + item.toString() + ".png");
-                            g.drawImage(item.image, 35, 35, 50, 50, null);
+                            if(item.getImage() == null) {
+                                item.loadImages("src/gui/icons/" + item.toString() + ".png");
+                            }
+                            g.drawImage(item.getImage(), 35, 35, 50, 50, null);
                         }
                     } else {
                         g.drawImage(snowImage, 0, 0, tileHeight, tileWidth, null);
@@ -104,6 +103,9 @@ public class GameView {
 
                     if (((RegularTile)tile).isIglooBuilt()) {
                         g.drawImage(iglooImage, 0, 0, tileHeight, tileWidth, null);
+                    }
+                    if (((RegularTile)tile).isCampBuilt()) {
+                        g.drawImage(campImage, 0, 0, tileHeight, tileWidth, null);
                     }
 
 
