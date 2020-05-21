@@ -34,14 +34,7 @@ public class ToolbarView {
         gameView = GameView.getInstance();
         gameController = GameController.getInstance();
         JFrame toolbarFrame = new JFrame();
-        toolbarPanel = new JPanel(){
-            @Override
-            public void paintComponent(Graphics g) {
-                super.paintComponent(g);
-
-                playerStatus.setText(gameController.getCurrentPlayer().toString());
-            }
-        };
+        toolbarPanel = new JPanel();
 
         toolbarFrame.add(toolbarPanel);
         toolbarFrame.setSize(250,500);
@@ -108,7 +101,7 @@ public class ToolbarView {
         MouseAdapter mAdapter = new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
-                toolBarController.toolbarButtonPressed(useAbilityCB, ropeCB);
+                toolBarController.toolbarButtonPressed(useAbilityCB, ropeCB, playerStatus);
             }
         };
 

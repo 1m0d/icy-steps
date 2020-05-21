@@ -18,7 +18,7 @@ public class ToolBarController {
     }
 
     // runs on any button press
-    public void toolbarButtonPressed(JComboBox useAbilityCB, JComboBox ropeCB){
+    public void toolbarButtonPressed(JComboBox useAbilityCB, JComboBox ropeCB, JLabel playerStatus){
         if (gameController.getCurrentPlayer() instanceof Eskimo) {
             useAbilityCB.setVisible(false);
         } else{
@@ -28,6 +28,8 @@ public class ToolBarController {
         if(itemSelected != "rope"){
             ropeCB.setVisible(false);
         }
+
+        playerStatus.setText(gameController.getCurrentPlayer().toString());
 
         gameView.getMainPanel().repaint();
         toolbarView.getToolbarPanel().repaint();
