@@ -121,54 +121,48 @@ public class ToolbarView {
         passButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                interpreter.executeCommand("player-pass", null);
+                toolBarController.passButtonPressed();
             }
         });
         stepButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                interpreter.executeCommand("step", new String[]{stepDirCB.getSelectedItem().toString()});
+                toolBarController.stepButtonPressed(stepDirCB);
             }
         });
 
         clearSnowButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                interpreter.executeCommand("clear-snow", null);
+                toolBarController.clearSnowButtonPressed();
             }
         });
 
         pickUpItemButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                interpreter.executeCommand("pick-up-item", null);
+                toolBarController.pickUpItemButtonPressed();
             }
         });
 
         useAbilityButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Player currentPlayer = gameController.getCurrentPlayer();
-                if (currentPlayer instanceof Scientist) {
-                    interpreter.executeCommand("use-scientist-ability", new String[]{useAbilityCB.getSelectedItem().toString()});
-                }
-                else {
-                    interpreter.executeCommand("use-eskimo-ability", null);
-                }
+                toolBarController.useAbilityButtonPressed(useAbilityCB);
             }
         });
 
         foodButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                interpreter.executeCommand("use-item", new String[]{"food"});
+                toolBarController.foodButtonPressed();
             }
         });
 
         campButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                interpreter.executeCommand("use-item", new String[]{"camp"});
+                toolBarController.campButtonPressed();
             }
 
         });
@@ -176,50 +170,49 @@ public class ToolbarView {
         divingsuitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                interpreter.executeCommand("use-item", new String[]{"diving-suit"});
+                toolBarController.divingsuitButtonPressed();
             }
         });
 
         shovelButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                interpreter.executeCommand("use-item", new String[]{"shovel"});
+                toolBarController.shovelButtonPressed();
             }
         });
 
         fShovelButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                interpreter.executeCommand("use-item", new String[]{"fragile-shovel"});
+                toolBarController.fShovelButtonPressed();
             }
         });
 
         ropeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO: should be able to choose which square to use it on
-                throw new UnsupportedOperationException("Not implemented yet");
+                toolBarController.ropeButtonPressed();
             }
         });
 
         w1Button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                interpreter.executeCommand("use-item", new String[]{"winning-item"});
+                toolBarController.winItemButtonPressed();
             }
         });
 
         w2Button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                interpreter.executeCommand("use-item", new String[]{"winning-item"});
+                toolBarController.winItemButtonPressed();
             }
         });
 
         w3Button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                interpreter.executeCommand("use-item", new String[]{"winning-item"});
+                toolBarController.winItemButtonPressed();
             }
         });
     }
