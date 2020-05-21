@@ -15,6 +15,7 @@ public class OptionsMenu {
     private static OptionsMenu optionsView;
     private static MainFrame mainFrame = MainFrame.getInstance();
     private static JPanel panel = new JPanel(new BorderLayout());
+    private static GameController gameController = GameController.getInstance();
 
     public static OptionsMenu getInstance() {
         if (optionsView == null) {
@@ -98,8 +99,10 @@ public class OptionsMenu {
         model.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent changeEvent) {
-                if(model.getValue() == "3"){
-                    //todo
+                try {
+                    gameController.loadMap(String.format("maps/%d-players", model.getValue()));
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
                 }
             }
         });
