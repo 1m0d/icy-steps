@@ -1,12 +1,10 @@
 package modules;
 
-import gui.IDrawable;
-
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class Map implements IDrawable {
+public class Map{
     private ArrayList<Tile> tiles = new ArrayList<>();
     private ArrayList<Item> items = new ArrayList<>();
     private int rowCount = 0;
@@ -111,12 +109,5 @@ public class Map implements IDrawable {
                 return tile;
         }
         return null;
-    }
-
-    @Override
-    public void Draw(JPanel jp) {
-        for(Tile t: tiles) {
-            t.Draw(jp);
-        }
     }
 }

@@ -1,6 +1,8 @@
 package gui;
 import gui.controllers.GameViewController;
 import modules.*;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.tools.Tool;
 import java.awt.*;
@@ -8,6 +10,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 
 public class GameView {
     private static GameController gameController = GameController.getInstance();
@@ -15,6 +21,11 @@ public class GameView {
     private static GameView gameView;
     private static ToolbarView toolbarView;
     private static JPanel mainPanel;
+    private static BufferedImage snowImage;
+    private static BufferedImage iceImage;
+    private static BufferedImage iglooImage;
+    private static BufferedImage bearImage;
+    private static BufferedImage waterImage;
 
     public static GameView getInstance() {
         if (gameView == null) {
@@ -27,17 +38,26 @@ public class GameView {
     public static JPanel getMainPanel() { return mainPanel; }
 
     private static void initialize() {
+        try {
+            snowImage = ImageIO.read(new File("src/gui/icons/snow.png"));
+            iceImage = ImageIO.read(new File("src/gui/icons/ice.png"));
+            iglooImage = ImageIO.read(new File("src/gui/icons/igloo.png"));
+            bearImage = ImageIO.read(new File("src/gui/icons/bear.png"));
+            waterImage = ImageIO.read(new File("src/gui/icons/water.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Tile.calculateTileDimensions();
+
         mainPanel = new JPanel() {
             @Override
             public void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                doDrawing(g);
-            }
 
-            private void doDrawing(Graphics g) {
-                Graphics2D g2d = (Graphics2D) g;
-                g2d.setColor(Color.BLACK);
-                gameController.getMap().Draw(mainPanel);
+                for (Tile tile : gameController.getMap().getAllTiles() ) {
+                    drawTile(g, tile);
+                }
             }
         };
 
@@ -46,5 +66,90 @@ public class GameView {
 
         gameViewController = new GameViewController();
         toolbarView = ToolbarView.getInstance();
+    }
+
+    private static void drawTile(Graphics g, Tile tile) {
+        int tileHeight = Tile.getTileHeight();
+        int tileWidth = Tile.getTileWidth();
+
+        JPanel pane = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+
+                if (tile instanceof RegularTile) {
+                    if (tile.getSnowLayerCount() == 0) {
+                        g.drawImage(iceImage, 0, 0, tileHeight, tileWidth, null);
+
+                        Item item = ((RegularTile)tile).getItem();
+                        if (item != null) {
+                            item.loadImages("src/gui/icons/" + item.toString() + ".png");
+                            g.drawImage(item.image, 35, 35, 50, 50, null);
+                        }
+                    } else {
+                        g.drawImage(snowImage, 0, 0, tileHeight, tileWidth, null);
+                    }
+
+                    if (((RegularTile)tile).isIglooBuilt()) {
+                        g.drawImage(iglooImage, 0, 0, tileHeight, tileWidth, null);
+                    }
+
+
+                } else if(tile instanceof HoleTile){
+                    if (tile.getSnowLayerCount() == 0) {
+                        g.drawImage(waterImage, 0, 0, tileHeight, tileWidth, null);
+                    } else {
+                        g.drawImage(snowImage, 0, 0, tileHeight, tileWidth, null);
+                    }
+                }
+
+                if (tile.isScientistChecked()) {
+                    g.drawString(Integer.toString(tile.getPlayerCapacity()), tileHeight - 20, tileWidth - 50);
+                }
+                g.drawString(Integer.toString(tile.getSnowLayerCount()), tileHeight - 20, tileWidth - 20);
+
+
+                if (tile.checkBear()) {
+                    g.drawImage(bearImage, 0, 0, tileHeight, tileWidth, null);
+                }
+
+                drawPlayers(g, tile.getPlayers(), tileHeight);
+
+            }
+        };
+        mainPanel.add(pane);
+    }
+    private static void drawPlayers(Graphics g, ArrayList<Player> players, int tileHeight) {
+        int playerScaleX, playerScaleY;
+        if (!players.isEmpty()) {
+            switch (players.size()) {
+                case 5:
+                    playerScaleX = playerScaleY = 25;
+                    break;
+                case 4:
+                    playerScaleX = playerScaleY = 32;
+                    break;
+                case 3:
+                    playerScaleX = playerScaleY = 40;
+                    break;
+                default:
+                    playerScaleX = playerScaleY = 64;
+                    break;
+            }
+
+            int playerIndex = 0;
+            for (Player player : players) {
+                int playerPositionX = playerIndex * playerScaleX;
+                int playerPositionY = (tileHeight / 2) - (playerScaleY / 2); // center vertically
+                g.drawImage(player.image, playerPositionX, playerPositionY, playerScaleX, playerScaleY, null);
+                if (player.isActivePlayer()) {
+                    // draw rectangle to show active player
+                    g.setColor(Color.RED);
+                    g.fillRect(playerPositionX, playerPositionY, 10, 10);
+                }
+                playerIndex++;
+            }
+
+        }
     }
 }

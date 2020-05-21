@@ -1,6 +1,5 @@
 package modules;
 
-import gui.IDrawable;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
