@@ -130,27 +130,22 @@ public class ToolBarController {
      */
     public void foodButtonPressed(){
         itemSelected = "food";
-        interpreter.executeCommand("use-item", new String[]{"food"});
     }
 
     public void campButtonPressed(){
         itemSelected = "camp";
-        interpreter.executeCommand("use-item", new String[]{"camp"});
     }
 
     public void divingsuitButtonPressed(){
         itemSelected = "diving-suit";
-        interpreter.executeCommand("use-item", new String[]{"diving-suit"});
     };
 
     public void shovelButtonPressed(){
         itemSelected = "shovel";
-        interpreter.executeCommand("use-item", new String[]{"shovel"});
     }
 
     public void fShovelButtonPressed(){
         itemSelected = "fragile-shovel";
-        interpreter.executeCommand("use-item", new String[]{"fragile-shovel"});
     };
 
     public void ropeButtonPressed(JComboBox ropeCB){
@@ -160,7 +155,6 @@ public class ToolBarController {
 
     public void winItemButtonPressed(){
         itemSelected = "winning-item";
-        interpreter.executeCommand("use-item", new String[]{"winning-item"});
     }
 
     public void useItemButtonPressed(JComboBox ropeCB){
