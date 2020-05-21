@@ -74,14 +74,13 @@ public class GameView {
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
         frame.setVisible(true);
-       /* try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } */  //TODO
 
-        }
+        Timer exitTimer = new Timer(2500, e -> {
+            System.exit(0);
+        });
+        exitTimer.start();
     }
+}
 
 
 
