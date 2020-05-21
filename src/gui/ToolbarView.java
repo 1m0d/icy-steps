@@ -1,6 +1,5 @@
 package gui;
 
-import gui.controllers.GameViewController;
 import gui.controllers.ToolBarController;
 import modules.GameController;
 import modules.Interpreter;
@@ -19,7 +18,6 @@ public class ToolbarView {
     private static ToolBarController toolBarController;
     private static GameView gameView;
     private static GameController gameController;
-    private static Interpreter interpreter = new Interpreter();
     private static JPanel toolbarPanel;
     private static JLabel playerStatus = new JLabel();
 

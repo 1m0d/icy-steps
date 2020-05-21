@@ -1,5 +1,4 @@
 package gui;
-import gui.controllers.GameViewController;
 import modules.*;
 
 import javax.imageio.ImageIO;
@@ -17,7 +16,6 @@ import java.util.ArrayList;
 
 public class GameView {
     private static GameController gameController = GameController.getInstance();
-    private static GameViewController gameViewController;
     private static GameView gameView;
     private static ToolbarView toolbarView;
     private static JPanel mainPanel;
@@ -64,7 +62,6 @@ public class GameView {
         GridLayout gridLayout = new GridLayout(gameController.getMap().getRowCount(), gameController.getMap().getColumnCount());
         mainPanel.setLayout(gridLayout);
 
-        gameViewController = new GameViewController();
         toolbarView = ToolbarView.getInstance();
     }
 
