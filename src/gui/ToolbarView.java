@@ -53,18 +53,18 @@ public class ToolbarView {
         toolbarFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         toolbarPanel.setLayout(new FlowLayout());
 
-        JButton stepButton, passButton, clearSnowButton, pickUpItemButton, useAbilityButton;
-        JComboBox stepDirCB, useAbilityCB;
+        JButton stepButton, passButton, clearSnowButton, pickUpItemButton, useAbilityButton, useItemButton;
+        JComboBox stepDirCB, useAbilityCB, ropeCB;;
         stepButton = new JButton("Step");
-        stepDirCB = new JComboBox();
-        stepDirCB.addItem("up");
-        stepDirCB.addItem("right");
-        stepDirCB.addItem("down");
-        stepDirCB.addItem("left");
         passButton = new JButton("Pass");
         clearSnowButton = new JButton("Clear Snow");
         pickUpItemButton = new JButton("Pick Up Item");
         useAbilityButton = new JButton("Use Ability");
+        useItemButton = new JButton("Use Item");
+        String[] dirs = {"up", "right", "down", "left"};
+        stepDirCB = new JComboBox(dirs);
+        ropeCB = new JComboBox(dirs);
+        ropeCB.setVisible(false);
         String[] ids = {"up", "right", "down", "left"};
         useAbilityCB = new JComboBox(ids);
         JLabel playerStatus = new JLabel(gameController.getCurrentPlayer().toString());
@@ -93,6 +93,7 @@ public class ToolbarView {
         toolbarPanel.add(stepDirCB);
         toolbarPanel.add(passButton);
         toolbarPanel.add(useAbilityButton);
+        toolbarPanel.add(useItemButton);
         toolbarPanel.add(useAbilityCB);
         toolbarPanel.add(clearSnowButton);
         toolbarPanel.add(pickUpItemButton);
@@ -105,12 +106,13 @@ public class ToolbarView {
         toolbarPanel.add(w1Button);
         toolbarPanel.add(w2Button);
         toolbarPanel.add(w3Button);
+        toolbarPanel.add(ropeCB);
 
         //Action listeners
         MouseAdapter mAdapter = new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
-                toolBarController.toolbarButtonPressed();
+                toolBarController.toolbarButtonPressed(useAbilityCB, ropeCB);
             }
         };
 
@@ -124,6 +126,7 @@ public class ToolbarView {
                 toolBarController.passButtonPressed();
             }
         });
+
         stepButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -191,7 +194,7 @@ public class ToolbarView {
         ropeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                toolBarController.ropeButtonPressed();
+                toolBarController.ropeButtonPressed(ropeCB);
             }
         });
 
@@ -213,6 +216,13 @@ public class ToolbarView {
             @Override
             public void actionPerformed(ActionEvent e) {
                 toolBarController.winItemButtonPressed();
+            }
+        });
+
+        useItemButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                toolBarController.useItemButtonPressed(ropeCB);
             }
         });
     }

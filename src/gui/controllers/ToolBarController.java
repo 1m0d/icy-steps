@@ -2,25 +2,33 @@ package gui.controllers;
 
 import gui.GameView;
 import gui.ToolbarView;
-import modules.GameController;
-import modules.Interpreter;
-import modules.Player;
-import modules.Scientist;
+import modules.*;
 
 import javax.swing.*;
 
 public class ToolBarController {
-    ToolbarView toolbarView;
-    GameView gameView = GameView.getInstance();
-    GameController gameController = GameController.getInstance();
-    Interpreter interpreter = new Interpreter();
+    private ToolbarView toolbarView;
+    private GameView gameView = GameView.getInstance();
+    private GameController gameController = GameController.getInstance();
+    private Interpreter interpreter = new Interpreter();
+    private String itemSelected;
 
     public ToolBarController(){
         toolbarView = ToolbarView.getInstance();
     }
 
     // runs on any button press
-    public void toolbarButtonPressed(){
+    public void toolbarButtonPressed(JComboBox useAbilityCB, JComboBox ropeCB){
+        if (gameController.getCurrentPlayer() instanceof Eskimo) {
+            useAbilityCB.setVisible(false);
+        } else{
+            useAbilityCB.setVisible(true);
+        }
+
+        if(itemSelected != "rope"){
+            ropeCB.setVisible(false);
+        }
+
         gameView.getMainPanel().repaint();
         toolbarView.getToolbarPanel().repaint();
     }
@@ -51,33 +59,54 @@ public class ToolBarController {
         }
     }
 
+    // item buttons
+
     public void foodButtonPressed(){
+        itemSelected = "food";
         interpreter.executeCommand("use-item", new String[]{"food"});
     }
 
     public void campButtonPressed(){
+        itemSelected = "camp";
         interpreter.executeCommand("use-item", new String[]{"camp"});
     }
 
     public void divingsuitButtonPressed(){
+        itemSelected = "diving-suit";
         interpreter.executeCommand("use-item", new String[]{"diving-suit"});
     };
 
     public void shovelButtonPressed(){
+        itemSelected = "shovel";
         interpreter.executeCommand("use-item", new String[]{"shovel"});
     }
 
     public void fShovelButtonPressed(){
+        itemSelected = "fragile-shovel";
         interpreter.executeCommand("use-item", new String[]{"fragile-shovel"});
     };
 
-    public void ropeButtonPressed(){
-        // TODO: should be able to choose which square to use it on
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void ropeButtonPressed(JComboBox ropeCB){
+        itemSelected = "rope";
+        ropeCB.setVisible(true);
     }
 
     public void winItemButtonPressed(){
+        itemSelected = "winning-item";
         interpreter.executeCommand("use-item", new String[]{"winning-item"});
+    }
+
+    public void useItemButtonPressed(JComboBox ropeCB){
+        if(itemSelected == null)
+            return;
+
+        if(itemSelected.equals("rope")) {
+            interpreter.executeCommand("use-item", new String[]{itemSelected, ropeCB.getSelectedItem().toString()});
+            ropeCB.setVisible(false);
+        }
+        else {
+            interpreter.executeCommand("use-item", new String[]{itemSelected});
+        }
     }
 
 }
